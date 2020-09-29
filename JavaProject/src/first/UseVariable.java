@@ -1,7 +1,9 @@
+package first;
 
 public class UseVariable {
 
 	public static void main(String[] args) {
+		
 		// 1. 정수형 타입의 변수 num1변수를 선언
 		int num1; 	// 특별한 제약이 없으면 정수는 int로 
 				
@@ -73,7 +75,7 @@ public class UseVariable {
 		int age = 200;
 				
 		System.out.println((byte)age);	// **역방향의 형 변환은 예측할 수 있는 데이터만 할 수 있다. 
-				
+
 	}
 
 }
