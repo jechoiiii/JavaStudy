@@ -31,7 +31,7 @@ public class StringTest {
 			System.out.println("다른 인스턴스를 참조");
 		}
 		
-		// 문자열의 동등비교 - ""큰 따옴표 안 내용의 비교
+		// 문자열의 내용 비교 
 		System.out.println(str1.equals(str4));
 		
 		

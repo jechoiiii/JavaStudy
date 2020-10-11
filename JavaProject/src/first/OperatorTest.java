@@ -1,6 +1,7 @@
 package first;
 
-import java.lang.Math; // Math 사용할때 필요!
+import java.lang.Math; // Math 메서드 사용시 필요
+
 import java.util.Scanner;
 
 public class OperatorTest {
@@ -92,16 +93,16 @@ public class OperatorTest {
 		
 		float pi = 3.141592f;
 		
-		float sPi = (int)(pi*100)/100f; // /100f 하면 float타입으로 3.14, /100하면 int타입으로 3
+		float sPi = (int)(pi*100)/100f; // /100f 하면 float타입 -> 3.14, /100하면 int타입 -> 3
 		
-		System.out.println(sPi);		// 3.0 <- 소수점을 버렸지만 표현되는 이유는 float 타입이라
+		System.out.println(sPi);		// 3.0 <- 소수점을 버렸지만 표현되는 이유는 float 타입이기 때
 		
 		int price = 11234;
 		int price2 = price/1000*1000;
 		
 		System.out.println(price2);
 		
-		float sPi2 = Math.round(pi*100)/100f;		// .java.long.Math 공식명칭. 맨 위 package 다음에 import java.lang.Math; 써야 함
+		float sPi2 = Math.round(pi*100)/100f;		// .java.long.Math가 공식명칭. 맨 위 package 다음에 import java.lang.Math; 기재 필
 		
 		System.out.println(sPi2);	// 변수를 메모리에 올리는 과정 = 인스턴스화 = 객체화
 		
@@ -121,11 +122,11 @@ public class OperatorTest {
 		// 참조 변수 : 객체의 메모리 주소값을 저장하는 변수
 		String str = null;	// null -> 참조변수가 객체의 주소값을 저장하고 있지 않는다를 의미
 		
-	//	str = "";  // "" 공백 문자열을 이용한 객체를 생성하고 주소값을 받환
+		str = "";  // "" 공백 문자열을 이용한 객체를 생성하고 주소값을 받환
 		str = "abc";	// "" 공백 문자열을 이용한 객체를 생성하고 주소값을 받환
-		
+	
 		System.out.println(str.toString());
-		System.out.println(str.equals("abc"));	// "abc" 갖고있는 문자열과 비교하여 반환...huh?
+		System.out.println(str.equals("abc"));	// "abc" 갖고있는 문자열과 비교하여 t/f 반환
 		
 		if(str != null && !str.equals("")) {
 			System.out.println( str.charAt(1));	// index에 0~3-1 -> 0, 1, 2 들어갈 수 있음
@@ -139,8 +140,8 @@ public class OperatorTest {
 		int diff = 0;	// 두 수의 차이
 		
 		// 삼항연산자 이용
-	//	big = num1>num2 ? num1 : num2 ;		// big = num1 ;		
-	//	diff = num1>num2 ? num1-num2 : num2-num1 ;
+//		big = num1>num2 ? num1 : num2 ;		// big = num1 ;		
+//		diff = num1>num2 ? num1-num2 : num2-num1 ;
 		
 		// 삼항연산자 없이
 		if(num1>num2) {
@@ -185,55 +186,7 @@ public class OperatorTest {
 				System.out.println("Best Java");
 		 */
 		}
-		
 
-		
-		// 과제 : 자바의 정석 문제 풀이
-		// 문제 1. int형 변수 num1, num2, num3가 각각 10,20,30 으로 초기화 되어 있다.
-		// 다음문장을 실행하면 각각 변수에는 어떠한 값이 저장되겠는가? 확인 하는 코드를 작성하고, 그 결과에 대해 설명.
-		// num1=num2=num3 ;
-		num1 = 10;
-		num2 = 20;
-		int num3 = 30;
-		
-		num1 = num2 = num3;
-		
-		System.out.println("num1 : " +num1+ ", num2 : " +num2+ ", num3 : " +num3);
-		
-		// 문제 2. 수학식 {{(25x5)+(36-4)}-72}/5 의 계산결과를 출력하는 프로그램 작성.
-		num1 = 25;
-		num2 = 5;
-		num3 = 36;
-		int num4 = 4;
-		int num5 = 72;
-		int num6 = 5;
-						
-		result = (num1*num2 + num3 - num4 - num5)/num6;
-		System.out.println(result);
-		
-		// 문제 3. ﻿3+6, 3+6+9, 3+6+9+12 의 연산을 하는 프로그램 작성. 단, 덧셈 연산의 횟수 최소화
-		int sum = 3;
-		for (i = 2; i < 5; i++) {
-			sum = sum + i * 3;
-			System.out.println(sum);
-		}
-
-		// 문제 4. ﻿a= {{(25+5)+(36/4)}-72}*5, b= {{(25x5)+(36-4)}-71}/4, c=(128/4)*2 일 때
-		// a>b>c 가 참이면 true 아니면 false를 출력하는 프로그램 작성
-		int a = (25+5+36/4-72)*5;
-		int b = (25*5+36-4-71)/4;
-		int c = (128/4)*2;
-		boolean boo;
-				
-		if(a>b && b>c) {
-			boo = true;
-		}
-		else {
-			boo = false;
-		}
-		System.out.println("a>b>c : " + boo);
-		
-
-	}
+}
 
 }

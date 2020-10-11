@@ -13,14 +13,13 @@ public class FruitSeller {
 	// 성격이 비슷한 변수 메서드를 정의한다
 	
 	
-// 수정 : 2020.10.08
-	
+	// 수정 : 2020.10.08 
 	//		변수의 초기화를 생성자에서 처리, 변수 선언시에 초기화 코드 삭제
 	// 변수 : 인스턴스 변수, 멤버 변수		
 	//int applePrice = 1000;		// 사과의 가격
-	final int APPLE_PRICE;	// 사과의 가격, 변경이 되지 않도록 상수로 선언
-	int numOfApple;			// 사과의 보유 개수
-	int myMoney;				// 수익 금액
+	final int APPLE_PRICE;			// 사과의 가격, 변경이 되지 않도록 상수로 선언
+	int numOfApple;					// 사과의 보유 개수
+	int myMoney;					// 수익 금액
 	
 	
 // 2020.10.08 생성자 추가
@@ -34,16 +33,22 @@ public class FruitSeller {
 		myMoney=money;
 	}
 	
-	// 생성자를 이용한 인스턴스의 복사 
+	// 생성자를 이용한 인스턴스의 복사 (논리값은 같지만 물리값(데이터의 주소값)은 다르다.) 
+	
 	FruitSeller(FruitSeller seller){	
+		
 		//APPLE_PRICE = seller.APPLE_PRICE;
 		//numOfApple = seller.numOfApple;
 		//myMoney = seller.myMoney;
+		
+		// 위 세줄을 아래 한줄로 this 이용하여 바꿀 수 있음.
 		this(seller.myMoney, seller.numOfApple, seller.APPLE_PRICE);
+		
 	}
 	
 	
 	// 	기능 : 판매, 정산 출력
+	
 	/* 	판매 메서드 : 					// flow chart 순서도 적고 코드 작성하기!
 	 		돈을 받고 -> 
 	 			반환하는 사과의 개수, 
@@ -51,14 +56,17 @@ public class FruitSeller {
 				보유하는 사과의 개수 감소 -> 
 	 		사과의 개수 반환
 	 */
+	
 	int saleApple(int money) {
 		
 		int num = 0;	// 반환할 사과의 개수, *지역변수는 반드시 초기화 해주어야 한다.
 		
 		// 반환할 사과의 개수 구하기
-		num = money/ APPLE_PRICE;	// 받은 돈 / 사과의 가격
+		num = money/ APPLE_PRICE;	// 받은 돈/사과의 가격
+		
 		// 수익금 증가
 		myMoney = myMoney + money;
+		
 		// 사과의 개수 감소
 		numOfApple = numOfApple - num;
 		

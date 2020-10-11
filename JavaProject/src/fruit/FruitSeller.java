@@ -7,25 +7,24 @@ public class FruitSeller {
 	
 	// 변수 : 인스턴스 변수, 멤버 변수
 	
-	//int applePrice = 1000;		// 사과의 가격
-	final int APPLE_PRICE = 1000;	// 사과의 가격, 변경이 되지 않도록 상수로 선언
+	final int APPLE_PRICE = 1000;	// 사과의 가격, 변경이 되지 않도록 상수 처
 	int numOfApple = 20;			// 사과의 보유 개수
 	int myMoney = 0;				// 수익 금액
 	
-	// 	기능 : 판매, 정산 출력
-	/* 	판매 메서드 : 					// flow chart 순서도 적고 코드 작성하기!
-	 		돈을 받고 -> 
-	 			반환하는 사과의 개수, 
+	// 	기능 : 판매,수익금 정산 출력
+	/* 	판매 메서드 : 					(flow chart 순서도 적고 코드 작성할 것)
+	 		돈을 받고 
+	 			-> 반환하는 사과의 개수, 
 				수익금 증가, 
-				보유하는 사과의 개수 감소 -> 
-	 		사과의 개수 반환
+				보유하는 사과의 개수 감소
+	 		-> 사과의 개수 반환
 	 */
 	int saleApple(int money) {
 		
-		int num = 0;	// 반환할 사과의 개수, *지역변수는 반드시 초기화 해주어야 한다.
+		int num = 0;	// 반환할 사과의 개수, 지역변수는 반드시 초기화 해주어야 한다.
 		
 		// 반환할 사과의 개수 구하기
-		num = money/ APPLE_PRICE;	// 받은 돈 / 사과의 가격
+		num = money/APPLE_PRICE;	// 받은 돈/사과의 가격
 		// 수익금 증가
 		myMoney = myMoney + money;
 		// 사과의 개수 감소

@@ -1,7 +1,6 @@
 package first;
 
-public class MyMeth {	// 사용하고 싶은 메서드를 클래스로 Ekfh 만들어 놓기.
-						// 여기서 MyMeth 메서드는 아직 메모리에 올라가 있지 않다. 즉 사용불가
+public class MyMeth {	// 사용하고 싶은 메서드를 클래스로 만들어 놓기.
 
 	// 변수 선언
 	int num= 10; 
@@ -16,17 +15,14 @@ public class MyMeth {	// 사용하고 싶은 메서드를 클래스로 Ekfh 만�
 		System.out.println("안녕하세요");
 	}
 	
-	//  정수 2개를 받아서 덧셈의 결과를 출력하는 메서드 -> 반환X
+//  정수 2개를 받아서 덧셈의 결과를 출력하는 메서드 -> 반환X
 	void plus(int num1, int num2) {		// num1은 매개변수이기 때문에 겹치지 x
 		int result = num1 + num2;		// result는 지역변수이기 때문에 상단에서 사용했던 변수지만 영향받지 X
 		System.out.println(result);
 	}
 	
-	// 
 	boolean check() {
-		
 		boolean result = num > 20;
-		
 		return result;
 	}
 	
@@ -34,18 +30,18 @@ public class MyMeth {	// 사용하고 싶은 메서드를 클래스로 Ekfh 만�
 		return false;
 	}
 	
-	// 정수 2개를 받아서 나눗셈한 결과를 출력하는 메서드
+// 정수 2개를 받아서 나눗셈한 결과를 출력하는 메서드
 	void div(int num1, int num2) {
 		
-		if(num2==0) {									// 예외처리
+		// 예외처리 
+		if(num2==0) {
 			System.out.println("0으로 나눌 수 없습니다.");
 			return;		// 메서드의 종료를 의미 
 		}
 		
-		System.out.println("나눗셈의 결과 : " + num1/num2);	// 사칙연산에서 /,%가 우선되기 때문에 괄호 불필요
+		System.out.println("나눗셈의 결과 : " + num1/num2);		// 사칙연산 중 /와 %는 우선되기 때문에 괄호 불필요
 	}
 	
-	// 
 	
 	
 }

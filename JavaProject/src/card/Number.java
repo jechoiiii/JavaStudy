@@ -4,15 +4,14 @@ public class Number {
 
 	int num;
 	
-	// 생성자
-	// 생성자는 초기화를 목적으로 만들 때는 Class 이름과 동일하게
-	// 반환하지 않아 return x
-	Number(int number) {		// int 타입의 정수형만 
+	// 생성자는 초기화 메소드로 초기화를 목적으로 한다. 클래스 이름과 동일, 반환 타입 x 
+	
+	Number(int number) {	// int 타입의 정수형만 가능 
 		num = number;
 		System.out.println("생성자가 실행되었습니다.");
 	}
 	
-	Number(){		// 생성자 오버로딩
+	Number(){	// 생성자 오버로딩, 매개 변수x 
 		num = 10;
 		System.out.println("생성자가 실행되었습니다.");
 	}

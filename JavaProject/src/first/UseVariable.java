@@ -32,11 +32,11 @@ public class UseVariable {
 		char c1 = 'A';
 				
 		System.out.println(c1);
-		System.out.println((int)c1);	// () 형변환 연산자
+		System.out.println((int)c1);	// (변수 타입) 형변환 연산자
 				
 				
 				
-		// boolean : true / false
+		// boolean : true/false
 		boolean check = true; 
 			
 		if(check) {
