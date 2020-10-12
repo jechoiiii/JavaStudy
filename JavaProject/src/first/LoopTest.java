@@ -21,7 +21,7 @@ public class LoopTest {
 	 			while (i<10(반복의 조건)) {
 	 				반복 영역 
 	 				i++;}
-	 
+//	 
 		*/
 		
 		// while Loop	

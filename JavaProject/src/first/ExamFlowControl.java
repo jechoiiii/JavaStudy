@@ -6,6 +6,7 @@ public class ExamFlowControl {
 	
 	public static void main(String[] args) {
 
+		
 //		<조건문과 반복문 문제 풀기>	
 		
 //		문제1. 아래 예제는 두 개의 if문을 하나로 변경 ------------------------------------
@@ -350,7 +351,8 @@ public class ExamFlowControl {
 			i++;
 			sum += i;
 			} while(i < 99);
-		System.out.println("1~99까지의 합: " + sum);
-	
-}
+		System.out.println("1~99까지의 합: " + sum);		
+
+		
+	}
 }
