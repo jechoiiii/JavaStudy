@@ -1,4 +1,4 @@
-package first;
+package exam;
 
 public class ExamOper2 {
 

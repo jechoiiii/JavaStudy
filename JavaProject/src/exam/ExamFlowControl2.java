@@ -1,4 +1,4 @@
-package first;
+package exam;
 
 /*
 		파일 이름 : ExamFlowControl2.java
