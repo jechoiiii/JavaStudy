@@ -21,8 +21,15 @@ public class FruitSalesMain1 {
 		// FruitBuyer 타입의 참조변수 선언과 초기화 (한번에 처리)
 		FruitBuyer buyer = new FruitBuyer();
 		
+		// 직접참조는 실수해도 문법 오류가 아니기 때문에 오류 잡기 힘들다. 
+		// 직접 참조 대신, 캡슐화/정보은닉하자 (private 접근제어자 사용)
+//		seller.myMoney -= 500; 
+//		buyer.myMoney -= 500;	
+//		
+//		seller.numOfApple -= 20;
+//		buyer.numOfApple += 20;	
+		
 
-	
 		// 사과를 구매 : 2000 지불
 		buyer.buyApple(seller, 3000); 	// buyer에서 시작하는 이유 : seller는 누구에게 팔 건지 정의하지X 
 		
