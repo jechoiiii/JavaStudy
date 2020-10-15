@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /*
 	파일 이름 : ver03.java
-	내용 : 배열 사용한 메서드 추가
+	내용 : 정보 저장/검색/삭제/보기 메서드 (배열 사용)
 	작성 일시 : 2020.10.14
 */
 
@@ -96,7 +96,7 @@ public class PhoneBookManager {
 		System.out.println("찾고자 하는 이름을 입력해주세요.");
 		String name = Util.sc.nextLine();
 		
-		// 이름으로 요소 index 검색
+		// 이름으로 요소 index 검색(1)
 		int index = searchIndex(name);
 		
 /*		// 이름으로 요소 index 검색(2)
@@ -186,11 +186,6 @@ public class PhoneBookManager {
 			System.out.println("-------------------------");
 		}		
 	}
-	
-	
-	
-	
-	
 	
 	
 }

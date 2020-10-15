@@ -11,7 +11,8 @@ public class CCC {
 //		AAA a = new AAA();	// 다른 패키지기 때문에 import 필요
 //							// AAA() 생성자가 public이 아니면 invisible
 //
-//		a.num = 10; // default는 같은 패키지까지만. test.BBB에는 visible, test1.CCC에선 invisible
+//		a.num = 10; // default는 같은 패키지까지만. 
+					// test.BBB에선 visible, test1.CCC에선 invisible
 
 	}
 
