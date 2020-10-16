@@ -4,8 +4,8 @@ public class ProductMain {
 
 	public static void main(String[] args) {
 
-//		System.out.println(new Product(100).toString());
-//		System.out.println(new Tv(100).toString());
+		System.out.println(new Product(100).toString());
+		System.out.println(new Tv(100).toString());
 
 		// 구매자 인스턴스 생성
 		Buyer b = new Buyer();
