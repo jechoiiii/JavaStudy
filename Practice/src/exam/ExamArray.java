@@ -11,51 +11,82 @@ public class ExamArray {
 /* 
 	문제 1. -------------------------------------------------
 */
-		// 배열 선언
-		int[] arr = new int[5];
+		Scanner s = new Scanner(System.in);
 		
-		Scanner sc = new Scanner(System.in);
+		int cnt=0;	// 사용자로부터 입력받을 정수의 개수
 		
-		System.out.println("정수 5개를 입력해주세요.");
-		System.out.println("정수 1");
-		for(int i=0; i<arr.length; i++) {
+		System.out.println("입력하고자 하는 정수의 개수를 입력해주세요.");
+		cnt = s.nextInt();
+		
+		int[] arr = new int[cnt];
+		
+		System.out.println("정수를 입력해주세요.");
+		
+		int ij=0;
+		while(ij<arr.length) {
 			System.out.println("정수를 입력해주세요. >> ");
-			arr[i]= sc.nextInt();
+			arr[ij]= s.nextInt();
+			ij++;
 		}
 		
-		System.out.println("최대값 : " + maxValue(arr));
-		System.out.println("최소값 : " + minValue(arr));	
-
+		System.out.println("최대값 : " +maxValue(arr));
+		System.out.println("최소값 : " +minValue(arr));
+		
 /* 
 	문제 2. ---------------------------------------------------
 */
-		int[][] arr2 = {
+		int[][] arr2 = {	
+				{1,2},
+				{3,4},
+				{5,6}
+		};
+		
+		System.out.println("2차원 배열 ------------------");
+		for(int i=0; i<arr2.length; i++) {
+			for(int j=0; j<arr2[i].length; j++) {
+				System.out.print(arr2[i][j]);
+			}
+			System.out.println();
+		}
+		
+		addOneArr(arr2, 3);	// 메서드 호출 
+		System.out.println("배열 요소 전체에 +3 -----------");
+		for(int i=0; i<arr2.length; i++) {
+			for(int j=0; j<arr2[i].length; j++) {
+				System.out.print(arr2[i][j]);
+			}
+			System.out.println();
+		}
+		
+/* 
+	문제 3. ---------------------------------------------------
+*/		
+		int[][] arr3 = {	
 				{1,2,3},
 				{4,5,6},
 				{7,8,9}
 		};
 		
-		System.out.println("2차원 배열 =============");
-		for(int i=0; i<arr2.length; i++) {
-			for(int j=0; j<arr2[i].length; j++) {
-				System.out.println(arr2[i][j]);
+		System.out.println("2차원 배열 ------------------");
+		for(int i=0; i<arr3.length; i++) {
+			for(int j=0; j<arr3[i].length; j++) {
+				System.out.print(arr3[i][j] + "");
 			}
-			System.out.println();
+		System.out.println();
 		}
-
-		addOneDArr(arr2, 5);
-		System.out.println("배열 요소 전체에 +5 =============");
-		for(int i=0; i<arr2.length; i++) {
-			for(int j=0; j<arr2[i].length; j++) {
-				System.out.println(arr2[i][j]);
+		
+		System.out.println("2차원 배열 구조 변경 ----------");
+		changeArr(arr3);	//메서드 호출 
+		for(int i=0; i<arr3.length; i++) {
+			for(int j=0; j<arr3[i].length; j++) {
+				System.out.print(arr3[i][j] + "");
 			}
-			System.out.println();
-		}
-	
-	
-	
+		System.out.println();
+		}		
+		
 	// main 종료 ==================================================================
 	}	
+	
 	
 /*
 	문제 1. -------------------------------------------------------------
@@ -71,27 +102,28 @@ public class ExamArray {
 */
 	
 	// 전달받은 1차원 배열에서 최소값을 축출해서 반환하는 메서드 
-	public static int minValue(int[] arr) {	// static 메서드는 static 멤버만 호출가능 // int 타입 배열 안 변수들은 모두 int 타입
+	public static int minValue(int[] arr) {
 		int min = arr[0];
-		for(int i=1; i<arr.length; i++) { 	// i를 1로 설정한 이유: 연산 줄이기 위해. 이미 0번지가 min으로 설정되어 비교 불필요
-			if(min>arr[i]) {			
-				min = arr[i];				// else할 필요 없어. if 충족못하면 min은 그대로.
+		for(int i=0; i<arr.length; i++) {
+			if(min>arr[i]) {
+				min = arr[i];
 			}
 		}
 		return min;
 	}
-	
+
 	// 전달받은 1차원 배열에서 최대값을 축출해서 반환하는 메서드
 	public static int maxValue(int[] arr) {
 		int max = arr[0];
-		for(int i=1; i<arr.length; i++) {
+		for(int i=0; i<arr.length; i++) {
+
 			if(max<arr[i]) {
 				max = arr[i];
 			}
 		}
 		return max;
 	}
-				
+	
 /*
  	문제 2. ------------------------------------------------------------
 		int형 2차원 배열에 저장된 값 전부를 증가시키는 메서드를 다음의 형태로 정의하자.
@@ -101,17 +133,16 @@ public class ExamArray {
 		단, 위 메서드는 2차원 배열의 가로, 세로 길이에 상관없이 동작해야 하며, 
 		위의 메서드가 제대로 동작하는지 확인하기 위한 main 메서드도 함께 정의해야 한다.
  */
-	// 2차원 배열은 1차원 배열들을 가지는 또 다른 1차원 배열이다.
 	
-	public static void addOneDArr(int[][] arr, int add) {	// 2차원 배열 arr
-	
-		// 2차원 배열이 가지는 1차원 배열의 개수만큼 반복
-		// 		각각의 1차원 배열을 반복 arr[0] 
+	public static void addOneArr(int[][] arr, int add) {
+		
+		// 2차원 배열이 가지는 1차원 배열의 개수만큼 반복 
+		// 		각각 1차원 배열 arr[0] 반복 
 		for(int i=0; i<arr.length; i++) {
 			for(int j=0; j<arr[i].length; j++) {
 				arr[i][j] = arr[i][j] + add;
 			}
-		}
+		}		
 	}
 	
 /*
@@ -128,30 +159,19 @@ public class ExamArray {
 		이번에도 마찬가지로 배열의 가로, 세로길이에 상관 없이 동작을 하도록 메서드가 정의되어야 하며, 
 		정의된 메서드의 확인을 위한 main메서드도 함께 정의하자.
  */
-	
-	public static void changeArr(int[][] arr) {
-		
-		// 2차원 배열은 1차원 배열들을 요소로 갖는 배열이다. 
-		// 1차원 배열들의 위치를 변경 -> 2차원 배열이 가지는 1차원 배열의 주소값이 변경
-		
-		// 주소값의 변경을 위한 임시 배열 선언, 생성
-		int[] temp = new int[arr[0].length];	// [arr[arr.length-1].length]
-		
-		temp = arr[arr.length-1];	// 2차원 배열의 마지막 요소인 1차원 배열을 temp에 저장
 
-		for(int i=arr.length-1; i>0; i--) {	// 0번지를 처리하려면 -1번지가 필요하니 제외
-			arr[i] = arr[i-1];			
+	public static void changeArr(int[][] arr3) {
+		
+		// 주소값 변경을 위해 임시 배열 선언, 생성
+		int[] temp = new int[arr3[0].length];
+		
+		temp = arr3[arr3.length-1];	// 2차원 배열의 마지막 요소인 1차원 배열(2번지)를 temp에 저장
+		
+		for(int i=arr3.length-1; i>0; i--) {	// 0번지를 처리하려면 -1번지가 필요하니 제외
+			arr3[i] = arr3[i-1];
 		}
-		arr[0] = temp;
+		arr3[0] = temp;
 	}
 
-
-		
-		
-		
-		
-		
-		
-	
 
 }
