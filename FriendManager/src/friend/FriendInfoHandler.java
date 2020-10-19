@@ -64,6 +64,10 @@ public class FriendInfoHandler  {
 		System.out.println("전체 데이터를 출력합니다.");
 		for(int i=0; i<numOfFriends; i++) {
 			friends[i].showData(); // friend[0] -> Friend 타입의 참조변수에 하위클래스의 인스턴스들을 참조하고 있다. 
+			// 오버라이딩을 안할 경우? 직접 형변환해야 한다. 
+			// if(friends[i] instanceof UnivFriend) {
+			// 		((UnivFriend)friends[i]).showdata(); 
+			// }
 			System.out.println("------------------------");
 		}		
 	}
