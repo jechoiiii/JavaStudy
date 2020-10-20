@@ -1,6 +1,6 @@
 package friend;
 
-public class Friend {
+public abstract class Friend {
 	
 	// 이 클래스를 상속하면 변수/메서드를 모두 구현해야한다. 클래스를 만드는 일종의 규칙이다. 
 	
@@ -36,9 +36,10 @@ public class Friend {
 	}
 	
 	// 오버라이딩 : 비어있는 처리부를 기능에 추가
-	public void showBasicInfo() {	
-		
-	}
-	
+//	public void showBasicInfo() {	
+//		
+//	}
+
+	public abstract void showBasicInfo();
 	
 }
