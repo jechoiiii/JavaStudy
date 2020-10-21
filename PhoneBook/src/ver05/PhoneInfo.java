@@ -1,10 +1,11 @@
 package ver05;
 
 /*
-	파일 이름 : ver0402.PhoneInfo.java
-	내용 : 전화번호 관리 프로그램 ver04 강사 버전
+	파일 이름 : ver05.PhoneInfo.java
+	내용 : 전화번호 관리 프로그램 ver05
  */
 
+//2020.10.21 수정 : 추상화
 public abstract class PhoneInfo implements Info {	// extends Object
 
 	// 친구의 이름, 전화번호, 주소, 이메일
