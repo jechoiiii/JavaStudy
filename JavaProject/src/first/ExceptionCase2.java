@@ -26,7 +26,8 @@ public class ExceptionCase2 {
 //		} catch(NullPointerException e) {
 //			System.out.println(e.getMessage());
 		} catch(Exception e) {	// 가장 넓은 범위의 catch문을 가장 마지막에. 		
-		}						// 단독으로 사용해도 OK. 
+		}						// Exception만 단독으로 사용해도 OK. 
+		
 		System.out.println("메서드가 종료됩니다.");
 		
 	}

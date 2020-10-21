@@ -14,7 +14,6 @@ public class ExceptionThrow {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace(); // 예외발생 순서
-				// printStackTrace() : 예외처리 하지 않았을 때 나오는 메세지 보여줌
 		}
 		System.out.println("프로그램 종료");
 	}
