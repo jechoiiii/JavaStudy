@@ -1,18 +1,15 @@
-package ver05;
+package ver06;
 
 /*
-	파일 이름 : ver05.java
-	내용 : 전화번호 관리 프로그램 ver05 업데이트
+	파일 이름 : ver06.java
+	내용 : 전화번호 관리 프로그램 ver06
  
-	Project ver 0.50
-	
-	1) ​PhoneBookManager 클래스의 인스턴스수가 최대 하나를 넘지 않도록 코드를 변경
-	2) ‘interface’기반의 상수 표현을 바탕으로 
-		메뉴 선택과 그에 따른 처리가 이름에 부여된 상수를 기반으로 진행되도록 변경
-	3) 현재의 기본 클래스를 interface와 추상클래스를 사용하는 구조로 변경
+	Project ver 0.60 
+	 
+	1) 배열을 이용해서 저장하는 방식을 ArrayList<T> 컬랙션을 이용해서 구현  
+	2) 사용자 메뉴 입력 시 예외처리 
 */
 
-//2020.10.21 수정 : 추상화
 public abstract class PhoneInfo implements Info {	// extends Object
 
 	// 친구의 이름, 전화번호, 주소, 이메일

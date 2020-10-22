@@ -1,4 +1,4 @@
-package ver05;
+package ver06;
 
 import ver03.Util;
 
@@ -10,8 +10,6 @@ public class PhoneBookManager {
 	// 배열 선언 : 상속 관계이기 때문에 PhoneInfo 타입으로 선언
 	private PhoneInfo[] pBook;	// 전화번호 정보를 저장할 배열
 	private int cnt;			// 배열에 저장된 요소의 개수, 배열의 index
-	
-// 2020.10.21 수정 : 싱글톤 처리
 	
 	// 생성자 : 싱글톤 처리 -> 외부에서 인스턴스 생성을 금지
 	private PhoneBookManager(int num){
@@ -39,10 +37,8 @@ public class PhoneBookManager {
 		pBook[cnt++] = info;
 	}
 	
-// 2020.10.21 수정 : Interface 기반 상수 표현
-	
 	// 전화번호 정보를 인스턴스 생성하고 배열에 저장
-	public void insertInfo() {
+	public void insertInfo() throws MenuInputException {
 
 		// 100개 입력	0<=index<=99, cnt=100
 		// pBook[100] -> 오류
@@ -63,12 +59,21 @@ public class PhoneBookManager {
 		Util.sc.nextLine();
 			// nextInt() 에서 사용자가 입력한 숫자 뒤 공백을 입력으로 인식해서 넘어감. 
 			// 역할 : 숫자 뒤 공백을 반환. -> 호출할게 없으니 넘어감. 	
+
+// 2020.10.12 수정 : 사용자 정보 입력 시 예외 처리 
 		
 		if( !(select>0 && select<4) ) {
+			MenuInputException mie = new MenuInputException(select);
 			System.out.println("메뉴 선택이 올바르지 않습니다.");
 			System.out.println("초기 메뉴로 지나갑니다.");
-			return;
+			throw mie;
 		}
+		
+//		if( !(select>0 && select<4) ) {
+//			System.out.println("메뉴 선택이 올바르지 않습니다.");
+//			System.out.println("초기 메뉴로 지나갑니다.");
+//			return;
+//		}
 		
 		System.out.println("정보 입력을 시작합니다.");
 		System.out.println("이름 >> ");
@@ -121,6 +126,7 @@ public class PhoneBookManager {
 	}
 	
 	
+	
 	// 정보 검색 기능
 		// 배열의 index를 찾는 메서드
 		// 해당 index의 참조변수로 정보 출력
@@ -138,27 +144,37 @@ public class PhoneBookManager {
 		return index;
 	}
 	
+// 2020.10.22 수정 : 사용자 인덱스 입력 시 예외처리	
+	
 	// 해당 index의 참조변수로 정보 출력 : 사용자가 입력한 이름으로 검색
-	public void searchInfo() {	// ?? ()참조변수에 int index 안쓰는 이유
+	public void searchInfo() throws IndexInputException {	// ?? ()참조변수에 int index 안쓰는 이유
 
-		if(cnt==0) {	// CPU 할당되지 않도록
-			System.out.println("입력된 정보가 없습니다.");
-			return;	// 프로그램 종료
-		}
-		
-		Util.sc.hasNextLine();
-		System.out.println("검색하실 이름을 입력해주세요.");
-		String name = Util.sc.nextLine();
-		
-		int index = searchIndex(name);
-		
-		if(index<0) {
-			System.out.println("검색하신 이름 "+name+"의 정보가 존재하지 않습니다.");
-			System.out.println("메뉴로 돌아갑니다.");
-		} else {
-			System.out.println("검색 결과 ===============");
-			pBook[index].showInfo();
-		}
+			if(cnt==0) {	// CPU 할당되지 않도록
+				System.out.println("입력된 정보가 없습니다.");
+				return;	// 프로그램 종료
+			}
+			
+			Util.sc.hasNextLine();
+			System.out.println("검색하실 이름을 입력해주세요.");
+			String name = Util.sc.nextLine();
+			
+			int index = searchIndex(name);
+
+			if(index<0) {
+				IndexInputException iie = new IndexInputException(index);
+				System.out.println("검색하신 이름 "+name+"의 정보가 존재하지 않습니다.");
+				System.out.println("메뉴로 돌아갑니다.");				
+				throw iie;
+			}
+			
+//			if(index<0) {
+//				System.out.println("검색하신 이름 "+name+"의 정보가 존재하지 않습니다.");
+//				System.out.println("메뉴로 돌아갑니다.");
+//			} else {
+//				System.out.println("검색 결과 ===============");
+//				pBook[index].showInfo();
+//			}
+
 	}
 	
 	
@@ -207,25 +223,6 @@ public class PhoneBookManager {
 			System.out.println("--------------------");
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

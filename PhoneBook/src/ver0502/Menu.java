@@ -1,8 +1,8 @@
-package ver05;
+package ver0502;
 
 public interface Menu { 
 	
-// 2020.10.21 수정 : 전역으로 사용할 상수 구현
+// 2020.10.21 추가 : Interface 기반 상수 표현
 	
 	// public static final 생략
 	int INSERT=1;

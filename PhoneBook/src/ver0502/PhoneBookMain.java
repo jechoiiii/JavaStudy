@@ -1,4 +1,4 @@
-package ver05;
+package ver0502;
 
 import ver03.Util;
 
@@ -6,8 +6,8 @@ public class PhoneBookMain {
 
 	public static void main(String[] args) {
 
-// 2020.10.21 수정 : 싱글톤 처리 -> 참조값 인스턴스 생성
-		PhoneBookManager manager = PhoneBookManager.getInstance();	
+		// PhoneBookManager manager = new PhoneBookManager(100);	// 최대 100개까지 저장 가능
+		PhoneBookManager manager = PhoneBookManager.getInstance();	// 싱글톤 -> 참조값 인스턴스 생성
 		
 		while(true) {
 			System.out.println("메뉴를 입력해주세요. ==============");

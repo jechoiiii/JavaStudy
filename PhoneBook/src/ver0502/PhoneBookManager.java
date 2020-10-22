@@ -1,4 +1,4 @@
-package ver05;
+package ver0502;
 
 import ver03.Util;
 
@@ -120,7 +120,6 @@ public class PhoneBookManager {
 		System.out.println("입력하신 정보가 저장되었습니다. (저장 개수 : " +cnt +")");
 	}
 	
-	
 	// 정보 검색 기능
 		// 배열의 index를 찾는 메서드
 		// 해당 index의 참조변수로 정보 출력
@@ -161,7 +160,6 @@ public class PhoneBookManager {
 		}
 	}
 	
-	
 	// 정보 삭제 기능
 		// 사용자에게 이름을 입력 받고 이름으로 검색한 후 정보 삭제
 	public void deleteInfo() {
@@ -191,7 +189,6 @@ public class PhoneBookManager {
 			System.out.println("요청하신 정보를 삭제했습니다.");
 		}
 	}
-	
 	
 	// 전체 정보 출력 기능
 	public void showAllInfo() {

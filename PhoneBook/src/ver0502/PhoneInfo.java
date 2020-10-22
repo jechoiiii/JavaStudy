@@ -1,8 +1,8 @@
-package ver05;
+package ver0502;
 
 /*
-	파일 이름 : ver05.java
-	내용 : 전화번호 관리 프로그램 ver05 업데이트
+	파일 이름 : ver0502.java
+	내용 : 전화번호 관리 프로그램 ver05 수업 필기
  
 	Project ver 0.50
 	
@@ -16,12 +16,14 @@ package ver05;
 public abstract class PhoneInfo implements Info {	// extends Object
 
 	// 친구의 이름, 전화번호, 주소, 이메일
-	// 캡슐화 : 정보은닉 ( 변수의 직접 접근을 제한 - 보호의 목적 )	
+	// 캡슐화 : 정보은닉 ( 변수의 직접 접근을 제한 - 보호의 목적 )
+		// 공통적으로 사용하는 약어 사용하면서 습관 익힐 것	
 	private String name;			// 이름
 	private String phoneNum;		// 전화번호
 	private String addr;			// 주소
 	private String email;			// 이메일
 
+	
 	// 생성자로 초기화 
 	PhoneInfo(String name, String phoneNum, String addr, String email){
 		// super();	// Object 클래스의 생성자를 호출	// 기본 생성자를 가지고 있어 초기화 생략 가능
@@ -33,10 +35,13 @@ public abstract class PhoneInfo implements Info {	// extends Object
 
 	// getter/setter 메서드 : 값을 읽어오거나 설정할 때
 	// getter 메서드 : 외부에서 private 변수 값 가져갈 수 있도록 
-		// 이름 규칙 : get + 변수와 동일하게, 첫글자는 대문자로
+		// 이름 규칙 : 변수와 동일하게, 첫글자는 대문자로
 	public String getName() {
 		return name;
 	}
+//	public void setName (String name) {
+//		this.name = name;
+//	}
 	public String getPhoneNum() {
 		return phoneNum;
 	}
