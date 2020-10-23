@@ -33,7 +33,7 @@ public class FriendInfoMain {
 					BadMenuException e = new BadMenuException("잘못된 메뉴 입력");
 					throw e;
 				}
-			} catch (InputMismatchException | BadMenuException e) { // 연습용 예외처리 (필요x)
+			} catch (InputMismatchException | BadMenuException e) { // 연습용 예외처리 (필요x), Exception만 import 해도 충분
 				System.out.println("잘못된 메뉴 입력입니다. \n다시 선택해주세요.");
 				s.nextLine();
 				continue;	// 맨 마지막 블록으로 감. switch문 실행 X

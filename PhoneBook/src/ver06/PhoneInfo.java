@@ -3,11 +3,9 @@ package ver06;
 /*
 	파일 이름 : ver06.java
 	내용 : 전화번호 관리 프로그램 ver06
- 
-	Project ver 0.60 
-	 
-	1) 배열을 이용해서 저장하는 방식을 ArrayList<T> 컬랙션을 이용해서 구현  
-	2) 사용자 메뉴 입력 시 예외처리 
+	수정 사항 :	1) 배열을 이용해서 저장하는 방식을 ArrayList<T> 컬랙션을 이용해서 구현  
+			2) 사용자 메뉴 입력 시 예외처리 
+	작성 일시 : 2020.10.22
 */
 
 public abstract class PhoneInfo implements Info {	// extends Object

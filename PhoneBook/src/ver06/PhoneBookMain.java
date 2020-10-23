@@ -1,18 +1,17 @@
 package ver06;
 
+import java.util.InputMismatchException;
+
 import ver03.Util;
 
 public class PhoneBookMain {
 
-	public static void main(String[] args) throws MenuInputException {
+	public static void main(String[] args) throws WrongMenuException, NoInputException {
 
-// 2020.10.21 수정 : 싱글톤 처리 -> 참조값 인스턴스 생성
 		PhoneBookManager manager = PhoneBookManager.getInstance();	
-		
-// 2020.10.22 수정 : 사용자 메뉴 입력 시 예외처리		
-		
+
 			while(true) {
-				System.out.println("메뉴를 입력해주세요. ==============");
+				System.out.println("\n메뉴를 입력해주세요. ==============");
 				System.out.println(Menu.INSERT +". 저장");
 				System.out.println(Menu.SEARCH +". 검색");
 				System.out.println(Menu.DELETE +". 삭제");
@@ -20,13 +19,28 @@ public class PhoneBookMain {
 				System.out.println(Menu.EXIT +". EXIT");
 				
 				System.out.println("\n>>");
-	
-				int select = Util.sc.nextInt();
 				
-				if( !(select>0 && select<6) ) {
-					System.out.println("메뉴의 선택이 올바르지 않습니다. \n다시 선택해주세요.");
-					continue;	// 메뉴 선택으로 다시 올리기
-				}
+// 2020.10.23 수정 : 사용자 메뉴 입력 시 예외처리
+				
+				int select = 0;
+				
+				try {
+					select = Util.sc.nextInt();	
+					
+					if( !(select>=Menu.INSERT && select <=Menu.EXIT) ) {
+						WrongMenuException e = new WrongMenuException(0);
+						throw e;
+					}
+		
+				} catch(InputMismatchException e) {
+					System.out.println("잘못된 입력입니다. 메뉴 번호를 입력해주세요.");
+					Util.sc.nextLine();
+					continue;
+				} catch(WrongMenuException e) {
+					System.out.println("메뉴의 선택이 올바르지 않습니다. 다시 선택해주세요.");
+					Util.sc.nextLine();
+					continue; // 메뉴 선택으로 다시 올리기
+				}			
 				
 				switch (select) {
 				case Menu.INSERT :
