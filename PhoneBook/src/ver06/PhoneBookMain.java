@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 
 import ver03.Util;
 
-public class PhoneBookMain {
+public class PhoneBookMain implements Util {
 
 	public static void main(String[] args) throws WrongMenuException, NoInputException {
 
@@ -25,20 +25,20 @@ public class PhoneBookMain {
 				int select = 0;
 				
 				try {
-					select = Util.sc.nextInt();	
+					select = SC.nextInt();	
 					
 					if( !(select>=Menu.INSERT && select <=Menu.EXIT) ) {
-						WrongMenuException e = new WrongMenuException(0);
+						BadInputException e = new BadInputException(String.valueOf(select));
 						throw e;
 					}
 		
-				} catch(InputMismatchException e) {
+				} catch(InputMismatchException | BadInputException e) {
 					System.out.println("잘못된 입력입니다. 메뉴 번호를 입력해주세요.");
-					Util.sc.nextLine();
+					SC.nextLine();
 					continue;
-				} catch(WrongMenuException e) {
+				} catch(Exception e1) {
 					System.out.println("메뉴의 선택이 올바르지 않습니다. 다시 선택해주세요.");
-					Util.sc.nextLine();
+					SC.nextLine();
 					continue; // 메뉴 선택으로 다시 올리기
 				}			
 				

@@ -44,9 +44,9 @@ public class PhoneBookManager {
 		System.out.println(" 3. 회사");
 		System.out.println(" 4. 동호회");
 		
-		int select = Util.sc.nextInt();
+		int select = Util.SC.nextInt();
 		
-		Util.sc.nextLine();
+		Util.SC.nextLine();
 			// nextInt() 에서 사용자가 입력한 숫자 뒤 공백을 입력으로 인식해서 넘어감. 
 			// 역할 : 숫자 뒤 공백을 반환. -> 호출할게 없으니 넘어감. 	
 		
@@ -58,13 +58,13 @@ public class PhoneBookManager {
 		
 		System.out.println("정보 입력을 시작합니다.");
 		System.out.println("이름 >> ");
-		String name = Util.sc.nextLine();
+		String name = Util.SC.nextLine();
 		System.out.println("전화번호 >> ");
-		String phoneNum = Util.sc.nextLine();
+		String phoneNum = Util.SC.nextLine();
 		System.out.println("주소 >> ");
-		String addr = Util.sc.nextLine();
+		String addr = Util.SC.nextLine();
 		System.out.println("이메일 >> ");
-		String email = Util.sc.nextLine();
+		String email = Util.SC.nextLine();
 		
 		switch(select) {
 			case 1 :
@@ -76,9 +76,9 @@ public class PhoneBookManager {
 				// 추가 정보  받고 -> 인스턴스 생성 -> 배열에 저장
 				// 전공, 학년
 				System.out.println("전공 >> ");
-				String major = Util.sc.nextLine();
+				String major = Util.SC.nextLine();
 				System.out.println("학년 >> ");
-				int grade = Util.sc.nextInt();
+				int grade = Util.SC.nextInt();
 				
 				addInfo(new UnivPhoneInfo(name, phoneNum, addr, email, major, grade));
 				break;
@@ -87,7 +87,7 @@ public class PhoneBookManager {
 				// 추가 정보 받고 -> 인스턴스 생성 -> 배열에 저장
 				// 회사 이름
 				System.out.println("회사 이름 >> ");
-				String company = Util.sc.nextLine();
+				String company = Util.SC.nextLine();
 				
 				addInfo(new CompanyPhoneInfo(name, phoneNum, addr, email, company));
 				break;
@@ -96,9 +96,9 @@ public class PhoneBookManager {
 				// 추가 정보 받고 -> 인스턴스 생성 -> 배열에 저장
 				// 동호회 이름, 닉네임
 				System.out.println("동호회 이름 >> ");
-				String cafeName = Util.sc.nextLine();
+				String cafeName = Util.SC.nextLine();
 				System.out.println("닉네임 >> ");
-				String nickName = Util.sc.nextLine();
+				String nickName = Util.SC.nextLine();
 				
 				addInfo(new CafePhoneInfo(name, phoneNum, addr, email, cafeName, nickName));
 				break;
@@ -131,9 +131,9 @@ public class PhoneBookManager {
 			return;	// 프로그램 종료
 		}
 		
-		Util.sc.hasNextLine();
+		Util.SC.hasNextLine();
 		System.out.println("검색하실 이름을 입력해주세요.");
-		String name = Util.sc.nextLine();
+		String name = Util.SC.nextLine();
 		
 		int index = searchIndex(name);
 		
@@ -155,10 +155,10 @@ public class PhoneBookManager {
 			return;	// 프로그램 종료
 		}
 		
-		Util.sc.nextLine();	
+		Util.SC.nextLine();	
 		
 		System.out.println("삭제하실 이름을 입력해주세요.");
-		String name = Util.sc.nextLine();
+		String name = Util.SC.nextLine();
 		
 		int index = searchIndex(name);
 		

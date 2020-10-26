@@ -1,7 +1,5 @@
 package ver03;
 
-import java.util.Scanner;
-
 /*
 	파일 이름 : ver03.java
 	내용 : 전화번호부 프로그램 흐름
@@ -38,7 +36,9 @@ public class PhoneBookMain {
 			System.out.println(" 5. 프로그램 종료 ");
 			System.out.println("====================================");
 			
-			char insertMenu = Util.sc.nextLine().charAt(0);
+			
+			char insertMenu = Util.SC.nextLine().charAt(0);
+					//SC.nextLine().charAt(0);
 				// 공백이 들어가면 문자열이 변환이 잘 안됨. 
 			
 			switch(insertMenu) {

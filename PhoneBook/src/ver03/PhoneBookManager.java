@@ -57,11 +57,11 @@ public class PhoneBookManager {
 		System.out.println("친구의 정보의 입력을 시작합니다.");
 		
 		System.out.println("이름 : ");
-		String name = Util.sc.nextLine();
+		String name = Util.SC.nextLine();
 		System.out.println("전화번호 : ");
-		String pNum = Util.sc.nextLine();		
+		String pNum = Util.SC.nextLine();		
 		System.out.println("생년월일 : ");
-		String birthday = Util.sc.nextLine().trim();		
+		String birthday = Util.SC.nextLine().trim();		
 		
 		// 배열에 저장하기 위한 인스턴스의 참조변수 선언
 		PhoneInfo info = null;
@@ -94,7 +94,7 @@ public class PhoneBookManager {
 		// 찾고자 하는 이름을 받는다.
 		System.out.println("정보 검색을 시작합니다.");
 		System.out.println("찾고자 하는 이름을 입력해주세요.");
-		String name = Util.sc.nextLine();
+		String name = Util.SC.nextLine();
 		
 		// 이름으로 요소 index 검색(1)
 		int index = searchIndex(name);
@@ -149,7 +149,7 @@ public class PhoneBookManager {
 		
 		System.out.println("정보 삭제를 시작합니다.");
 		System.out.println("삭제 하고자 하는 이름을 입력해주세요.");
-		String name = Util.sc.nextLine();
+		String name = Util.SC.nextLine();
 		
 		// 이름으로 요소 index 검색
 		int index = searchIndex(name);

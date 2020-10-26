@@ -1,22 +1,29 @@
 package ver06;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 
 import ver03.Util;
 
-public class PhoneBookManager {
+public class PhoneBookManager implements Util {
 
 	// 전화번호 정보를 저장할 배열을 가지고,
 	// 배열을 이용한 정보의 저장, 검색, 삭제, 출력을 하는 기능
 	
 	// 배열 선언 : 상속 관계이기 때문에 PhoneInfo 타입으로 선언
-	private PhoneInfo[] pBook;	// 전화번호 정보를 저장할 배열
-	private int cnt;			// 배열에 저장된 요소의 개수, 배열의 index
+	// private PhoneInfo[] pBook;	// 전화번호 정보를 저장할 배열
+	// private int cnt;			// 배열에 저장된 요소의 개수, 배열의 index
+
+// 2020.10.26 수정 : 배열을 이용해서 저장하는 방식을 ArrayList<T> 컬렉션을 이용해 구현	
+	List<PhoneInfo> pBook;
 	
 	// 생성자 : 싱글톤 처리 -> 외부에서 인스턴스 생성을 금지
 	private PhoneBookManager(int num){
-		pBook = new PhoneInfo[num];		// 생성자의 매개변수의 인자를 전달 받아 배열 생성
-		cnt = 0;
+		// pBook = new PhoneInfo[num];		// 생성자의 매개변수의 인자를 전달 받아 배열 생성
+		// cnt = 0;
+		// List<PhoneInfo> 초기화
+		pBook = new ArrayList<PhoneInfo>();
 	}
 	
 	// 내부에서 인스턴스 생성
@@ -37,7 +44,10 @@ public class PhoneBookManager {
 	// 배열에 전화번호 정보를 저장하는 메서드
 	
 	private void addInfo(PhoneInfo info) {
-			pBook[cnt++] = info;
+		// pBook[cnt++] = info;
+		
+		// List에 정보 저장
+		pBook.add(info);
 	} 
 
 	// 전화번호 정보를 인스턴스 생성하고 배열에 저장
@@ -50,48 +60,58 @@ public class PhoneBookManager {
 //			System.out.println("더이상 정보를 저장할 수 없습니다.");
 //			System.out.println("일부 정보를 삭제하고 저장 공간을 확보해주세요.");		
 //		}
-		
-		System.out.println("어떤 정보를 입력하겠습니까");
-		// System.out.println(" 1. 기본"); // 추상클래스 -> 인스턴스 생성 불가
-		System.out.println(Menu.UNIV +" . 대학");
-		System.out.println(Menu.COM +" . 회사");
-		System.out.println(Menu.CAFE +" . 동호회");
-		
-// 2020.10.23 수정 : 사용자 정보 입력 시 예외 처리 
-		int select = 0;
 
-		try {
-			select = Util.sc.nextInt();			
-			if(pBook.length==cnt) {
-			ArrayIndexOutOfBoundsException e = new ArrayIndexOutOfBoundsException();
-			throw e;
-			}			
-			if( !(select>=0 && select<=3) ) {
-			WrongMenuException mie = new WrongMenuException(select);
-			throw mie;
-			}
+		int select = 0;		
+		
+		while(true) {
+			System.out.println("어떤 정보를 입력하겠습니까");
+			// System.out.println(" 1. 기본"); // 추상클래스 -> 인스턴스 생성 불가
+			System.out.println(Menu.UNIV +" . 대학");
+			System.out.println(Menu.COM +" . 회사");
+			System.out.println(Menu.CAFE +" . 동호회");
 			
-		} catch(InputMismatchException e) {
-			System.out.println("잘못된 입력입니다. 메뉴 번호를 입력해주세요.");
-			Util.sc.nextLine();		
-		} catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("더이상 정보를 저장할 수 없습니다.");
-			System.out.println("일부 정보를 삭제하고 저장 공간을 확보해주세요.");			
-		} catch(WrongMenuException e) {
-			System.out.println("메뉴 선택이 올바르지 않습니다. 다시 선택해주세요.");
-			Util.sc.nextLine();		// nextInt() 에서 사용자가 입력한 숫자 뒤 공백을 입력으로 인식해서 넘어감. 
-									// 역할 : 숫자 뒤 공백을 반환. -> 호출할게 없으니 넘어감. 	
+// 2020.10.23 수정 : 사용자 정보 입력 시 예외 처리 
+
+			try {
+				select = SC.nextInt();	
+				
+				// List는 저장공간이 부족하면 저장공간을 확장 
+	//			if(pBook.length==cnt) {
+	//			ArrayIndexOutOfBoundsException e = new ArrayIndexOutOfBoundsException();
+	//			throw e;
+	//			}			
+				
+				if( !(select>=0 && select<=3) ) {
+				BadInputException mie = new BadInputException(String.valueOf(select));
+				throw mie;
+				}
+				
+			} catch(InputMismatchException | BadInputException e) {
+				System.out.println("잘못된 입력입니다. 메뉴 번호를 입력해주세요.");
+				SC.nextLine();	
+				continue;
+	//		} catch(ArrayIndexOutOfBoundsException e) {
+	//			System.out.println("더이상 정보를 저장할 수 없습니다.");
+	//			System.out.println("일부 정보를 삭제하고 저장 공간을 확보해주세요.");			
+//			} catch(WrongMenuException e) {
+//				System.out.println("메뉴 선택이 올바르지 않습니다. 다시 선택해주세요.");
+//				SC.nextLine();		// nextInt() 에서 사용자가 입력한 숫자 뒤 공백을 입력으로 인식해서 넘어감. 
+//										// 역할 : 숫자 뒤 공백을 반환. -> 호출할게 없으니 넘어감. 	
+			}
+			break;	// 예외 없을 시 while문 break
+			
 		}
 		
+		SC.nextLine();
 		System.out.println("정보 입력을 시작합니다.");
 		System.out.println("이름 >> ");
-		String name = Util.sc.nextLine();
+		String name = SC.nextLine();
 		System.out.println("전화번호 >> ");
-		String phoneNum = Util.sc.nextLine();
+		String phoneNum = SC.nextLine();
 		System.out.println("주소 >> ");
-		String addr = Util.sc.nextLine();
+		String addr = SC.nextLine();
 		System.out.println("이메일 >> ");
-		String email = Util.sc.nextLine();
+		String email = SC.nextLine();
 		
 		switch(select) {
 //			case 1 :
@@ -103,9 +123,9 @@ public class PhoneBookManager {
 				// 추가 정보  받고 -> 인스턴스 생성 -> 배열에 저장
 				// 전공, 학년
 				System.out.println("전공 >> ");
-				String major = Util.sc.nextLine();
+				String major = SC.nextLine();
 				System.out.println("학년 >> ");
-				int grade = Util.sc.nextInt();
+				int grade = SC.nextInt();
 				
 				addInfo(new UnivPhoneInfo(name, phoneNum, addr, email, major, grade));
 				break;
@@ -114,7 +134,7 @@ public class PhoneBookManager {
 				// 추가 정보 받고 -> 인스턴스 생성 -> 배열에 저장
 				// 회사 이름
 				System.out.println("회사 이름 >> ");
-				String company = Util.sc.nextLine();
+				String company = SC.nextLine();
 				
 				addInfo(new CompanyPhoneInfo(name, phoneNum, addr, email, company));
 				break;
@@ -123,14 +143,14 @@ public class PhoneBookManager {
 				// 추가 정보 받고 -> 인스턴스 생성 -> 배열에 저장
 				// 동호회 이름, 닉네임
 				System.out.println("동호회 이름 >> ");
-				String cafeName = Util.sc.nextLine();
+				String cafeName = SC.nextLine();
 				System.out.println("닉네임 >> ");
-				String nickName = Util.sc.nextLine();
+				String nickName = SC.nextLine();
 				
 				addInfo(new CafePhoneInfo(name, phoneNum, addr, email, cafeName, nickName));
 				break;
 		}
-		System.out.println("입력하신 정보가 저장되었습니다. (저장 개수 : " +cnt +")");
+		System.out.println("입력하신 정보가 저장되었습니다. (저장 개수 : " +pBook.size() +")");
 	}
 	
 	
@@ -140,12 +160,13 @@ public class PhoneBookManager {
 		// 해당 index의 참조변수로 정보 출력
 	
 	// 배열의 index를 찾는 메서드
+	// List의 index 찾기
 	private int searchIndex(String name) {
 		int index = -1;	// 찾는 정보가 없을 때
 				
-		for(int i=0; i<cnt; i++) {
+		for(int i=0; i<pBook.size(); i++) {
 			// 이름으로 비교
-			if(pBook[i].getName().equals(name)) {	// pBook[i].getName() == name
+			if(pBook.get(i).getName().equals(name)) {	// pBook.get(i) List의 요소 참조
 				index = i;
 			}
 		}
@@ -158,7 +179,7 @@ public class PhoneBookManager {
 	public void searchInfo() throws NoInputException {	// ?? ()참조변수에 int index 안쓰는 이유
 		
 		try {
-			if(cnt==0) {	// CPU 할당되지 않도록
+			if(pBook.size()==0) {	// CPU 할당되지 않도록
 				NoInputException nie = new NoInputException();
 				throw nie;
 			}
@@ -168,9 +189,9 @@ public class PhoneBookManager {
 		}
 
 // 2020.10.22 수정 : 예외처리
-			Util.sc.hasNextLine();
+		SC.hasNextLine();
 			System.out.println("검색하실 이름을 입력해주세요.");
-			String name = Util.sc.nextLine();			
+			String name = SC.nextLine();			
 
 		try {
 			int index = searchIndex(name);
@@ -193,31 +214,34 @@ public class PhoneBookManager {
 	public void deleteInfo() {
 		
 		try {
-			if(cnt==0) {	// CPU 할당되지 않도록
+			if(pBook.size()==0) {	// CPU 할당되지 않도록
 				NoInputException nie = new NoInputException();
 				throw nie;
 			}
 		} catch (NoInputException nie) {
 			System.out.println("저장되어있는 정보가 없어 삭제할 수 없습니다.");
-			Util.sc.nextLine();	
+			SC.nextLine();	
 			return;	// 프로그램 종료			
 		}
 		
 		System.out.println("삭제하실 이름을 입력해주세요.");
-		String name = Util.sc.nextLine();
-
-		try {
-			int index = searchIndex(name);	
-			// 배열의 요소를 왼쪽으로 시프트	
-			for(int i=index; i<cnt-1; i++) {
-				pBook[i] = pBook[i+1];
-			}
-			cnt--;	// 저장된 개수를 감소 *배열의 요소 개수 중 하나를 없애야 한다.			
-		} catch(NegativeArraySizeException e) {
-			System.out.println("검색하신 이름의 정보가 존재하지 않습니다.");
-			System.out.println("메뉴로 돌아갑니다.");		
-		}
-
+		String name = SC.nextLine();
+		int index = searchIndex(name);	
+		
+		// List의 요소 삭제는 인덱스의 시프트로 이루어진다.
+//		try {
+//			
+//			// 배열의 요소를 왼쪽으로 시프트	
+//			for(int i=index; i<cnt-1; i++) {
+//				pBook[i] = pBook[i+1];
+//			
+//			}
+//			cnt--;	// 저장된 개수를 감소 *배열의 요소 개수 중 하나를 없애야 한다.			
+//		} catch(NegativeArraySizeException e) {
+//			System.out.println("검색하신 이름의 정보가 존재하지 않습니다.");
+//			System.out.println("메뉴로 돌아갑니다.");		
+//		}
+		pBook.remove(index);
 		System.out.println("요청하신 정보를 삭제했습니다.");
 	}	
 	
@@ -246,14 +270,14 @@ public class PhoneBookManager {
 	// 전체 정보 출력 기능
 	public void showAllInfo() {
 		
-		if(cnt==0) {	// CPU 할당되지 않도록
+		if(pBook.size()==0) {	// CPU 할당되지 않도록
 			System.out.println("입력된 정보가 없습니다.");
 			return;	// 프로그램 종료
 		}
 		
 		System.out.println("전체 정보를 출력합니다.================");
-		for(int i=0; i<cnt; i++) {
-			pBook[i].showInfo();
+		for(int i=0; i<pBook.size(); i++) {
+			pBook.get(i).showInfo();
 			System.out.println("--------------------");
 		}
 	}

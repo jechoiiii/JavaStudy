@@ -2,9 +2,10 @@ package ver03;
 
 import java.util.Scanner;
 
-public class Util {
+public interface Util {	// 인터페이스
 
-	public static Scanner sc = new Scanner(System.in);
+	// 상수화
+	Scanner SC = new Scanner(System.in);
 		
 	
 	
