@@ -14,7 +14,7 @@ public class ByteFileCopy {
 		InputStream in = new FileInputStream("org.pdf");
 		OutputStream out = new FileOutputStream("org_copy.pdf");
 		
-		int copyByte = 0;	// 복사한 사이즈
+		int copyByte = 0;		// 복사한 사이즈
 		// int bData = 0;		// 원본에서 복사한 byte 사이즈의 데이터
 		
 		byte[] buf = new byte[1024]; // 1kb 버퍼 생성
@@ -28,7 +28,7 @@ public class ByteFileCopy {
 			
 			// if(bData==-1) {	// 더 이상 가져올게 없으면 -1 반환
 			if(readLength==-1) { 
-			break;
+				break;
 			}
 			// out.write(bData); // 출력 : 파일에 바이너리 코드를 쓴다. 
 			out.write(buf, 0, readLength);

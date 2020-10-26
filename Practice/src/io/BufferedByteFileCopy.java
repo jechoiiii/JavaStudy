@@ -9,19 +9,21 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class Buffered {
+public class BufferedByteFileCopy {
 
 	public static void main(String[] args) throws IOException {
 		
+		// 읽어올 대상 파일의 InputStream 인스턴스 생성
 		InputStream in = new FileInputStream("org.pdf");
+		// 출력 대상 파일릐 OutputStream 인스턴스 생성
 		OutputStream out = new FileOutputStream("org_copy.pdf");
 		// 해당 경로의 파일 존재하지 않으면 파일을 생성해서 write
 		// 해당 경로의 파일 존재하면 덮어쓴다.
 		
 		// 필터스트림 인스턴스 생성
-		BufferedInputStream bin = new BufferedInputStream(in, 1024*3);
-		BufferedOutputStream bout = new BufferedOutputStream(out, 1024*3);
-		
+//		BufferedInputStream bin = new BufferedInputStream(in, 1024*3);
+//		BufferedOutputStream bout = new BufferedOutputStream(out, 1024*3);
+//		
 		int copyByte = 0;	// 복사한 사이즈
 		int bData = 0;		// 원본에서 복사한 byte 사이즈의 데이터
 		
@@ -34,6 +36,7 @@ public class Buffered {
 				break;
 			}
 			out.write(bData); // 출력 : 파일에 바이너리 코드를 쓴다. 
+			copyByte++;
 		}
 		
 		in.close();	// 스트링 인스턴스 소멸

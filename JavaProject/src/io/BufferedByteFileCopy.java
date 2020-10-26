@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class Buffered {
+public class BufferedByteFileCopy {
  
 	public static void main(String[] args) throws IOException {
 		
@@ -41,7 +41,7 @@ public class Buffered {
 				break;
 			}
 			out.write(bData);	// 출력 : 파일에 바이너리 코드를 쓴다. 
-			in.close();
+			copyByte++;
 			// copyByte += readLength;
 		}
 		
