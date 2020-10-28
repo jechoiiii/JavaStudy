@@ -12,18 +12,22 @@ import java.net.URLConnection;
 public class URLConnectionTest {
 
 	public static void main(String[] args) {
-
+	
+		
 		try {
 			// URL 인스턴스 생성
-			String urlPath = "http://www.ctware.net";
+			String urlPath = "http://www.google.com";
 			URL url = new URL(urlPath);
+
+			// URLConnection 인스턴스 생성 
+			// URL 클래스의 openConnection() 메서드 호출 -> URLConnection 인스턴스 반환
+			URLConnection conn = url.openConnection();			
 			
-			// URLConnection 인스턴스
-			URLConnection conn = url.openConnection();
-			
+			// 문자 스트림 BufferedReader(Writer) : 버퍼의 용량만큼 모았다가 한번에 전달 => 효율성을 위해 버퍼링
+			// 바이트 스트림 Input(Output)StreamReader(Writer) : 문자 하나씩 처리 => 문자와 바이트 스트림 간의 연결
 			// 연결된 파일(자원)을 읽을 스트림 생성
 			BufferedReader in = null;
-			
+	
 			// URL Connection 인스턴스에서 InputStream을 얻을 수 있다. 
 			InputStream is = conn.getInputStream();
 			
@@ -31,8 +35,8 @@ public class URLConnectionTest {
 			
 			in = new BufferedReader(reader);
 			
-			// 한줄씩 읽어올 임시 변수
-			String str=null; 
+			// 한줄씩 읽어올 때 임시 변수
+			String str = null;
 			
 			while(true) {
 				str = in.readLine();
@@ -40,16 +44,23 @@ public class URLConnectionTest {
 					break;
 				}
 				System.out.println(str);
+			
 			}
-	
+			
 			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 
+		
+		
+		
+		
+		
+		
+		
 	}
 
 }

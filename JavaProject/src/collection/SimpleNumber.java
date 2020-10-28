@@ -22,9 +22,9 @@ public class SimpleNumber {
 	public boolean equals(Object obj) {
 		if(this == obj)	// 참조 주소값 == 참조 주소값
 			return true;
-		if(obj == null);
+		if(obj == null)
 			return false;
-		if(getClass() != obj.getClass());	 // 클래스 이름이 같아야 한다. 같은 타입이어야 함. 
+		if(getClass() != obj.getClass())	 // 클래스 이름이 같아야 한다. 같은 타입이어야 함. 
 			return false;
 		SimpleNumber other = (SimpleNumber) obj;
 		if(num != other.num)
