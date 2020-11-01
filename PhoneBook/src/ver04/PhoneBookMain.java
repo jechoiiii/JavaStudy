@@ -23,8 +23,7 @@ public class PhoneBookMain {
 			System.out.println(" 3. 회사 동료 정보 입력");
 			System.out.println(" 4. 동호회 회원 정보 입력");
 			System.out.println(" 5. 전체 정보 출력 ");
-			System.out.println(" 6. 기본 정보 출력 ");
-			System.out.println(" 7. 프로그램 종료");
+			System.out.println(" 6. 프로그램 종료");
 			System.out.println("===========================");
 			
 			int choice = Util.sc.nextInt();
@@ -35,12 +34,9 @@ public class PhoneBookMain {
 					manager.addPhoneInfo(choice);
 					break;
 				case 5 :
-					manager.showAllData();
-					break;
+					manager.showAllInfo();
+					break;				
 				case 6 :
-					manager.showAllBasicData();
-					break;					
-				case 7 :
 					System.out.println("프로그램을 종료합니다.");
 					System.exit(0);
 					break;	

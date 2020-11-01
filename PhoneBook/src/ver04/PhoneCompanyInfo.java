@@ -1,25 +1,26 @@
 package ver04;
 
-public class PhoneCompanyInfo extends PhoneInfo {
+public class PhoneCompanyInfo extends PhoneInfo { // 회사 친구 
 
-	private String company;	// 회사
+	// 회사이름
+	private String company;
 	
-	PhoneCompanyInfo(String name, String pNum, String email, String comp) {
-		super(name, pNum, email);
-		this.company = comp;
+	PhoneCompanyInfo(String name, String pNum, String addr, String email, 
+				  String company) {
+		// 상위클래스의 생성자 호출
+		super(name, pNum, addr, email);
+		// 회사이름 초기화
+		this.company = company;
+	}
 
+	// getter
+	public String getCompany() {
+		return company;
 	}
-	
+		
 	@Override
-	public void showData() {
-		super.showData();
-		System.out.println("회사 : " + company);
-	}
-	
-	@Override
-	public void showBasicInfo() {
-		System.out.println("이름 : " +getName());
-		System.out.println("전화번호 :" +getPNum());
-		System.out.println("이메일 : " +getEmail());
+	public void showInfo() {
+		super.showInfo();
+		System.out.println("역할 : "+ company);
 	}
 }

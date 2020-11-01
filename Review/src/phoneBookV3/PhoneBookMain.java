@@ -1,6 +1,7 @@
 package phoneBookV3;
 
-import java.util.Scanner;
+// Util 클래스 import 
+import phoneBookV3.Util;
 
 /*
 	파일 이름 : phoneBookV3.PhoneBookMain.java
@@ -15,39 +16,53 @@ import java.util.Scanner;
 	작성 일시 : 2020.10.14
 */	
 
-public class PhoneBookMain {
+public class PhoneBookMain extends Util {
 
 	public static void main(String[] args) {
 		
-		// Scanner 클래스 import
-		Scanner sc = new Scanner(System.in);
+		// PhoneBookManager 인스턴스 생성 : 클래스의 변수, 메서드 사용 가능
+		PhoneBookManager manager = new PhoneBookManager();
+		System.out.println("저장된 정보의 개수 : "+ manager.cnt);
+		System.out.println("저장가능한 정보의 개수 : "+ manager.pBook.length);
 		
-		// 사용자의 입력 무한반복
+		
+		// Scanner 클래스 -> Util 클래스로 대체 
+		// Scanner sc = new Scanner(System.in);
+		
+		// 프로그램 무한반복 돌리기 
 		while(true) {
 			
-			System.out.println("전화번호부 정보 입력을 시작합니다.");
+			// 프로그램 메뉴
+			System.out.println("-- 전화번호 관리 프로그램 MENU --");
+			System.out.println("1. 정보 저장");
+			System.out.println("2. 정보 검색");
+			System.out.println("3. 정보 삭제");
+			System.out.println("4. 전체 정보 보기");
+			System.out.println("5. 프로그램 종료");
+			System.out.println("---------------------------");
 			
-			System.out.println("이름  >>> ");
-			String name = sc.nextLine(); 
+			// 사용자로부터 메뉴 입력받기 
+			char insertMenu = SC.nextLine().charAt(0); 
 			
-			System.out.println("전화번호  >>> ");
-			String phoneNum = sc.nextLine(); 			
-			
-			System.out.println("생일  >>> ");
-			String birthday = sc.nextLine(); 
-
-			// PhoneInfo 인스턴스 생성
-			PhoneInfo info = null;
-			
-			if( !(birthday.trim().isEmpty()) ) { // .length()==0
-				info = new PhoneInfo(name, phoneNum, birthday);
-			} else {
-				info = new PhoneInfo(name, phoneNum);
-			}	
-
-			info.showInfo();		
-			
-		}	
+			switch(insertMenu) {
+				case 1 :
+					manager.insertInfo();
+					break; // switch문 종료
+				case 2 :
+					manager.searchInfo();
+					break;
+				case 3 : 
+					manager.deleteInfo();
+					break;
+				case 4 : 
+					manager.showAllInfo();
+					break;
+				default : 
+					System.out.println("프로그램을 종료합니다.");
+					System.exit(0);	// System.exit(0) : 정상종료 (0이 아닌 값으로 exit하면 비정상 종료)
+					break; 
+			}
+		}
 		
 	}	
 }

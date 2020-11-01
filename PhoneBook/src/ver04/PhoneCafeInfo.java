@@ -1,24 +1,32 @@
 package ver04;
 
-public class PhoneCafeInfo extends PhoneInfo {	// 동호회
+public class PhoneCafeInfo extends PhoneInfo {	// 동호회 친구
 
-	private String role;
+	// 동호회 이름, 닉네임
+	private String cafeName;
+	private String nickName;
 	
-	PhoneCafeInfo(String name, String pNum, String email, String role) {
-		super(name, pNum, email);
-		this.role = role;
+	// 생성자
+	public PhoneCafeInfo(String name, String phoneNum, String addr, String email,
+						 String cafeName, String nickName) {
+		super(name, phoneNum, addr, email);
+		this.cafeName = cafeName;
+		this.nickName = nickName;
+	}
+
+	// getter/setter
+	public String getCafeName() {
+		return cafeName;
+	}
+	
+	public String getNickName() {
+		return nickName;
 	}
 
 	@Override
-	public void showData() {
-		super.showData();
-		System.out.println("역할 : " +role);
+	public void showInfo() {
+		super.showInfo();
+		System.out.println("동호회이름 : "+ cafeName);
+		System.out.println("닉네임 : "+ nickName);
 	}
-	
-	public void showBasicInfo() {
-		System.out.println("이름 : " +getName());
-		System.out.println("전화번호 :" +getPNum());
-		System.out.println("이메일 : " +getEmail());
-	}
-	
 }
