@@ -24,8 +24,8 @@ public class LoginInfoManager implements Menu {
 	}
 
 	// 변수 상수화 
-	static String NOWID;	// 현재 로그인 ID
-	static String NOWPW;	// 현재 로그인 PW (변경할 때 필요)
+	static String NOWID ;	// 현재 로그인 ID
+	static String NOWPW;	// 현재 로그인 ID PW 
 	static int INDEX; 		// 현재 로그인 ID index
 	
 	// 회원정보 배열 생성
@@ -39,7 +39,7 @@ public class LoginInfoManager implements Menu {
 	         System.out.println("\n           "+LOG+". 로그인");
 	         System.out.println("           "+JOIN+". 회원가입");
 	         System.out.println("           "+HOME+ ". 홈 메뉴로 돌아가기");
-	         System.out.println("4. ID/PW 변경"); // ID/PW 변경 test용
+	         System.out.println("           4. ID/PW 변경"); // ID/PW 변경 test용
 	         System.out.println("\n***********************************");
 	         
 	         // 사용자 메뉴 선택
@@ -64,19 +64,14 @@ public class LoginInfoManager implements Menu {
 	         	case LOG : 
 	         		callLogInfo();	// 파일에서 로그인정보 불러오기
 	         		login();
-//	         		saveLogInfo();
 	         		return;
 	         	case JOIN :
 	         		joinMember();
-//					saveLogInfo();	// 외부 파일에 로그인정보 저장
 					return;
 	         	case HOME : 
 	         		return;
 	         	case 4 : 
 	         		changeLoginInfo();	// test용
-//	         		saveLogInfo();
-	         		return;
-	         		
 	         }
 		}
 	}
@@ -89,8 +84,7 @@ public class LoginInfoManager implements Menu {
 		
 		while(true) {
 			// 사용자 입력
-			System.out.println("-----------------------------------");
-			System.out.println("아이디 : ");
+			System.out.println("\n 아이디 : ");
 			id = Util.sc.nextLine();
 
 			System.out.println("비밀번호 : ");
@@ -103,8 +97,7 @@ public class LoginInfoManager implements Menu {
 				if(loginInfo.get(index).getPw().equals(pw)) {
 					System.out.println(id +"님, 로그인에 성공하였습니다.");
 					System.out.println("-----------------------------------");
-					NOWID=id;
-					NOWPW=pw;
+					NOWID=id; 
 					for(int i=0; i<loginInfo.size(); i++) {
 							if(loginInfo.get(i).getId().equals(id)) {
 		                        loginInfo.get(INDEX).setPoint(100);
@@ -113,8 +106,8 @@ public class LoginInfoManager implements Menu {
 						}
 					return;
 				} else {
-					System.out.println("아이디와 비밀번호가 일치하지 않습니다. 다시 시도하시려면 Enter키를 입력하세요.");
-					System.out.println("홈 메뉴로 돌아가시려면 숫자 \"0\"을 입력하세요.");
+					System.out.println("아이디와 비밀번호가 일치하지 않습니다. 다시 시도해주세요.");
+					System.out.println("(홈 메뉴로 돌아가시려면 숫자 \"0\"을 입력하세요.)");
 					System.out.println("-----------------------------------");
 					String insert = null;
 					insert = Util.sc.nextLine();
@@ -125,8 +118,8 @@ public class LoginInfoManager implements Menu {
 					}
 				}
 			} else {
-				System.out.println("존재하지 않는 아이디입니다. 다시 시도하시려면 Enter키를 입력하세요.");	
-				System.out.println("홈 메뉴로 돌아가시려면 숫자 \"0\"을 입력하세요.");
+				System.out.println("존재하지 않는 아이디입니다. 다시 시도해주세요.");	
+				System.out.println("(홈 메뉴로 돌아가시려면 숫자 \"0\"을 입력하세요.)");
 				System.out.println("-----------------------------------");
 				String insert = null;
 				insert = Util.sc.nextLine();
@@ -144,6 +137,7 @@ public class LoginInfoManager implements Menu {
 	private void addInfo(LoginInfo info) throws IOException {		
 		loginInfo.add(info);
 		
+		// 외부 파일에 저장 
 		// 파일 중복생성 방지
 		File f = new File("LoginInfo.ser");
 		f.delete();
@@ -152,7 +146,6 @@ public class LoginInfoManager implements Menu {
 	    ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("LoginInfo.ser"));   
 	    out.writeObject(loginInfo);
 	    out.close();
-		
 	}
 	
 	// 배열의 index 검색 메서드
@@ -216,20 +209,7 @@ public class LoginInfoManager implements Menu {
 		}
 	}
 	
-	
-//	// 회원정보 외부 저장 메서드
-//	void saveLogInfo() throws IOException, ClassNotFoundException{
-//		
-//		// 파일 중복생성 방지
-//		File f = new File("LoginInfo.ser");
-//		f.delete();
-//		
-//	    // 인스턴스 저장을 위한 스트림 생성
-//	    ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("LoginInfo.ser"));   
-//	    out.writeObject(loginInfo);
-//	    out.close();		  
-//	}
-	
+		
 	// 외부에 저장된 회원정보 불러오기 메서드
 	void callLogInfo() {
 		// 인스턴스 복원을 위한 스트림 생성
@@ -242,41 +222,25 @@ public class LoginInfoManager implements Menu {
 	    	
 	}
 
-	// (추후 수정) ===========================================================
 	// 로그인 정보 변경 메서드 
-	//		재로그인 -> 로그인한 계정 ID 반환 -> 반환한 ID에 해당하는 index의 정보 삭제 -> 새 정보 저장
+	//		충전금액/포인트 받아놓기 -> 계정 삭제 -> 새 ID/PW 입력 받기 -> 계정 생성 -> 로그인ID/PW 변경
 	public void changeLoginInfo() throws IOException {
-		// System.out.println("회원정보 확인을 위해 다시 로그인해주세요.");
-		// 빈폴더에 정보 저장하고 삭제
-		// or rename()
-		// 반환한 ID에 해당하는 index 정보 삭제
-		//loginInfo.remove(searchIndex(NOWID));
 		
+		// 현재 로그인 계정의 충전금액/포인트 받아놓기
+		int myMoney = loginInfo.get(INDEX).getMyMoney(); 
+		int point = loginInfo.get(INDEX).getPoint(); 
+		// 현재 로그인 계정 삭제
+		loginInfo.remove(INDEX);
 		
-//		int index = searchIndex(NOWID);
-
-		
-		// NOWID의 index를 이용해 setter로 값 변경 -> 파일에 저장
+		// 새 ID/PW 입력 받아 새 배열 생성
 		System.out.println("ID/PW 변경을 시작합니다.");
 		System.out.println("아이디 : ");	
 		String changedId = Util.sc.nextLine().trim();	
 		System.out.println("비밀번호 : ");
 		String changedPw = Util.sc.nextLine().trim();	
-
-//		m = new LoginInfo(changedId, changedPw, getId(NOWID).getPoint(), getId(NOWID).getMyMoney());
-//		loginInfo.add(index, m);
-//		//loginInfo.set(searchIndex(NOWID), changedId);
-//		//loginInfo.set(searchIndex(NOWID), changedPw);		
-		
-//		loginInfo.get(index).getId().replace(NOWID, changedId);
-//		loginInfo.get(index).getPw().replace(NOWPW, changedPw);	
-		int myMoney = loginInfo.get(searchIndex(NOWID)).getMyMoney(); 
-		int point = loginInfo.get(searchIndex(NOWID)).getPoint(); 
-//		LoginInfo temp = loginInfo.get(searchIndex(NOWID));
-		loginInfo.remove(searchIndex(NOWID));
+	
 		addInfo(new LoginInfo(changedId, changedPw, myMoney, point));
-		
-		
+				
 		// 상수화한 NOWID, NOWPW도 변경
 		NOWID = changedId;
 		NOWPW = changedPw;
@@ -304,8 +268,8 @@ public class LoginInfoManager implements Menu {
 	         System.out.println("\t"+loginInfo.get(INDEX).getPoint()+"POINT 보유중");
 	         System.out.println("**********************************");
 	         System.out.println();
-	         System.out.println("\t1. 숫자게임");
-	         System.out.println("\t2. 랜덤뽑기");
+	         System.out.println("\t1. 가위바위보게임(100POINT)");
+	         System.out.println("\t2. 랜덤뽑기(100POINT)");
 	         System.out.println("\t3. 굿즈구매");
 	         System.out.println("\t4. 포인트 사용 내역 조회");
 	         System.out.println("\t5. 포인트존 나가기");
@@ -323,19 +287,15 @@ public class LoginInfoManager implements Menu {
 	            switch (choice) {
 	            case 1:
 	               pointGame1();
-//	               saveLogInfo();
 	               break;
 	            case 2:
 	               pointGame2();
-//	               saveLogInfo();
 	               break;
 	            case 3:
 	               buyGoods();
-//	               saveLogInfo();
 	               break;
 	            case 4:
 	               pointHistoryInfo(NOWID);
-//	               saveLogInfo();
 	               break;
 	            case 5:
 	               return;
