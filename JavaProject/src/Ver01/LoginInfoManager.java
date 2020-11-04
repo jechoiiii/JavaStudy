@@ -20,7 +20,7 @@ public class LoginInfoManager implements Menu {
 	
 	// 생성자
 	public LoginInfoManager() {
-		super();
+//		super();
 	}
 
 	// 변수 상수화 
@@ -32,12 +32,13 @@ public class LoginInfoManager implements Menu {
 	static ArrayList<LoginInfo> loginInfo = new ArrayList<LoginInfo>();	 
 	
 	// 로그인 메뉴 메서드
-	public void loginMenu() throws IOException, ClassNotFoundException { 
+	public void loginZone() throws IOException, ClassNotFoundException { 
 		
 		while(true) {
 	         System.out.println("************ L O G I N ************");
 	         System.out.println("\n           "+LOG+". 로그인");
-	         System.out.println("           "+JOIN+". 회원가입");
+	         System.out.println("   "
+	         		+ "        "+JOIN+". 회원가입");
 	         System.out.println("           "+HOME+ ". 홈 메뉴로 돌아가기");
 	         System.out.println("           4. ID/PW 변경"); // ID/PW 변경 test용
 	         System.out.println("\n***********************************");
@@ -54,7 +55,8 @@ public class LoginInfoManager implements Menu {
 	            throw e;   
 	            } 
 	         } catch(BadMenuException | InputMismatchException e) {
-	            System.out.println("잘못된 입력입니다. 메뉴를 다시 선택해주세요.");
+	        	System.out.println("-----------------------------------");
+	        	System.out.println("잘못된 입력입니다. 메뉴를 다시 선택해주세요.");
 	            System.out.println("-----------------------------------");
 	            Util.sc.nextLine();      
 	            return;
@@ -84,7 +86,7 @@ public class LoginInfoManager implements Menu {
 		
 		while(true) {
 			// 사용자 입력
-			System.out.println("\n 아이디 : ");
+			System.out.println("\n아이디 : ");
 			id = Util.sc.nextLine();
 
 			System.out.println("비밀번호 : ");
@@ -106,20 +108,24 @@ public class LoginInfoManager implements Menu {
 						}
 					return;
 				} else {
-					System.out.println("아이디와 비밀번호가 일치하지 않습니다. 다시 시도해주세요.");
-					System.out.println("(홈 메뉴로 돌아가시려면 숫자 \"0\"을 입력하세요.)");
 					System.out.println("-----------------------------------");
-					String insert = null;
-					insert = Util.sc.nextLine();
-					if(insert.equals("0")) {
-						return;
-					} else {
-						continue;
-					}
+					System.out.println("아이디와 비밀번호가 일치하지 않습니다.        ");
+					System.out.println("\n다시 로그인하시려면 Enter키를 입력해주세요.   ");
+					System.out.println("홈메뉴로 돌아가시려며 숫자 \"0\"을 입력해주세요. ");
+					System.out.println("-----------------------------------");
+						String insert = null;
+						insert = Util.sc.nextLine();
+						if(insert.equals("0")) {
+							return;
+						} else {
+							continue;
+						}
 				}
 			} else {
-				System.out.println("존재하지 않는 아이디입니다. 다시 시도해주세요.");	
-				System.out.println("(홈 메뉴로 돌아가시려면 숫자 \"0\"을 입력하세요.)");
+				System.out.println("-----------------------------------");
+				System.out.println("존재하지 않는 아이디입니다.");
+				System.out.println("\n다시 로그인하시려면 Enter키를 입력해주세요.");
+				System.out.println("홈메뉴로 돌아가시려며 숫자 \"0\"을 입력해주세요.");
 				System.out.println("-----------------------------------");
 				String insert = null;
 				insert = Util.sc.nextLine();
@@ -238,7 +244,6 @@ public class LoginInfoManager implements Menu {
 		String changedId = Util.sc.nextLine().trim();	
 		System.out.println("비밀번호 : ");
 		String changedPw = Util.sc.nextLine().trim();	
-	
 		addInfo(new LoginInfo(changedId, changedPw, myMoney, point));
 				
 		// 상수화한 NOWID, NOWPW도 변경
