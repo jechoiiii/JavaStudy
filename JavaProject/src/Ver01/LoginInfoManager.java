@@ -253,7 +253,7 @@ public class LoginInfoManager implements Menu {
 		//loginInfo.remove(searchIndex(NOWID));
 		
 		
-		int index = searchIndex(NOWID);
+//		int index = searchIndex(NOWID);
 
 		
 		// NOWID의 index를 이용해 setter로 값 변경 -> 파일에 저장
@@ -268,14 +268,15 @@ public class LoginInfoManager implements Menu {
 //		//loginInfo.set(searchIndex(NOWID), changedId);
 //		//loginInfo.set(searchIndex(NOWID), changedPw);		
 		
-		loginInfo.get(index).getId().replace(NOWID, changedId);
-		loginInfo.get(index).getPw().replace(NOWPW, changedPw);	
-
-	
-
-		// 수정한 값을 파일에 저장... 
-		File f = new File("LoginInfo.ser");
-			
+//		loginInfo.get(index).getId().replace(NOWID, changedId);
+//		loginInfo.get(index).getPw().replace(NOWPW, changedPw);	
+		int myMoney = loginInfo.get(searchIndex(NOWID)).getMyMoney(); 
+		int point = loginInfo.get(searchIndex(NOWID)).getPoint(); 
+//		LoginInfo temp = loginInfo.get(searchIndex(NOWID));
+		loginInfo.remove(searchIndex(NOWID));
+		addInfo(new LoginInfo(changedId, changedPw, myMoney, point));
+		
+		
 		// 상수화한 NOWID, NOWPW도 변경
 		NOWID = changedId;
 		NOWPW = changedPw;
