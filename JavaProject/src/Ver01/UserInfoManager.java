@@ -62,7 +62,7 @@ public class UserInfoManager  extends LoginInfoManager{
 	   // 자가정보 조회    ++++주량 
 	
 
-	public void showMyInfo(){
+	public void showMyInfo() throws ClassNotFoundException{
 	      if(NOWID==null) {
 	         System.out.println("로그인이 필요합니다");
 	         return;
