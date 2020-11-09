@@ -115,18 +115,84 @@ where hiredate='81/11/17'   -- 날짜 비교에서도 날짜를 작은 따옴표
 ;
 
 
--- 10번 부서 소속인 사원들 중에서 --> and
--- 직급이 MANAGER인 사람을 검색하여 
--- 사원명, 부서번호, 직급을 출력하려고 한다면
--- 두 가지 조건을 제시해야 한다.
-
--- 행을 찾는 조건 >>
--- [조건 1] 10번 부서 소속인 사원 : DEPNO=10
+-- 10번 부서 소속인 사원들 중에서 직급이 MANAGER인 사람을 검색하여 사원명, 부서번호, 직급을 출력하자
+-- [조건 1] 10번 부서 소속인 사원  : DEPNO=10
 -- [조건 2] 직급이 MANAGER인 사원 : JOB='MANAGER'
 select ename,deptno,job
 from emp
 where deptno=10 AND job='MANAGER'
 ;
 
+select ename, deptno, job
+from emp
+where deptno=10 or job='MANAGER'
+;
+
+-- 부서번호가 10번이 아닌 사원의 사원이름, 부서번호, 직급을 출력하자
 select *
-from emp; 
+from emp
+--where not deptno = 10
+--where deptno != 10
+where deptno <> 10
+;
+
+select *
+from emp
+where sal between 2000 and 3000 -- 2000 이상 3000 이하
+;
+
+-- 1987년에 입사한 사원을 출력하자
+-- 1987/01/01 ~ 1987/12/31
+select *
+from emp
+--where hiredate between '1987/01/01' and '1987/12/31'
+where hiredate >= '87/01/01' and hiredate <= '87/12/31'
+;
+
+-- IN
+-- 커미션이 300이거나 500이거나 1400인 사원을 검색
+select *
+from emp
+--where comm=300 or comm=500 or comm=1400;
+where comm IN(300, 500, 1400, 100);
+
+-- LIKE : 검색하고자 하는 값을 정확히 모를 때 와일드카드(%, _)를 사용하여 검색
+-- 찾으려는 이름이 A로 시작하는 것은 알지만 그 뒤의 문자는 모를 경우
+select *
+from emp
+--where ename like 'A%'             -- A로 시작하고 뒤에는 어떤 문자가 와도 상관 없다
+--where ename like '%S'             -- S로 끝나는 이름 검색
+--where ename like '%E%'            -- E를 포함하는 이름 검색
+--where ename like '_L%'            -- 두 번째 문자가 L인 이름 검색
+--where ename like '__R%'           -- 세 번째 문자가 R인 이름 검색
+--where ename like '_______1%'      -- 000000-1000000
+--where hiredate like '___04%'      -- '87/04/19'
+--where mgr like '_78_'             -- '7788'
+--where ename not like '%E%'        -- E를 포함하지 않은 이름 검색
+;
+
+-- 커미션을 받지 않은 사원 검색
+select *
+from emp
+--where comm=null     -- NULL 값은 연산 불가
+where comm is null or comm=0
+;
+
+-- 커미션을 받은 사원 검색
+select *
+from emp
+where comm is not null and comm>0
+;
+
+-- ORDER BY : 크기 순서대로 정렬
+-- 사원의 리스트를 급여의 오름차순으로 정렬해보자
+select *
+from emp
+--order by sal asc      -- 오름차순(작은 값부터)
+--order by sal desc     -- 내림차순(큰 값부터)
+--order by sal          -- 생략 시 ASC 오름차순
+--order by ename desc
+--order by comm desc    -- null은 ASC에 가장 마지막에, DESC에 가장 먼저 (null은 크다고 이해하자)
+--order by hiredate     -- 날짜의 작다는 표현은 오래된 날짜 : 오름차순은 오래된 날짜부터 최근 날짜로 정렬
+order by hiredate desc, sal asc -- hiredate 내림차순으로 순차적으로 출력하다가 값이 동일할 경우에 sal 오름차순
+;
