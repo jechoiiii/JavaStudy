@@ -1,29 +1,34 @@
 -- 2020.11.10
--- 주요 함수
+-- 함수
 
+-- 단일행, 집합함수
+
+-- 단일행 함수 : 숫자, 문자, 날짜, 변환
+
+desc dual;
 
 -- 숫자 함수
 
-select ABS(-15.5) from dual;
-select FLOOR(15.7) from dual;
-select ROUND(15.193) from dual; -- 15	(반올림)
-select ROUND(15.693,1) from dual; -- 15.7 ( ,자리표현- 소수점 첫째짜리까지)
-select ROUND(15.693,2) from dual; -- 15.69 
-select LOG(10,100) from dual; -- 2
-select POWER(3,2) from dual; -- 9 = 3^2
-select POWER(3,2) from dual; -- 256 = 2^8
+select ABS(-15.5) from dual; -- 15.5        (ABS : 절대값)
+select FLOOR(15.7) from dual; -- 15         (FLOOR : 소수점 버림)
+select ROUND(15.193) from dual; -- 15	    (Round : 반올림)
+select ROUND(15.693,2) from dual; -- 15.69  (Round(m,n) : m을 소수점 n번째 자리까지 반올림)
+select LOG(10,100) from dual; -- 2          (LOG(m,n) : 밑을 m으로 한 n의 로그값 반환)
+select POWER(3,2) from dual; -- 9           (POWER(m,n) : m^n 반환)
  
- 
+
 -- 문자 함수
-select concat('나는', '손흥민 입니다.') from dual; -- 나는손흥민 입니다.
-select concat('제 이름은 ',ename) from emp;
-select LOWER('MR SCOTT MCMILLAN') "Lowercase" from DUAL;
-select lower(ename) from emp;
-select lower(ename) from emp;
-select LPAD('Page 1',15,'*')from dual; -- *********Page 1
+select concat('나는', '손흥민 입니다.') from dual; -- 나는손흥민 입니다. (CONCAT : 문자의 값 연결)
+select concat('제 이름은 ',ename) from emp; -- 제 이름은 SMITH
+select LOWER('MR SCOTT') "Lowercase" from DUAL; -- mr scott       (LOWER : 소문자로 변환)
+select lower(ename) from emp; 
+select LPAD('Page 1',15,'*')from dual; -- *********Page 1         (LPAD : 입력 받은 문자열과 기호를 정렬해 특정 길이의 문자열로 반환)
 select RPAD('001212-1',15,'*')from dual; -- Page 1*********
-select substr('001212-3001247',1,8)from dual;
+select substr('001212-3001247',1,8)from dual; -- 001212-3 -- 1자리부터 8자리, 
+select substr('001212-3001247',5,2)from dual; -- 12 -- 5번째 자리부터 2자리
 select RPAD(substr('001212-3001247',1,8),14,'*') from dual; -- 001212-3******
+
+-- MOD(m,n) : m을 n 으로 나누었을 때 나머지를 반환
 
 select trim() from dual;
 select Ltrim('    =from=', '') from dual; --    =from=
