@@ -15,27 +15,27 @@ select ROUND(15.193) from dual; -- 15	    (Round : 반올림)
 select ROUND(15.693,2) from dual; -- 15.69  (Round(m,n) : m을 소수점 n번째 자리까지 반올림)
 select LOG(10,100) from dual; -- 2          (LOG(m,n) : 밑을 m으로 한 n의 로그값 반환)
 select POWER(3,2) from dual; -- 9           (POWER(m,n) : m^n 반환)
+select mod(10,3) from dual; -- 1            (MOD(m,n) : m을 n 으로 나누었을 때 나머지를 반환)
  
 
 -- 문자 함수
-select concat('나는', '손흥민 입니다.') from dual; -- 나는손흥민 입니다. (CONCAT : 문자의 값 연결)
+select concat('나는', '손흥민 .') from dual; -- 나는손흥민 .            (CONCAT : 문자의 값 연결)
 select concat('제 이름은 ',ename) from emp; -- 제 이름은 SMITH
-select LOWER('MR SCOTT') "Lowercase" from DUAL; -- mr scott       (LOWER : 소문자로 변환)
+select LOWER('MR SCOTT') "Lowercase" from DUAL; -- mr scott         (LOWER : 소문자로 변환)
 select lower(ename) from emp; 
-select LPAD('Page 1',15,'*')from dual; -- *********Page 1         (LPAD : 입력 받은 문자열과 기호를 정렬해 특정 길이의 문자열로 반환)
-select RPAD('001212-1',15,'*')from dual; -- Page 1*********
-select substr('001212-3001247',1,8)from dual; -- 001212-3 -- 1자리부터 8자리, 
-select substr('001212-3001247',5,2)from dual; -- 12 -- 5번째 자리부터 2자리
-select RPAD(substr('001212-3001247',1,8),14,'*') from dual; -- 001212-3******
+select LPAD('Page 1',8,'*')from dual; -- **Page 1                   (LPAD(값, 총 문자길이, 채움문자): 왼쪽부터 지정된 길이만큼 특정문자로 채우기)
+select RPAD('001212-1',15,'*')from dual; -- 001212-1*******         (RPAD(값, 총 문자길이, 채움문자): 오른쪽부터 지정된 길이만큼 특정문자로 채우기)
+select substr('001212-3001247',1,8)from dual; -- 001212-3           (SUBSTR(문자열, 시작위치, 길이): 시작위치부터 길이만큼 출력)
+select substr('001212-3001247',5,3)from dual; -- 12-
+select RPAD(substr('001212-3001247',1,8),10,'*') from dual; -- 001212-3**
 
--- MOD(m,n) : m을 n 으로 나누었을 때 나머지를 반환
+select Ltrim('    =from=', ' ') from dual; -- =from=                 (Ltrim(문자열, 옵션): 문자열의 왼쪽에 공백 제거, 옵션 제거)
+select Rtrim('  = from=====     ', ' ') from dual; --   = from=====/ 
+select trim('=' FROM '====From====') as "fRom" from dual; -- From    (TRIM(제거할문자 FROM 문자열): 문자열에서 제거할문자 제거)
+select trim(' ' FROM '     ==From==     ') as "fRom" from dual; -- ==From==
+select trim('=' FROM '     ==From====') as "fRom" from dual; --      ==From -- ********* 질문: 왜 오른쪽만 = 제거되는지?
 
-select trim() from dual;
-select Ltrim('    =from=', '') from dual; --    =from=
-select Rtrim('    = from=====    ', '' from dual; --   = from=====.
-select trim('=' from '     ====From====') as "from" from dual; --       FROM
-
-select REPLACE('JACK and JUE','J','BL') from dual; -- BLACK and BLUE
+select REPLACE('JACK and JUE','J','BL') from dual; -- BLACK and BLUE (REPLACE(문자열, 찾을문구, 변환문구) : 찾을문구를 변환문구로 치환)
 select REPLACE('000000-000000','-','') from dual; -- 000000000000(주민번호 - 빼기) 
 
 
