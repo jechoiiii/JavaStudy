@@ -19,20 +19,21 @@ where price>=20000
 ;
 
 -- (3) 박지성의 총 구매액(박지성의 고객번호는 1번으로 놓고 작성)
-select SUM(saleprice)
+select SUM(saleprice) as totalPrice
 from orders
-where custid=1
+--where custid=1
+where custid=(select custid from customer where name='박지성') -- 조건의 비교연산 =(단일 행, 단일 열)
 ;
 
 -- (4) 박지성이 구매한 도서의 수(박지성의 고객번호는 1번으로 놓고 작성)
-select count(saleprice)
+--     구매 횟수 = 구매한 도서의 수
+select count(*)
 from orders
 where custid=1
 ;
 
-
 -- 2. 마당서점의 운영자와 경영자가 요구하는 다음 질문에 대해 SQL 문을 작성하시오.
--- (1) 마당서점 도서의 총 개수
+-- (1) 마당서점 도서의 총 개수 : book의 총 row 개수
 select count(bookid)
 from book
 ;
@@ -68,5 +69,5 @@ where name LIKE '김%'
 -- (7) 성이 ‘김’씨이고 이름이 ‘아’로 끝나는 고객의 이름과 주소
 select name, address
 from customer
-where name LIKE '김_아'
+where name LIKE '김%아'
 ;
