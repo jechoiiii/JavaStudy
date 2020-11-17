@@ -142,3 +142,10 @@ where IDX=1;
 -- 자식테이블의 행부터 삭제하고 부모테이블 행을 삭제
 delete from PHONEINFO_COM where FR_REF=13;
 delete from PHONEINFO_BASIC where IDX=1;
+
+
+-- 테이블 3개 OUTER 조인 
+select *
+from PHONEINFO_BASIC pb, PHONEINFO_UNIV pu, PHONEINFO_COM pc
+where pb.IDX=pu.FR_REF(+) and pb.IDX=pc.FR_REF(+)
+;
