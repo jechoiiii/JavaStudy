@@ -3,6 +3,8 @@
 select * from emp;
 
 -- 43. 사원 번호가 7788인 사원과 담당 업무가 같은 사원을 표시(사원 이름과 담당업무)하시오.
+--      7788 사원의 담당업무 추출 (sub query)
+--      같은 업무를 하는 사원     (main query)
 select job from emp where empno=7788;
 
 select ename, job
@@ -10,7 +12,7 @@ from emp
 where job = (select job from emp where empno=7788)
 ;
 
--- 44. 사원번호가 7499인 사원보다 급여가 많은 사원을 표시하시오. 사원이름과 감당 업무
+-- 44. 사원번호가 7499인 사원보다 급여가 많은 사원을 표시하시오. (사원이름과 담당 업무)
 select sal from emp where empno=7499;
 
 select ename, job
@@ -19,15 +21,19 @@ where sal > (select sal from emp where empno=7499)
 ;
 
 -- 45. 최소급여를 받는 사원의 이름, 담당업무 및 급여를 표시하시오. (그룹함수 사용)
+--     min(sal)
 select min(sal) from emp;
 
 select ename, job, sal
 from emp
+--where sal <= all(select sal from emp)
 where sal = (select min(sal) from emp)
 ;
 
 -- 46. 평균급여가 가장 적은 직급의 직급 이름과 직급의 평균을 구하시오.
-select min(avg(sal)) from emp group by job; -- 직급별 가장 적은 평균급여 중 최하 평균급여
+select job, avg(sal) --, min(avg(sal)) (다중행 불가)
+from emp group by job; 
+-- 직급별 가장 적은 평균급여 중 최하 평균급여
 
 -- 직급별로 그룹지은 후 
 -- 그룹지어진 직급별 평균 급여가 직급별 가장 적은 급여 중 최하 평균 급여와 같은
@@ -35,19 +41,33 @@ select min(avg(sal)) from emp group by job; -- 직급별 가장 적은 평균급
 select job, avg(sal)
 from emp 
 group by job
-having avg(sal) = (select min(avg(sal)) from emp group by job)
+--having avg(sal) = (select min(avg(sal)) from emp group by job)
+having avg(sal) <= ALL(select avg(sal) 
+                        from emp 
+                        group by job)
 ;
 
 -- 47. 각 부서의 최소 급여를 받는 사원의 이름, 급여, 부서번호를 표시하시오. 
 
 -- ** 그룹핑은 적절하지 않음. 문제를 쪼개는 연습을 하자!
---select deptno, min(sal) from emp group by deptno; -- 부서별 최소 급여
+select deptno, min(sal) from emp group by deptno; -- 부서별 최소 급여
 -- 부서별로 그룹지은 후, 각 부서의 최소 급여를 받는 사원 출력
---select ename, sal, deptno
---from emp
---group by deptno
+--select ename, sal, deptno from emp group by deptno
 --having sal = (select min(sal) from emp group by deptno)
---;
+--; XXXXXXXXXXXXXXX
+
+select deptno, min(sal)
+from emp
+where deptno=30
+group by deptno;
+
+select ename, sal, deptno
+from emp e1
+where sal=( select min(sal)
+            from emp e2
+            where e2.deptno=e1.deptno
+            group by e2.deptno)
+;
 
 select * from emp e1
 where sal = (select min(sal) from emp e2 where e2.deptno=e1.deptno)
@@ -55,27 +75,28 @@ where sal = (select min(sal) from emp e2 where e2.deptno=e1.deptno)
 
 -- 48. 담당업무가 ANALYST 인 사원보다 급여가 적으면서 업무가 ANALYST가 아닌 사원들을 표시(사원번호, 이름, 담당 업무, 급여)하시오.
 select sal from emp where job='ANALYST';
+select DISTINCT sal from emp where job='ANALYST';
 
 select empno, ename, job, sal
 from emp
-where sal < ANY(select sal from emp where job='ANALYST') and job!='ANALYST' 
+--where sal < ALL(select sal from emp where job='ANALYST')
+where sal < (select DISTINCT sal from emp where job='ANALYST') 
+and job!='ANALYST' 
 ;
 
 -- **********
 -- 49. 부하직원이 없는 사원의 이름을 표시하시오.
-select m.ename from emp e, emp m where e.mgr=m.empno; -- 부하직원 있는 사원 
--- JONES, BLAKE, CLARK, SCOTT, KING, FORD
-
+select empno, ename, mgr 
+from emp
+--where empno not in (select distinct mgr from emp) -- XXXXXXXX null값이 있으면 무조건 false
+--where empno != All(select distinct mgr from emp where mgr is not null)
+where empno not in (select distinct mgr from emp where mgr is not null)
+;
+--OR
 select ename
 from emp
 where ename != ALL(select m.ename from emp e, emp m where e.mgr=m.empno)
 ;
-
--- select mgr from emp;
--- select ename 
--- from emp e
--- where empno not in(select mgr from emp) -- 메인쿼리 비교 조건이 서브쿼리 결과들 중 하나도 맞지 않는 경우...?
--- ;
 
 -- 50. 부하직원이 있는 사원의 이름을 표시하시오.
 select m.ename from emp e, emp m where e.mgr=m.empno; 
@@ -83,6 +104,11 @@ select m.ename from emp e, emp m where e.mgr=m.empno;
 select ename 
 from emp
 where empno = ANY(select mgr from emp)
+;
+-- OR
+select empno, ename, mgr 
+from emp
+where empno in (select distinct mgr from emp where mgr is not null)
 ;
 
 -- 51. BLAKE와 동일한 부서에 속한 사원의 이름과 입사일을 표시하는 질의를 작성하시오. ( 단 BLAKE는 제외 )
@@ -103,7 +129,9 @@ select deptno from emp where ename like '%K%';
 
 select empno, ename
 from emp
-where deptno = ANY(select deptno from emp where ename like '%K%')
+-- where deptno = ANY (select deptno from emp where ename like '%K%')
+-- where deptno IN (select deptno from emp where ename like '%K%')
+where deptno IN (select distinct deptno from emp where ename like '%K%')
 ;
 
 -- 54. 부서위치가 DALLAS인 사원의 이름과 부서번호 및 담당업무를 표시하시오.
@@ -111,6 +139,10 @@ select ename, deptno, job
 from emp e
 where deptno = (select deptno from dept d where loc='DALLAS')
 ;
+-- OR
+select ename, e.deptno, e.job 
+from emp e, dept d 
+where e.deptno=d.deptno and d.loc='DALLAS';
 
 -- 55. KING에게 보고하는 사원의 이름과 급여를 표시하시오.
 select ename, sal
@@ -123,11 +155,16 @@ select empno, ename, job
 from emp
 where deptno = (select deptno from dept where dname='RESEARCH')
 ;
+-- OR
+select d.deptno, e.ename, e.job 
+from emp e, dept d 
+where e.deptno=d.deptno and d.dname='RESEARCH';
 
 -- 57. 평균 월급보다 많은 급여를 받고, 이름에 M이 포함된 사원과 같은 부서에서 근무하는 사원의 사원 번호, 이름, 급여를 표시하시오.
 select empno, ename, sal
 from emp
-where sal>(select avg(sal) from emp) and deptno IN(select deptno from emp where ename like '%M%')
+where sal > (select avg(sal) from emp) 
+and deptno IN(select distinct deptno from emp where ename like '%M%')
 ;
 
 -- *****************
@@ -135,20 +172,14 @@ where sal>(select avg(sal) from emp) and deptno IN(select deptno from emp where 
 select job, avg(sal)
 from emp
 group by job
-having avg(sal) = (select min(avg(sal)) from emp group by job)
+-- where avg(sal) = (select min(avg(sal)) from emp group by job) -- XXXXXXXXXXX 그룹화한 것에 조건 걸 땐 HAVING 절
+--having avg(sal) = (select min(avg(sal)) from emp group by job)
+having avg(sal) <= ALL(select avg(sal) from emp group by job)
 ;
-
---select job, min(avg(sal)) from emp group by job; -- 1037.5
-
---select job, avg(sal) 
---from emp e1
---where avg(sal) = (select avg(sal) from emp e2 group by job)
--- where avg(sal) = (select min(avg(sal)) from emp group by job)
--- where avg(sal) = ANY(select avg(sal) from emp group by job)
---;
 
 -- 59. 담당업무가 MANAGER 인 사원이 소속된 부서와 동일한 부서의 사원을 표시하시오.
 select ename
 from emp
-where deptno IN(select deptno from emp where job='MANAGER')
+where deptno IN(select distinct deptno from emp where job='MANAGER')
+-- where deptno = ANY(select distinct deptno from emp where job='MANAGER')
 ;
