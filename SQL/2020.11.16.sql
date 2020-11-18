@@ -149,3 +149,19 @@ select *
 from PHONEINFO_BASIC pb, PHONEINFO_UNIV pu, PHONEINFO_COM pc
 where pb.IDX=pu.FR_REF(+) and pb.IDX=pc.FR_REF(+)
 ;
+
+
+
+-- 
+drop sequence seq_dept_deptno;
+create sequence seq_dept_deptno
+minvalue 10
+start with 60
+maxvalue 90
+;
+
+create sequence SEQ_EMP_DEPTNO
+minvalue 10
+start with 60
+increment by 999999
+;
