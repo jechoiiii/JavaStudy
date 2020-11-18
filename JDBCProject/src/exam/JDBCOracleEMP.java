@@ -33,18 +33,21 @@ public class JDBCOracleEMP {
 			String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:orcl";
 			String user = "scott";
 			String password = "tiger";
-			
 			conn = DriverManager.getConnection(jdbcUrl, user, password);
 			System.out.println("데이터베이스에 접속했습니다.");
 			
 			// Statement 인스턴스 생성
 			Statement stmt = conn.createStatement();
+
+			
+			// 1. EMP 테이블에 새로운 사원 정보를 입력하는 프로그램을 작성해보자.
+			// EMP : empno, ename, job, mgr, hiredate, sal, comm, deptno
 			
 			System.out.println("사원의 이름을 입력해주세요.");
 			String userEname = sc.nextLine();
 			System.out.println("사원의 업무를 입력해주세요.");
 			String userJob = sc.nextLine();
-			System.out.println("상사의 사번을 입력해주세요.");
+			System.out.println("상사의 사원번호를 입력해주세요.");
 			int userMgr = sc.nextInt();
 			sc.nextLine();
 			System.out.println("사원의 입사일을 입력해주세요.");
@@ -58,9 +61,7 @@ public class JDBCOracleEMP {
 			
 			
 			// PreparedStatement 인스턴스 생성
-			String sqlInsert = "insert into dept values (seq_emp_empno.nextval,?,?,?,?,?,?,?)";
-			
-			// 1. EMP 테이블에 새로운 사원 정보 입력
+			String sqlInsert = "insert into emp values (seq_emp_empno.nextval,?,?,?,?,?,?,?)";		
 			PreparedStatement pstmt = conn.prepareStatement(sqlInsert);
 			pstmt.setString(1, userEname);
 			pstmt.setString(2, userJob);
@@ -70,29 +71,103 @@ public class JDBCOracleEMP {
 			pstmt.setInt(6, userComm);
 			pstmt.setInt(7, userDeptno);
 			
-			int resultCnt = pstmt.executeUpdate();
-			
+			int resultCnt = pstmt.executeUpdate();		
 			if(resultCnt>0) {
-				System.out.println("데이터가 정상적으로 입력되었습니다. ");
+				System.out.println("데이터가 정상적으로 입력되었습니다.");
 			} else {
 				System.out.println("데이터가 입력되지 않았습니다.");
 			}
 			
-			// 2. EMP 테이블의 모든 데이터 출력
-			String sql = "select * from emp order by empno";
+	
 			
-			pstmt = conn.prepareStatement(sql);
+			// 2. EMP 테이블의 모든 데이터를 출력하는 프로그램을 작성해보자.
 			
-			ResultSet rs = stmt.executeQuery(sql);
-
+			String sqlTable = "select * from emp order by empno";			
+			pstmt = conn.prepareStatement(sqlTable);	
+			ResultSet rs = pstmt.executeQuery(sqlTable);
 			
+			if(rs.next()) {
+				do {
+					System.out.print(rs.getInt(1)+"\t");
+					System.out.print(rs.getString(2)+"\t");
+					System.out.print(rs.getString(3)+"\t\t");
+					System.out.print(rs.getInt(4)+"\t");
+					System.out.print(rs.getString(5)+"\t");
+					System.out.print(rs.getInt(6)+"\t");
+					System.out.print(rs.getInt(7)+"\t");
+					System.out.print(rs.getInt(8)+"\t");		
+					System.out.println("");
+				} while(rs.next());
+			}
+			
+			
+		
 			// 3. “SCOTT” 사원의 급여(sal) 정보를 1000으로 바꾸는 프로그램
 
+			String sqlScottSal = "select * from emp where ename='SCOTT'";			
+			
+			pstmt = conn.prepareStatement(sqlScottSal);
+			pstmt.setInt(6,1000);		
+			rs = pstmt.executeQuery(sqlScottSal);
+
+			resultCnt = pstmt.executeUpdate();		
+			if(resultCnt>0) {
+				System.out.println("'SCOTT' 사원의 급여를 1000으로 수정 완료");
+			} else {
+				System.out.println("데이터가 수정되지 않았습니다.");
+			}					
+
+			
+			// 4. EMP 테이블에서 “SCOTT” 이름으로 검색한 결과를 출력하는 프로그램을 작성해보자.
+
+			String sqlScott = "select * from emp where ename='SCOTT'";
+			
+			pstmt = conn.prepareStatement(sqlScott);	
+			rs = pstmt.executeQuery(sqlScott);
+			
+			if(!rs.next()) {
+				System.out.println("'SCOTT' 사원에 대한 정보가 없습니다.");
+			} else {
+				do {
+					System.out.print(rs.getInt(1)+"\t");
+					System.out.print(rs.getString(2)+"\t");
+					System.out.print(rs.getString(3)+"\t\t");
+					System.out.print(rs.getInt(4)+"\t");
+					System.out.print(rs.getString(5)+"\t");
+					System.out.print(rs.getInt(6)+"\t");
+					System.out.print(rs.getInt(7)+"\t");
+					System.out.print(rs.getInt(8)+"\t");		
+					System.out.println("");
+				} while(rs.next());
+			}
 			
 			
 			
+			// 5. 모든 사원정보를 출력하되 부서정보를 함께 출력하는 프로그램을 작성해보자.
+			// empno, ename, job, mgr, hiredate, sal, comm, deptno, deptno_1, dname, loc
+				
+			String sqlEmpDept = "select * from emp e, dept d where e.deptno=d.deptno";
 			
+			pstmt = conn.prepareStatement(sqlEmpDept);
 			
+			rs = pstmt.executeQuery(sqlEmpDept);			
+			
+			while(rs.next()) {
+				System.out.print(rs.getInt(1)+"\t");
+				System.out.print(rs.getString(2)+"\t");
+				System.out.print(rs.getString(3)+"\t\t");
+				System.out.print(rs.getInt(4)+"\t");
+				System.out.print(rs.getString(5)+"\t");
+				System.out.print(rs.getInt(6)+"\t");
+				System.out.print(rs.getInt(7)+"\t");
+				System.out.print(rs.getInt(8)+"\t");
+				System.out.print(rs.getInt(9)+"\t");
+				System.out.print(rs.getString(10)+"\t");
+				System.out.print(rs.getString(11)+"\t");
+				System.out.println("");				
+			}
+			
+					
 			rs.close();
 			pstmt.close();			
 			conn.close();
