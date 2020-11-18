@@ -44,12 +44,17 @@ select distinct bookname from book b, orders o
 where o.bookid = b.bookid 
 and o.custid != (select custid from customer where name='박지성');
 
--- OR 조인 3개 --> 결과 5개
+-- OR 조인 3개 --> 결과 5개 => 풀이 오류! null인 값도 박지성이 구매했다고 생각함 outer join으로 확인하기
 select distinct b.bookname
 from orders o, customer c, book b
 where o.custid=c.custid and b.bookid=o.bookid
 and c.name!='박지성'
 ;
+--- 확인하기!
+select *
+from o.bookid(+)=b.bookid
+and o.custid != (select custid from customer where name='박지성');
+
 
 -- OR 서브쿼리 2개 --> 결과 7개???
 select distinct bookname
