@@ -40,7 +40,7 @@ public class JDBCOracleStatementTest {
 			String userLoc = sc.nextLine();
 			
 			// Insert : 입력
-			String sqlInsert = "insert into dept values (SEQ_DEPT_DEPTNO.NEXTVAL, '"+userDname+"Design', '"+userLoc+"SEOUL')";
+			String sqlInsert = "insert into dept values (SEQ_DEPT_DEPTNO.NEXTVAL, '"+userDname+"', '"+userLoc+"')";
 			
 			int resultCnt = stmt.executeUpdate(sqlInsert);
 			
