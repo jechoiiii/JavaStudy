@@ -40,77 +40,84 @@ public class JDBCOracleEMP {
 			Statement stmt = conn.createStatement();
 
 			
-			// 1. EMP 테이블에 새로운 사원 정보를 입력하는 프로그램을 작성해보자.
-			// EMP : empno, ename, job, mgr, hiredate, sal, comm, deptno
+//			// 1. EMP 테이블에 새로운 사원 정보를 입력하는 프로그램을 작성해보자.
+//			// EMP : empno, ename, job, mgr, hiredate, sal, comm, deptno
+//			
+//			System.out.println("사원의 이름을 입력해주세요.");
+//			String userEname = sc.nextLine();
+//			System.out.println("사원의 업무를 입력해주세요.");
+//			String userJob = sc.nextLine();
+//			System.out.println("상사의 사원번호를 입력해주세요.");
+//			int userMgr = sc.nextInt();
+//			sc.nextLine();
+//			System.out.println("사원의 입사일을 입력해주세요.");
+//			String userHireDate = sc.nextLine();
+//			System.out.println("사원의 급여를 입력해주세요.");
+//			int userSal = sc.nextInt();
+//			System.out.println("사원의 커미션을 입력해주세요.");
+//			int userComm = sc.nextInt();
+//			System.out.println("사원의 부서번호를 입력해주세요.");
+//			int userDeptno = sc.nextInt();
+//			
+//			
+//			// PreparedStatement 인스턴스 생성
+//			String sqlInsert = "insert into emp values (seq_emp_empno.nextval,?,?,?,?,?,?,?)";		
+
+			PreparedStatement pstmt = null;
 			
-			System.out.println("사원의 이름을 입력해주세요.");
-			String userEname = sc.nextLine();
-			System.out.println("사원의 업무를 입력해주세요.");
-			String userJob = sc.nextLine();
-			System.out.println("상사의 사원번호를 입력해주세요.");
-			int userMgr = sc.nextInt();
-			sc.nextLine();
-			System.out.println("사원의 입사일을 입력해주세요.");
-			String userHireDate = sc.nextLine();
-			System.out.println("사원의 급여를 입력해주세요.");
-			int userSal = sc.nextInt();
-			System.out.println("사원의 커미션을 입력해주세요.");
-			int userComm = sc.nextInt();
-			System.out.println("사원의 부서번호를 입력해주세요.");
-			int userDeptno = sc.nextInt();
+//			PreparedStatement pstmt = conn.prepareStatement(sqlInsert);
+//			pstmt.setString(1, userEname);
+//			pstmt.setString(2, userJob);
+//			pstmt.setInt(3, userMgr);
+//			pstmt.setString(4, userHireDate);
+//			pstmt.setInt(5, userSal);
+//			pstmt.setInt(6, userComm);
+//			pstmt.setInt(7, userDeptno);
+//			
+//			int resultCnt = pstmt.executeUpdate();		
+//			if(resultCnt>0) {
+//				System.out.println("데이터가 정상적으로 입력되었습니다.");
+//			} else {
+//				System.out.println("데이터가 입력되지 않았습니다.");
+//			}
+//			
+//	
+//			
+//			// 2. EMP 테이블의 모든 데이터를 출력하는 프로그램을 작성해보자.
+//			
+//			String sqlTable = "select * from emp order by empno";			
+//			pstmt = conn.prepareStatement(sqlTable);	
+
+			ResultSet rs = null;
 			
-			
-			// PreparedStatement 인스턴스 생성
-			String sqlInsert = "insert into emp values (seq_emp_empno.nextval,?,?,?,?,?,?,?)";		
-			PreparedStatement pstmt = conn.prepareStatement(sqlInsert);
-			pstmt.setString(1, userEname);
-			pstmt.setString(2, userJob);
-			pstmt.setInt(3, userMgr);
-			pstmt.setString(4, userHireDate);
-			pstmt.setInt(5, userSal);
-			pstmt.setInt(6, userComm);
-			pstmt.setInt(7, userDeptno);
-			
-			int resultCnt = pstmt.executeUpdate();		
-			if(resultCnt>0) {
-				System.out.println("데이터가 정상적으로 입력되었습니다.");
-			} else {
-				System.out.println("데이터가 입력되지 않았습니다.");
-			}
-			
-	
-			
-			// 2. EMP 테이블의 모든 데이터를 출력하는 프로그램을 작성해보자.
-			
-			String sqlTable = "select * from emp order by empno";			
-			pstmt = conn.prepareStatement(sqlTable);	
-			ResultSet rs = pstmt.executeQuery(sqlTable);
-			
-			if(rs.next()) {
-				do {
-					System.out.print(rs.getInt(1)+"\t");
-					System.out.print(rs.getString(2)+"\t");
-					System.out.print(rs.getString(3)+"\t\t");
-					System.out.print(rs.getInt(4)+"\t");
-					System.out.print(rs.getString(5)+"\t");
-					System.out.print(rs.getInt(6)+"\t");
-					System.out.print(rs.getInt(7)+"\t");
-					System.out.print(rs.getInt(8)+"\t");		
-					System.out.println("");
-				} while(rs.next());
-			}
-			
-			
+//			ResultSet rs = pstmt.executeQuery(sqlTable);
+//			
+//			if(rs.next()) {
+//				do {
+//					System.out.print(rs.getInt(1)+"\t");
+//					System.out.print(rs.getString(2)+"\t");
+//					System.out.print(rs.getString(3)+"\t\t");
+//					System.out.print(rs.getInt(4)+"\t");
+//					System.out.print(rs.getString(5)+"\t");
+//					System.out.print(rs.getInt(6)+"\t");
+//					System.out.print(rs.getInt(7)+"\t");
+//					System.out.print(rs.getInt(8)+"\t");		
+//					System.out.println("");
+//				} while(rs.next());
+//			}
+
+		
 		
 			// 3. “SCOTT” 사원의 급여(sal) 정보를 1000으로 바꾸는 프로그램
 
-			String sqlScottSal = "select * from emp where ename='SCOTT'";			
+			String sqlScottSal = "update emp set sal=? where ename='SCOTT'";			
 			
 			pstmt = conn.prepareStatement(sqlScottSal);
-			pstmt.setInt(6,1000);		
-			rs = pstmt.executeQuery(sqlScottSal);
+			
+			pstmt.setInt(1, 1000);		
+			//rs = pstmt.executeQuery(sqlScottSal);
 
-			resultCnt = pstmt.executeUpdate();		
+			int resultCnt = pstmt.executeUpdate();		
 			if(resultCnt>0) {
 				System.out.println("'SCOTT' 사원의 급여를 1000으로 수정 완료");
 			} else {
