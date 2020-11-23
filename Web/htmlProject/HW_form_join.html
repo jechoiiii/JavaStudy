@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    
+    <style>
+        h1 {
+            color : limegreen;
+        }
+        
+        p {
+            
+        }
+        
+        header {
+            color : black;
+        }
+        
+        font_weight_bold {
+            font-weight: bold;
+        }
+        
+    
+    </style>
+    
+    
+</head>
+
+<body>
+    
+    <h1><div id="header" class="font_weight_bold">NAVER</div></h1> <br>
+    
+
+    
+    <div id="header" class="font_weight_bold">아이디</div> <br>
+    <ul id="nav">
+
+
+    </ul>
+    <h5><input type="text" name="id"></h5> <h6>@naver.com</h6> <br>
+    
+    <lable>비밀번호</lable> <br>
+    <input type="password" name="pw"> <br>
+    
+    <lable>비밀번호 재확인</lable> <br> <!-- 동일 타입 입력 ?? -->
+    <input type="password" name="pw"> <br> <!-- 동일 값 확인 ?? -->
+    
+    <lable>이름</lable> <br>
+    <input type="text" name="username"> <br>
+    
+    <lable>생년월일</lable> <br>
+    <input type="text" name="byear" value="년(4자)"> 
+    <select name="bmonth">
+        <option>월</option>
+        <option value="1">1월</option>
+        <option value="2">2월</option>
+        <option value="3">3월</option>
+        <option value="4">4월</option>
+        <option value="5">5월</option>
+        <option value="6">6월</option>
+        <option value="7">7월</option>
+        <option value="8">8월</option>
+        <option value="9">9월</option>
+        <option value="10">10월</option>
+        <option value="11">11월</option>
+        <option value="12">12월</option>     
+    </select> <br>     
+    <input type="text" name="bday" value="일"> 
+    <br>
+    
+    <lable>성별</lable> <br>
+    <select name="gender">
+        <option>성별</option>
+        <option>남자</option>
+        <option>여자</option>
+        <option>선택 안함</option>
+    </select> <br>
+    
+    <lable>본인 확인 이메일</lable> <br>
+    <input type="email" name="email"> <br>
+    
+    <lable>휴대전화</lable> <br>
+    <select name="nationality">
+        <option>대한민국 +82</option>
+        <option>가나 +233</option>
+    </select> <br>
+    <input type="phonenumber" name="phoneNum"> <input type="submit" value="인증번호 받기"> <br>
+    <input type="serialnumber" name="serialNum"> <br>
+    
+    <br>
+    <br>
+    <input type="submit" value="가입하기">
+
+    
+</body>
+</html>
