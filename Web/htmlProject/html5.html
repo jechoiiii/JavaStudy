@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<!-- HTML5 문서임을 정의-->
+
+<html lang="ko">
+        <!-- html의 시작, 작성하는 언어 정의 -->
+    
+    <head>
+        <!-- html 문서의 정보를 정의 -->
+        <title>First HTML5</title> <!-- 웹 문서의 제목 -->        
+        <meta charset="utf-8">  <!-- 문서의 속성 --> <!-- 기본값: iso-8859-1 아스키코드 이니 변경 필요 -->
+        <style>
+            h1 {
+                background-color : aqua;
+                color : red;
+            }
+            
+            h2 {
+                background-color : black;
+                color : white;
+            }
+            
+            div {
+                background-color: aquamarine;
+            }
+            
+            p {
+                background-color: floralwhite;
+            }
+            
+            span {
+                background-color: chartreuse;
+            }
+      
+        </style> <!-- 웹 문서의 요소들의 스타일 정의 -->
+        <script> 
+            // alert('안녕하세요'); 
+        </script>
+        <!-- 자바스크립트 정의
+            : 동적으로 바뀌는 페이지
+            - 변경 시 웹페이지 새로고침 필요
+            - Script는 /html 뒤에 위치할 수도 있음. 위에서 아래로 읽는 흐름 특성상 화면 출력 후, 큰 사이즈의 Script는 밑으로 뺀다.
+        -->
+                
+    </head>
+
+    <body>
+    
+        
+        
+       
+        <h3 id="top">INDEX</h3>
+        <o1>
+            <li><a href="http://www.naver.com">Naver</a></li> 
+            <li><a href="http://192.168.0.12/"> link </a></li>
+            <li><a href="#tag-1">Heading tag</a></li> 
+            <li><a href="#tag-2">P tag</a></li> 
+            <li><a href="#tag-3">br tag</a></li>
+            <li><a href="#tag-4">List tag</a></li>
+            <li><a href="#tag-5">Table tag</a></li>
+            <li><a href="#tag-6">img tag</a></li>
+            <li><a href="#tag-7">공간분할 tag</a></li>
+        </o1>
+   
+    
+        
+        <hr>
+        
+        <h1>form tag</h1>        
+        <form action="#" method="get">
+        
+            아이디 <input type="text" name="userid" value="value"><br>
+            이름 <input type="text" name="username" value="value"><br>
+            비밀번호 <input type="password" name="pw" value="value"><br>
+            프로필 사진 <input type="file" name="file"><br>
+            ok?<input type="checkbox" name="ok"><br>
+            
+            A<input type="radio" name="choice" value="A">
+            B<input type="radio" name="choice" value="B">
+            C<input type="radio" name="choice" value="C"><br>
+            
+            <input type="submit" value="서버로 전송">
+        
+        </form>
+        
+    
+        
+        <hr>       
+        <H1 id="tag-1"> Heading tag </H1>
+        
+        <h1>This is heading 1</h1>
+        <h2>This is heading 2</h2>
+        <h3>This is heading 3</h3>
+        <h4>This is heading 4</h4>
+        <h5>This is heading 5</h5>
+        <h6>This is heading 6</h6>
+                
+        
+        
+        <hr>        
+        <h1 id="tag-2">문단 Tag </h1>
+        
+        <h2>카카오모빌리티, 자율주행 사업 가동하나… 구글과 협력설 '대두'</h2>
+        <p>
+        23일 한 매체에 따르면 구글이 카카오모빌리티 지분에 투자하는 등 다양한 방식으로 협력하는 방안을 모색 중이다. 투자 주체는 구글의 자회사 웨이모다. 
+        </p>
+        <p>
+        최근 모빌리티 업체들은 자율주행·플라잉카 등 미래 사업 준비에 나섰다. 실제 박정호 SK텔레콤 사장은 “글로벌 최고 기업인 우버와 함께 모빌리티 혁신을 추진할 것”이라며 “다양한 역량을 가진 기업과 초협력을 통해 교통 난제를 해결하고 궁극적으로 ‘플라잉카’(하늘을 나는 차)로 서울-경기권 30분 내 이동 시대를 앞당기겠다”고 말하기도 했다.
+        </p>
+        <p>
+        이같은 이유로 카카오모빌리티와 구글간 협력건도 T맵과 우버의 협력을 견제함과 동시에 자율주행 사업 노하우를 전수받으려는 전략으로 투자업계는 내다보고 있다. 
+        </p>
+       
+        
+        
+        <hr>       
+        <h3 id="tag-3">홍차</h3>
+        
+        <h4>정의</h4>
+        <p>
+        동양에서는 우러난 차의 빛깔(붉은색)을 보고 홍차라고 하지만, 서양에서는 찻잎의 색깔(검은색)을 보고 흑차(Black Tea)라고 부른다. 녹차는 동서양 공통으로 綠茶-Green Tea다. 즉, 동양(특히 중국)에서 '흑차'라고 하면 보이차 종류의 후발효차를 지칭하는 명칭이다. 반대로 서양에서 '홍차', 즉 red tea는 허브의 일종인 루이보스를 우려낸 대용차를 말한다.
+        </p>
+        
+        <h4>등급</h4>
+        <p>
+        서양권에서 russian tea 레시피를 검색해보면 잼을 섞기보다는 오렌지 주스 등을 섞는 레시피가 많이 발견된다. 이는 미국에서 오렌지주스에 계피 등을 섞은 것을 러시안티라고 부르기 때문이다. 홍차에 잼을 섞어서 내는 것을 러시안 티라고 부르는 것은 일본. 즉, 한국에서 러시안티 하면 홍차에 잼 넣는 것으로 인식되는 것은 일본의 영향이다.
+        </p>
+        -브로큰 페코 
+        <br> <br>
+        -브로큰 페코 수숑
+        <br><br>
+        브로큰 오렌지 페코 패닝
+        
+   
+        
+        <hr>      
+        <h1 id="tag-4">List tag</h1>
+        
+        <!-- 순서 없는 리스트 -->
+        <ul>
+            <li>카카오</li>
+            <li>네이버</li>
+            <li>페이스북</li>
+        </ul>
+        <!-- 순서 있는 리스트 -->
+        <ol>
+            <li>카카오</li>
+            <li>네이버</li>
+            <li>페이스북</li>
+        </ol>
+        
+        
+        
+        <hr>
+        <h1 id="tag-5">Table tag</h1>
+        
+        <table border="1">
+
+            <tr>
+                <th colspan="2">지역별 홍차</th>
+            </tr>
+
+            <tr>
+                <th rowspan="3">중국</th>
+                <td>정산소종</td>
+            </tr>
+
+            <tr>
+                <td>기문</td>
+            </tr>           
+        
+            <tr>
+                <td>운남</td>
+            </tr>   
+            
+            <tr>
+                <th rowspan="4">인도 및 스리랑카</th>
+                <td>아삼</td>
+            </tr>
+
+            <tr>
+                <td>실론</td>
+            </tr>
+            
+            <tr>
+                <td>다질링</td>
+            </tr>
+            
+            <tr>
+                <td>닐기리</td>
+            </tr>
+            
+        </table> <br>
+     
+        
+        
+        
+        <table border="1">        
+            <tr> 
+                <td rowspan="2">1,1</td>
+                <td>1,2</td>
+            </tr>
+            
+            <tr>
+                <!--<td>2,1</td>-->
+                <td>2,2</td>
+            </tr>            
+        </table>
+        
+        <table border="1">        
+            <tr> 
+                <td colspan="2">1,1</td>
+                <!--<td>1,2</td>-->
+            </tr>
+            
+            <tr>
+                <td>2,1</td>
+                <td>2,2</td>
+            </tr>           
+        </table> <br>
+ 
+        
+        
+        
+        <table border="1">
+            <tr>
+                <th>tag</th>
+                <th>설명</th>
+            </tr>
+            
+            <tr>
+                <td>Table</td>
+                <td>테이블을 생성해주는 테그</td>
+            </tr>
+            
+            <tr>
+                <td>thead</td>
+                <td>테이블의 머리글</td>
+            </tr>
+            
+            <tr>
+                <td>tbody</td>
+                <td>테이블의 본문</td>
+            </tr>
+            
+            <tr>
+                <td>tfoot</td>
+                <td>설명</td>
+            </tr>
+            
+            <tr>
+                <td>tr</td>
+                <td>테이블의 행을 생성</td>
+            </tr>
+            
+            <tr>
+                <td>th</td>
+                <td>표의 각 열의 라벨을 표현</td>
+            </tr>
+            
+            <tr>
+                <td>td</td>
+                <td>행에 포함되는 열을 생성</td>
+            </tr>
+          
+        </table> <br>
+        
+        
+        
+        <hr>
+        <h1 id="tag-6">img tag</h1>
+        
+        <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fkinimage.naver.net%2F20150812_222%2F1439383158066anEeB_JPEG%2F1439383157526.jpg&type=sc960_832">
+        
+        <img src="mini1.jpg" width="200" height="200">
+        <img src="mini2.jpg" width="200" height="200">
+
+        <img src="moana.jpg" height="100">
+        <img src="moana2.jpg" height="100"> <br>
+        
+        <img src="test" alt="이미지 파일입니다.">
+        
+        
+        
+        <hr>
+        <h1 id="tag-7">공간 분할 tag</h1>
+        
+        <!-- block -->
+        <div> DIV DIV DIV DIV DIV </div>
+        <!-- inline -->
+        <span> span span span </span>
+        
+        
+        <br>
+        <br>
+        
+        <a href="#top">top</a>
+        
+        <br>
+        <br>
+        
+        
+    </body>
+</html>
+
+
+
+
+
+
+
+
