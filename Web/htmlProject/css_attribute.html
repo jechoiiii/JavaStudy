@@ -170,6 +170,9 @@
         h3 {
             /* 텍스트의 수평 방향의 정렬 : center, left, right */
             text-align: center;
+            
+            /* 그림자 text-shadow: 오른쪽 아래 흐림도 색상*/
+            text-shadow: 5px 5px 5px grey;
         }
         h3+h4 { /*동일 선택 (h3 바로 뒤) h4*/
             text-align: right;
@@ -177,6 +180,10 @@
         h3+h4+p {
             /* 텍스트의 수직 방향의 정렬 : line-height */
             line-height: 180%;
+            
+            border: 1px solid #eee;
+            width: 59%;
+            box-shadow: 5px 5px 20px #ddd;
         }
         
     </style>
