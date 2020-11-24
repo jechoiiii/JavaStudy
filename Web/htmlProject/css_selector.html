@@ -263,6 +263,7 @@
             문자 선택자 
             ::first-letter -> 첫번째 글자 선택
             ::first-line -> 첫번째 줄 선택
+            ::selection -> 블럭 드래그하거나 더블클릭할 때
         */
         
         p::first-letter {
@@ -273,7 +274,7 @@
             color : aqua;
         }
         
-        p::selection { /* 블럭 드래그하거나 더블클릭할 때 */
+        p::selection { 
             background-color: black;
             color : white;
         }
@@ -282,8 +283,8 @@
         
         /*
             링크 선택자
-            :link
-            :visited
+            :link -> href 속성을 가지고 있는 a 태그를 선택
+            :visited -> 방문했던 링크를 가지고 있는 a 태그를 선택
         */
         
         a:link {
@@ -291,15 +292,16 @@
             text-decoration: none;
         }
         a:visited {
-            color: aquamarine;
+            color: orange;
             text-decoration: none;
         }
         a:hover {
             color: blue;
         }
         
+        /* href 속성을 가지고 있는 a 태그 뒤의 공간에 "- (href 속성)"을 추가 */
         a:link::before {
-            content: '(' attr(href) ')'; /* a 테그를 가지고 있는 href의 속성*/ 
+            content: '(' attr(href) ')'; 
         }
         
     </style>  
