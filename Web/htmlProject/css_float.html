@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>float을 이용한 레이아웃</title>
+    
+    <style>
+        img {
+            float:left;
+        }
+        
+        /* footer에 float 적용시키지 않는 방법 1) footer 제외하고 묶어서 overflow: hidden */
+        #wrap {
+            /*overflow: hidden;*/
+        }
+        
+        /* footer에 float 적용시키지 않는 방법 2) footer에 clear: both; */
+        footer{
+            clear: both;
+            background-color: antiquewhite;
+        }  
+    </style>
+    
+</head>
+
+<body>
+    
+    <div id="wrap">
+        <img src="mini1.jpg" width="200">
+        <p>
+        '82년생 김지영' 뉴욕타임스 올해의 책 100선 선정<br>
+        작가 조남주의 소설 82년생 김지영이 뉴욕타임스가 선정한 올해의 책 100선에 선정됐습니다.
+        뉴욕타임즈의 서평 담당 에디터들이 영어 번역판을 2020년 주목할 만한 책 100선에 선정한 건데요.
+        뉴욕타임즈는 "한국에서 2016년 출간됐을 때 센세이션을 일으킨 이 소설은 역사의 사례연구처럼, 감정에 치우치지 않은 언어로 젊은 아내이자 엄마인 한 전형적인 한국 여성을 이야기한다"면서 "그녀가 겪는 곤경은 성차별적 사회의 영향을 드러낸다"고 소개했습니다.
+        앞서 미국의 타임지에서도, "꼭 읽어야 할 올해의 책 100권"에 선정했었는데요.
+        미국에서는 지난 4월에 출간된 82년생 김지영은 최근 미국도서상 예심 후보에도 올랐습니다.</p>  
+    </div>
+    
+    <footer>
+    <!-- footer : div와 동일 -->
+        footer    
+    </footer>
+ 
+</body>
+</html>
