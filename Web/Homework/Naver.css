@@ -1,0 +1,41 @@
+* {
+  
+    
+}
+
+body {
+    background-color: #fff;
+}
+
+#main_wrap {
+    padding: 0 250px;
+}
+
+#wrap {
+    
+}
+
+h1 {
+    color : limegreen;
+    font-family: 'Kanit', sans-serif;
+    font-size: 70px;
+    text-align: center;
+}
+
+input[type=radio] { 
+    /*border-radius: 70px;*/
+    /* checkbox 스타일 주기 ??*/
+}
+
+section {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+h4 {
+    
+}
+
+text1 {
+    
+}
