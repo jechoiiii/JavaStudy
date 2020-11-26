@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>high low Game</title>
+    
+    <script>
+    
+    // 하이로우 게임 
+        //: 숫자 맞추기 높다 낮다 판별해서 
+        //: 몇번째에 맞추는지 카운팅
+        //: 미션 성공의 조건은 : 10회 이전, 30초 이전에 맞추기
+        
+        
+        // 랜덤 숫자 생성
+        var number = Math.random()*100; // 0~99.0000000
+        number = Math.floor(number);
+
+        console.log('Random Number :', number);
+        
+        
+        alert('숫자 맞추기 게임 Start!\n10번의 기회, 30초 제한');
+    
+        var userNumber; 
+        
+        // 함수 선언
+        function callTenTimes(callback) {
+            
+            setTimeout(function () {
+                
+                for(var i=0; i<10; i++){ // 10회 반복
+                
+                    if(number==userNumber){
+                        alert('정답입니다!');
+                        return;
+                    } else {
+                        callback();
+                    }
+                }
+                
+            }, 30*1000);
+       
+        } 
+    
+
+        
+        // 맞추기 함수
+        var callback = function() {
+                     
+            var userInput = prompt('숫자를 입력해주세요.', '');
+            userNumber = Number(userInput);
+            console.log('userNumber : ', userNumber);
+           
+        }
+           
+
+        // 함수 호출          
+        callTenTimes(callback);
+        
+        
+        /*var callback = function () {
+            
+            var intervalID = setInterval(function() {
+                
+                var userInput = prompt('숫자를 입력해주세요.', '');
+                userNumber = Number(userInput); 
+
+            }, 30*1000);   
+        }
+        
+                   
+       
+        
+   
+      
+            
+        /*setTimeout(input()) {
+            clearInterval(intervalId);
+        }, 30*1000);
+        
+        
+        
+        
+        
+        // 사용자 입력 함수
+        function input() {
+            var userInput = '<input type="number">';
+            return userInput;
+        }
+        
+        input();*/
+    
+    
+    </script>
+    
+    
+</head>
+
+<body>
+    
+    <!--<input type="number">-->
+    
+</body>
+</html>
