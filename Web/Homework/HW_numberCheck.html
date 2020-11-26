@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript IF 조건문</title>
+    
+    <script>
+        
+
+        var userData = prompt('\n<양수/음수/0 구분 프로그램>\n\n숫자를 입력하세요.', '');
+        
+        var userNum = Number(userData);
+        
+        if( userNum>0 ) {
+            alert('양수입니다.');
+            console.log('양수입니다.');
+        } else if(userNum<0) {
+            alert('음수입니다.');
+            console.log('음수입니다.');       
+        } else {
+            alert('0 입니다.');
+            console.log('0 입니다.');  
+        }
+    
+        
+        var userData = prompt('\n<짝수홀수 구분 프로그램>\n\n숫자를 입력하세요.', '');
+        
+        var userNum = Number(userData);
+        
+        if( userNum%2==0 ) {
+            alert('짝수입니다.');
+            console.log('짝수입니다.');
+        } else {
+            alert('홀수입니다.');
+            console.log('홀수입니다.');       
+        } 
+
+    
+    </script>
+    
+    
+</head>
+
+<body>
+    
+    
+    
+    
+</body>
+</html>
