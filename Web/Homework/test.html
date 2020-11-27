@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    
+    <script>
+        
+        console.log.('출력');
+        
+        // 함수 안 함수 정의
+        function func() {
+            function callingfunc() {
+                console.log('함수 리턴!');
+            }
+            return callingfunc;
+        }
+        
+        // 함수 호출
+        func();
+        func()();
+        
+        var myCallfunc = func();    // myCallfunc 변수에 func() 값인 callingfuc함수 전달
+        console.log(typeof(myCallfunc));
+        
+        
+    </script>
+    
+</head>
+
+<body>
+    
+</body>
+</html>
