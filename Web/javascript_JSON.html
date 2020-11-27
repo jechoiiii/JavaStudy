@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript JSON</title>
+    
+    <script>
+    
+        var book = {
+            name: 'first Java',
+            price: 25000,
+            publisher: 'first'
+        };
+        
+        
+        // javascript object -> JSON String 으로 변환
+        // JSON.stringify(javascfipt object) -> string 반환
+        var jsonStr = JSON.stringify(book);
+        
+        window.onload = function() {
+            document.getElementById('view').innerHTML = jsonStr;
+            
+            
+            var str = '{ "name": "first Java", "price": 25000,"publisher": "first"}';
+            
+            // JSON String -> javascript object로 변환
+            var obj = JSON.parse(str);
+            console.log(typeof(obj));
+            console.log(obj);
+                
+            
+        }
+    
+    </script>
+    
+    
+</head>
+
+<body>
+    
+    <h1 id="view"></h1>
+    
+    
+    
+</body>
+</html>
