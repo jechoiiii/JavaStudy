@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>high low Game</title>
     
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
     <script>
     
     // 하이로우 게임 
@@ -20,76 +23,85 @@
         console.log('Random Number :', number);
         
         
-        alert('숫자 맞추기 게임 Start!\n10번의 기회, 30초 제한');
+        alert('숫자 맞추기 게임 Start!\n(10번의 기회, 30초 제한)');
     
         var userNumber; 
+        var timeLimit = setTimeout(function callTenTimes(callback) {}, 100);
         
-        // 함수 선언
+        // 10회 반복 함수
         function callTenTimes(callback) {
             
-            setTimeout(function () {
-                
-                for(var i=0; i<10; i++){ // 10회 반복
-                
-                    if(number==userNumber){
-                        alert('정답입니다!');
-                        return;
-                    } else {
-                        callback();
-                    }
-                }
-                
-            }, 30*1000);
-       
-        } 
-    
+   
+//            setTimeout( function() {
 
+                for(var i=0; i<10; i++){
+                
+                    callback();
+                    
+                    if(i<9){
+                        
+                        if(number > userNumber) {
+                            alert('더 큰 수입니다.');
+                        } else if(number < userNumber) {
+                            alert('더 작은 수입니다.');
+                        } else {
+                            alert('정답입니다! ('+i+'번째 시도)');
+                            break;
+                        }
+                        
+                    } else { // 10번째 입력
+                        
+                        if(number == userNumber){
+                            alert('정답입니다! ('+i+'번째 시도)');
+                            break;
+                        } else {
+                            alert('10번의 기회를 모두 소진했습니다.\n\n****** GAME OVER ******');
+                            break;
+                        }
+                    }   
+
+                } // 반복 종료
+  
+//            }, 1000); // 1초 후 바로 실행
+            
+        }  
         
-        // 맞추기 함수
-        var callback = function() {
-                     
+        // 30초 후에 종료 함수
+        setTimeout(function () {
+            
+            alert('제한 시간을 초과했습니다.\n\n****** GAME OVER ******');
+            clearTimeout(timeLimit);              
+        }, 30*1000)
+        
+            
+        // 사용자입력 함수
+        var callback = function() {  
+            
             var userInput = prompt('숫자를 입력해주세요.', '');
             userNumber = Number(userInput);
-            console.log('userNumber : ', userNumber);
-           
+            console.log('userNumber : ', userNumber);   
         }
-           
-
-        // 함수 호출          
+    
+        
+        
+        // 함수 호출
         callTenTimes(callback);
         
-        
-        /*var callback = function () {
             
-            var intervalID = setInterval(function() {
-                
-                var userInput = prompt('숫자를 입력해주세요.', '');
-                userNumber = Number(userInput); 
+        // 타이머 함수
+        var timerId = setInterval(function(){
 
-            }, 30*1000);   
-        }
+            for(var i=30; i>0; i--) {       
+                html = consol.log(i+'초');
+            }
+        }, 1000)     
+
+        document.body.innerHTML = html;
+
         
-                   
-       
+//        var timeLimit = callTenTimes(callback);
         
-   
-      
-            
-        /*setTimeout(input()) {
-            clearInterval(intervalId);
-        }, 30*1000);
-        
-        
-        
-        
-        
-        // 사용자 입력 함수
-        function input() {
-            var userInput = '<input type="number">';
-            return userInput;
-        }
-        
-        input();*/
+
     
     
     </script>
@@ -99,7 +111,10 @@
 
 <body>
     
-    <!--<input type="number">-->
+    <script>
+
+    
+    </script>
     
 </body>
 </html>
