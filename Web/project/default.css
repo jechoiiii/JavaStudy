@@ -1,0 +1,181 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Jua', sans-serif;
+}
+
+body {
+    
+}
+
+
+/* 회원가입 폼 */
+
+h1.header { 
+    margin: 20px; 
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+h2.title {
+    margin: 40px;
+}
+
+#regform {
+    margin: 10px 40px;
+}
+
+#regform>table { 
+    width: 600px;
+}
+
+#regform>table td { /* table>td 불가한 이유? td가 table 바로 밑에 있지 않기 때문 */
+    width: 120px; 
+    padding: 10px;
+    vertical-align: top;
+}
+
+#regform>table input{
+    width: 80%;
+    padding: 5px;
+}
+
+#regform>table label {
+    display: block;
+}
+
+#regform>table input[type=submit] {
+    width: 100px;
+    height: 50px;
+    background-color: aquamarine;
+    border: 2px solid #aaa;
+}
+
+div.msg {
+    color: red; 
+    display: none;
+}
+
+
+
+/* 회원 리스트 폼 */
+
+table.table { /* ?? table 다음 table 태그 */
+    margin: 10px 40px;
+    width: 600px;
+    border-collapse: collapse; /* collapse : 테두리 봉쇄, separate : 테두리 분리 */
+}
+
+table.table td, table.table th { /* table 태그의 하위 요소 중 모든 td 태그*/
+    padding: 10px;
+    border: 1px solid #aaa;
+    background-color: #fff;
+    
+    text-align: center;
+}
+
+
+
+
+/* 회원정보 수정 폼 */
+
+div.edit_div {
+    background-color: azure;
+    
+    width: 300px;
+    padding: 10px;
+    
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    
+    box-shadow: 5px 5px 5px #ddd; 
+    
+    position: absolute;
+    
+    top: 100px;
+    left: 400px;
+    
+    display: none;
+    
+}
+
+div.edit_div>div.edit_form_header {
+    overflow: hidden;
+    padding: 5px;
+}
+
+div.edit_div>div.edit_form_header>h2 {
+    float: left;
+}
+
+div.edit_div>div.edit_form_header>a { /* 닫기 위치 */
+    float: right;
+    padding: 5px;
+}
+
+#editform {
+    margin: 5px;
+}
+
+#editform>table {
+    width: 100%;
+}
+
+#editform>table td {
+    padding: 5px;
+    text-align: center;
+}
+
+#editform input[type=submit] {
+    background-color: aquamarine;
+    padding: 5px;
+    margin-top: 10px;
+    width: 100%;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: darkgreen;
+    
+    border: 2px solid darkgreen;
+    border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
