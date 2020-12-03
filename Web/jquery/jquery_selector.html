@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery 문서 탐색</title>
+    
+    <!--jquery 라이브러리 로드--> 
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    
+    <script>
+        
+        $(document).ready(function(){
+            /*$('h3:even').css({
+                backgroundColor:'black',
+                color: 'yellow'
+            });*/
+            /*$('h3').filter(':even').css({
+                    backgroundColor:'black',
+                    color: 'white'
+            });*/
+            
+            $('h3').filter(function(){
+               return index%3==0;  
+            }).css({
+                backgroundColor:'red',
+                color: 'yellow'
+            });
+            
+        }); // onload가 되면 처리되도록
+    
+        
+        
+        
+    </script>
+    
+</head>
+
+<body>
+    <h3>header3 - 0</h3>
+    <h3>header3 - 1</h3>
+    <h3>header3 - 2</h3>
+    <h3>header3 - 3</h3>
+    <h3>header3 - 4</h3>
+    <h3>header3 - 5</h3>
+    <h3>header3 - 6</h3>
+</body>
+</html>
