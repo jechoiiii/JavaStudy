@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Phonebook</title>
+    
+    <link rel="stylesheet" href="phoneBook_default.css">
+    
+    <!--jquery 라이브러리 로드--> 
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    
+   <!-- <script src="phoneBook_manager.js"> </script>-->
+    
+    <!--<script>
+        $('body').load('HW_jquery_manager.html script');  
+        
+    </script>-->
+    
+    <style>
+    /*
+        .float_left {
+            float: left;
+        }*/
+    </style>
+    
+    <script>
+        
+        $(document).ready(function(){
+            
+            /* 헤더 */
+            $('#header').css('margin', 20);
+            $('h1.header').css('text-align', 'center');
+            
+            /*$('div>hr').css({
+                margin: '0 10px';
+                border: '1px solid #ddd'
+            });*/
+            
+            
+            /* 전화번호 추가 */
+             
+            var phoneInfo = [];
+            
+            $('form').parent().css('margin', 10); // <form> 요소의 부모 h2 선택
+            $('input[type=text]').css('padding', 10);
+             $('table').filter(':first').width(600);
+            
+            $('regform>table td').css({
+                width: '120px',
+                padding: '10px',
+                verticalAlign: 'top',
+            });    
+
+            $('regform>table input').css({
+                width: '50%',
+                padding: '5px',
+            });    
+
+            $('input[type=submit]').css({
+                width: '80px',
+                backgroundColor: 'darkkhaki',
+                border: '2px solid #aaa',
+            });
+            
+            
+            
+            /* 전화번호부 */
+            
+            $('.listTable').css({
+                margin: '10px 40px',
+                width: '600px',
+                borderCollapse: 'collapse',
+            });
+            
+            $('.listTable tr').children().css({
+                padding: '5px',
+                border: '1px solid #aaa',
+                backgroundColor: '#bbb',
+                textAlign: 'center',
+            });
+            $('.numOfRes').css('float','left');
+            
+        });
+    
+    
+    </script>
+    
+</head>
+
+<body>
+    
+    <!--헤더 시작-->
+    <h1 class="header">PHONEBOOK</h1>
+    <hr>
+    <!--헤더 종료-->
+    
+    
+    
+    <!--회원가입 폼 시작-->
+    <div>
+        <h2 class="title">전화번호 추가</h2>
+    
+        <form id="regForm" style="width:700px">
+            <table style="width:90%">
+                <tr>
+                    <td>
+                        <label>이름</label><input type="password" name="userpw" id="userpw" required>
+
+                    </td>
+                    <td>
+                        <label>전화번호</label><input type="password" id="repw" required>
+
+                    </td>
+                    <td>
+                        <label>이메일</label><input type="text" name="username" id="username" required>
+
+                    </td>
+                    <td>
+                        <label>분류</label><input type="text" name="userid" id="userid" required>
+
+                    </td>
+                    <td>
+                        <input type="submit" value="등록">
+
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+    <!--회원가입 폼 종료-->
+    
+    
+    
+    <!--회원 리스트 시작-->
+    <div>
+        <hr>
+        <h2 class="title">전화번호부</h2>
+        <div class="numOfRes">Number of results : </div><div class="numOfRes">N</div>
+        <br>
+        
+        <table class="listTable">
+            <tbody>
+                <tr>
+                    <th>순번(index)</th>
+                    <th>아이디</th>
+                    <th>비밀번호</th>
+                    <th>이름</th>
+                    <th>관리</th>
+                </tr>
+            </tbody>
+        </table>
+    
+    </div>
+    <!--회원 리스트 종료-->
+    
+    
+    
+    <!--회원정보 수정 시작-->
+    <div>
+        
+        <div>
+            <h2>정보 수정</h2>
+            <a href=""></a>        
+        </div>
+        <hr>
+        
+        <form>
+            <table>
+                <tr>
+                    <td>
+                        <label>분류</label>
+                    </td>
+                    <td>
+                        <input type:text name="userid" id="editid" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>이름</label>
+                    </td>
+                    <td>
+                        <input type="password" name="userpw" id="editpw" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>전화번호</label>
+                    </td>
+                    <td>
+                        <input type="password" id="editrepw" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>이메일</label>
+                    </td>
+                    <td>
+                        <input type="text" name="username" id="editname" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="수정">
+                    </td>
+                </tr>
+            
+            </table>
+        
+        </form>
+        
+        
+    </div>
+    <!--회원정보 수정 종료-->
+      
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

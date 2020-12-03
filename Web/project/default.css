@@ -48,7 +48,7 @@ h2.title {
 }
 
 #regform>table label {
-    display: block;
+    display: block; /*동일 간격 맞춰짐*/
 }
 
 #regform>table input[type=submit] {
@@ -67,7 +67,7 @@ div.msg {
 
 /* 회원 리스트 폼 */
 
-table.table { /* ?? table 다음 table 태그 */
+table.table { 
     margin: 10px 40px;
     width: 600px;
     border-collapse: collapse; /* collapse : 테두리 봉쇄, separate : 테두리 분리 */

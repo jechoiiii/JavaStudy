@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Phonebook</title>
+    
+    <link rel="stylesheet" href="phoneBook_default.css">
+    
+    <script src="phoneBook_manager.js"> </script>
+    
+</head>
+
+<body>
+    
+    <div id="layout">  
+
+        <!--헤더 시작-->
+        <h1 class="header">ADDRESS BOOK <img src="../../images/phonebook.png" width=60px></h1>
+
+        <hr>
+        <!--헤더 종료-->
+
+
+
+        <!--전화번호 추가 시작-->
+        <div id="reg">
+            <h2 class="title">연락처 추가</h2>
+
+            <form id="regForm" onsubmit="return addPhoneInfo();">
+                <table style="width:90%">
+                    <tr>
+                        <td>
+                            <label>이름</label><input type="text" name="name" id="name" required>
+                            <div class="msg">필수 항목입니다.</div>
+                        </td>
+                        <td>
+                            <label>전화번호</label><input type="number" name="phoneNum" id="phoneNum" required>
+                            <div class="msg">필수 항목입니다.</div>
+                        </td>
+                        <td>
+                            <label>이메일</label><input type="text" name="email" id="email">
+                        </td>
+                        <td>
+                            <label>주소</label>
+                            <input type="text" name="memo" id="memo">
+
+                            <!--<select>
+                                <option>대학교 동창</option>
+                                <option>회사 동료</option>
+                                <option>동호회 멤버</option>
+                                <option>기타(기입)</option>
+                            </select>-->
+                        </td>
+                        <td>
+                            <input type="submit" value="+">
+
+                        </td>
+                    </tr>
+                </table>
+            </form>
+
+        </div>
+        <hr>
+        <!--전화번호 추가 종료-->
+
+
+
+        <!--전화번호부 리스트 시작-->
+        <div class="list">
+            
+            <h2 class="title">전화번호부</h2>
+
+            <table class="table">
+                <tbody id="listTable">
+                    <tr>
+                        <th>No.</th>
+                        <th>이름</th>
+                        <th>전화번호</th>
+                        <th>이메일</th>
+                        <th>주소</th>
+                        <th>관리</th>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <!--전화번호부 리스트 종료-->
+
+
+
+        <!--정보 수정 시작-->
+        <div class="editData">
+
+            <div class="editHeader">
+                <h2>전화번호부 수정</h2>
+                <a href="javascript: editPhoneInfoClose()">닫기</a> 
+                <hr>
+            </div>
+
+
+            <form id="editForm" onsubmit="return editPhoneInfo();">
+                <input type="hidden" name="index" id="index">
+                <table>
+                    <tr>
+                        <td>
+                            <label>이름</label>
+                        </td>
+                        <td>
+                            <input type="text" name="editName" id="editName" required readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>전화번호</label>
+                        </td>
+                        <td>
+                            <input type="number" name="editPhoneNum" id="editPhoneNum" required><div class="msg">필수 항목입니다.</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>이메일</label>
+                        </td>
+                        <td>
+                            <input type="text" name="editEmail" id="editEmail">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>메모</label>
+                        </td>
+                        <td>
+                            <input type="text" name="editMemo" id="editMemo">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="수정">
+                        </td>
+                    </tr>
+
+                </table>
+
+            </form>
+
+
+        </div>
+        <!--정보 수정 종료-->
+
+    </div>  
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
