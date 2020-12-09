@@ -21,41 +21,34 @@
     <script>
         $(document).ready(function() {
 
+            // 변경 버튼 : click 이벤트 핸들러
             $('button').first().click(function() {
                 $('h1').addClass('float_left');
-
-                //$('img').attr('src', '../mini2.jpg');
+                
+                /*$('img').attr('src', '../mini2.jpg');*/
                 $('img').removeAttr('height');
-                
-                
-                //$('div>h1').html('<h4>header4 </h4>');
-                //$('div>h1').text('<h4>header4 </h4>');
-                /*$('div>h1').text(function(index){
-                    
+                 
+            
+                //$('div>h1').html('<h4>header4 </h4>'); // html '~'로 set => header4
+                //$('div>h1').text('<h4>header4 </h4>'); // text '~'로 set => <h4>header4 </h4>
+                /*$('div>h1').text(function(index){ 
                     var num = index+2;
-                    
                     return '<h'+num+'>header'+num+' </h'+num+'>';
                 });*/
                 
-                
-                //$('div').empty();
-                $('div>h1:first').remove();
-                
-                
-                
-                
-                
-
+                // 문서 객체 삭제
+                //$('div').empty(); // empty() : 문서객체 내부를 비우기 (전체삭제)
+                $('div>h1:first').remove(); // remove() : 문서 객체 자체를 제거 (선택삭제)
 
             });
+            
+            /*초기화 버튼*/
             $('button').last().click(function() {
                 $('h1').removeClass('float_left');
-
                 $('img').attr('src', '../mini1.jpg');
-
-
             });
 
+            
             // 속성 값을 반환 : get -> attr('속성이름')
             var img_path = $('img').attr('src');
             console.log('image Path ->', img_path);
@@ -78,6 +71,8 @@
                 height: 100
             });
 
+            
+            
             var colors = ['red', 'blue', 'green'];
 
             $('h1').css('color', function(index) {
@@ -85,8 +80,11 @@
             });
             
             
-            console.log('div -> ', $('div').html());
-            console.log('div -> ', $('div').text());
+            
+            console.log('div -> ', $('div').html()); // div 태그 안 tag들 반환
+            console.log('div -> ', $('div').text()); // div 태그 안 text 반환 (document.body.textContent 와 동일)
+            
+            
             
             // 배열 생성
             var links = [{
@@ -105,17 +103,26 @@
             
             
             
-            
+            /* 태그 추가 버튼 */
             $('input[type=button]').click(function(){
                 //alert(111);
                 
-                /*$('<h1></h1>').html('<i>새로운 Tag를 추가합니다.</i>').appendTo('div');*/
+                // appendTo('대상') : 대상 안 뒷부분에 객체 생성하는 메서드 (div 맨 끝 요소로)
+                // prependTo('대상') : 대상 안 앞부분에 추가 (div 맨 앞 요소로)
+                // insertAfter('대상') : 대상 뒤에 추가 (div 뒤에)
+                // insertBefore('대상') : 대상 앞에 추가 (div 앞에)
                 
-                /*$('<img>').attr({
+                // $(A).append(B) : B를 A의 뒷부분에 추가 <> $(A).appendTo(B) : A를 B의 뒷부분에 추가
+                                
+                //$('<h1></h1>').html('<i>새로운 Tag를 추가합니다.</i>').appendTo('div');
+                    // $().html() -> 동적으로 만든 tag (h1 태그 만들고 그 안에 <i>~</i> 추가)
+                
+                $('<img>').attr({
                     src:'../mini1.jpg',
                     height: 100
-                }).appendTo('div');*/
+                }).appendTo('div');
                 
+                // h1,2,3 캐스팅해서 넣기 
                 /*var h1='<h1>test 1</h1>';
                 var h2='<h1>test 2</h1>';
                 var h3='<h1>test 3</h1>';
@@ -123,7 +130,7 @@
                 $('div').append(h1, h2, h3);*/
                 
                 $('h1').append(function(index){
-                    var item = links[index];
+                    var item = links[index]; // links 배열이 담긴 객체 생성
                     var output = '<a href="'+item.url+'">'+item.name+'</a>';
                     return output;
                 });
@@ -144,7 +151,7 @@
 
     <img src="../mini1.jpg">
     <img src="../mini2.jpg">
-    <img src="../images/bb8.png">
+    <img src="../images/moana2.jpg">
 
 
 
