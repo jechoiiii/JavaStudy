@@ -20,17 +20,16 @@
     
         $(document).ready(function(){
             
-           /* $('h1').click(function(){
+            /*$('h1').click(function(){
                
                 var length = $('h1').length;
                 var html = $(this).html(); // 헤더가 가진 html
                 
-                $('#wrap').append('<h1>'+length+' - '+html+'</h1>');
-                
+                $('#wrap').append('<h1>'+length+' - '+html+'</h1>');    
             });*/
             
-            // 범위를 지정하고, 해당 범위안의 엘리먼트를 지정해서 이벤트 적용
-            // 해당 범위에 특정 엘리먼트가 추가되도 이벤트는
+            // 범위를 지정하고, 해당 범위안의 엘리먼트를 지정해서 이벤트 적용 : on(types, selector, data, fn)
+            // 해당 범위에 특정 엘리먼트가 추가되어도 이벤트를 적용
             $('#wrap').on('click', 'h1', function(){
 
                 var length = $('h1').length;
