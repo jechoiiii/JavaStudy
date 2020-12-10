@@ -39,57 +39,70 @@
         $(document).ready(function() {
 
             // 이벤트 연결 : on(이벤트타입, 핸들러)
-            /*$('h1').on('click',function(){
+            $('h1').on('click',function(){
+                
                 // 클릭이 발생하면 이벤트가 발생한 객체의 문자열를 변경
                 // this -> 이벤트가 발생한 객체
                 //$(this).html($(this).html()+'+');
                 $(this).html(function(index, html){
                     return html+'+'
                 });
-            });*/
+            });
 
             // 여러개의 이벤트를 등록할 때 객체형식으로 정의
             $('h1').on({
+                // 마우스 커서 enter
                 mouseenter: function() {
-                    $(this).addClass('over');
+                    $(this).addClass('over'); // this = h1
                 },
+                // 마우스 커서 leave
                 mouseleave: function() {
                     $(this).removeClass('over');
                 },
-                click: function(event) {
+                /* click: function(event) {
                     console.log(event);
                     $(this).html(function(index, html) {
                         return html + '+';
                     });
                     //$(this).off('click');
-
+                */
+                
+                    // 이벤트 전달을 제거
                     event.stopPropagation();
                 }
             });
-
+            
+            
+            // 간단한 이벤트 연결 : hover()
             $('h2').hover(function() {
                 $(this).addClass('over');
             }, function() {
                 $(this).removeClass('over');
+                // 이벤트 연결 제거 : off()
+                // off(): 문서 객체 관련 모든 이벤트 제거
+                // off(eventName) : 특정 이벤트 관련 모든 이벤트 제거
+                // off(eventName, function) : 특정 이벤트 리스너 제거
                 $('h2').off();
             });
 
-
+            
             $('div').click(function() {
-
+                // 매개변수 context(this)로 특정 부분에 선택자 적용
                 var header = $('h1', this).text();
                 var paragraph = $('p', this).text();
 
                 alert(header + ' : ' + paragraph);
             });
 
-
-            /*setInterval(function(){
+            // 이벤트 강제 발생 : trigger(eventName)
+            // trigger(eventName, data) - 배열 data
+            setInterval(function(){
                 $('h1').last().trigger('click');
-            }, 1000);*/
+            }, 1000);
 
             $('a').click(function(event) {
                 alert('네이버 못가요');
+                // 기본 이벤트 제거
                 //event.preventDefault();
                 return false;
             });
