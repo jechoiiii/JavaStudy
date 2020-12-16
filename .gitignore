@@ -95,8 +95,10 @@ hs_err_pid*
 
 ### Java-Web ###
 ## ignoring target file
-target/
 
+### macOS ###
+# General
+.DS_Store
 
 
 # End of https://www.toptal.com/developers/gitignore/api/web,java-web,eclipse
