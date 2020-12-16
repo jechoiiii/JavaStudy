@@ -24,4 +24,4 @@
 %>
  
  
-<<jsp:forward page="view.jsp">
+<jsp:forward page="view.jsp"/>
