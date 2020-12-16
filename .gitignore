@@ -96,9 +96,14 @@ hs_err_pid*
 ### Java-Web ###
 ## ignoring target file
 
-### macOS ###
-# General
+
+### macOS generated files ###
 .DS_Store
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
+*.DS_Store
 
 
 # End of https://www.toptal.com/developers/gitignore/api/web,java-web,eclipse
