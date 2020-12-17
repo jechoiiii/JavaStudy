@@ -1,3 +1,4 @@
+<%@page import="util.CookieBox"%>
 <%@page import="member.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -8,6 +9,18 @@
 	// 사용자로부터 데이터 받기 (request)
 	String userid = request.getParameter("userid");
 	String pw = request.getParameter("pw");
+	
+	String chk = request.getParameter("chk");
+	
+	if(chk!=null && chk.equals("on") && userid!=null && !userid.isEmpty()) {
+		// 쿠키 생성 저장 
+		// uid=userid
+		
+		response.addCookie(CookieBox.createCookie("uid", userid, "/", 60*60*24*365));
+		
+	} else {
+		response.addCookie(CookieBox.createCookie("uid", userid, "/", 0));
+	}
 	
 	// beans 객체 생성
 	Member member = new Member();
