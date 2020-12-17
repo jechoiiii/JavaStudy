@@ -1,20 +1,20 @@
-package form;
+package member;
 
-// LoginForm 에서 전송되는 데이터를 저장하는 beans 정의 
-public class MemberData {
+// 데이터를 저장하는 beans 생성
+public class Member {
 
 	// 속성 정의 : 변수는 private (필수)  
-	private String userid; 			// 사용자의 id
-	private String pw; 				// 사용자의 pw
-	private String name;			// 사용자의 이름 
-	private String photo;			// 사용자의 사진 
+	private String userid; 			// 회원의 아이디
+	private String pw; 				// 회원의 비밀번호
+	private String name;			// 회원의 이름 
+	private String photo;			// 회원의 프로필 사진 
 	
 	// 기본 생성자 (필수) 
-	public MemberData() {
+	public Member() {
 		
 	}
 
-	public MemberData(String userid, String pw, String name, String photo) {
+	public Member(String userid, String pw, String name, String photo) {
 		this.userid = userid;
 		this.pw = pw;
 		this.name = name;
