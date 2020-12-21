@@ -13,11 +13,11 @@
 </head>
 <body>
 
-	<%-- <jsp:forward page="forward.jsp"/> --%>
+	<jsp:forward page="forward.jsp"/>
 	
-	<%
+	<%-- <%
 		response.sendRedirect("forward.jsp");
-	%>
+	%> --%>
 
 </body>
 </html>
