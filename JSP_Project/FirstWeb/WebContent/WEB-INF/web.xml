@@ -23,17 +23,17 @@
   <!-- 에러 페이지 등록 : http 상태코드로 등록 -->
  <error-page>
  	<error-code>404</error-code>
- 	<location>/error.error404.jsp</location>
+ 	<location>/error/error404.jsp</location>
  </error-page>
  
  <error-page>
  	<error-code>500</error-code>
- 	<location>/error.error500.jsp</location>
+ 	<location>/error/error500.jsp</location>
  </error-page>
  
   <error-page>
  	<exception-type>java.lang.NullPointerException</exception-type>
- 	<location>/error.errorType.jsp</location>
+ 	<location>/error/errorType.jsp</location>
  </error-page>
   
   

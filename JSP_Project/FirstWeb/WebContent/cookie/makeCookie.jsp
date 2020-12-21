@@ -5,12 +5,12 @@
     pageEncoding="UTF-8"%>
 <%
 	// 쿠키 객체를 생성
-	Cookie c1 = new Cookie("userId","cool");
+	Cookie c1 = new Cookie("userid","cool");
 	
 	// response.addCookie(쿠키 객체)
 	response.addCookie(c1);
 	
-	Cookie c2 = new Cookie("userName", URLEncoder.encode("김연아", "utf-8"));
+	Cookie c2 = new Cookie("name", URLEncoder.encode("김연아", "utf-8"));
 	c2.setMaxAge(60*20);
 	response.addCookie(c2);
 	

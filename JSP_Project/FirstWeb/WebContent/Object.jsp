@@ -3,7 +3,7 @@
     
 <%
 	request.setAttribute("userName", "김연아");
-	application.setAttribute("userId", "1111");	
+	application.setAttribute("userid", "1111");	
 	session.setAttribute("nickName", "QUEEN");	
 	pageContext.setAttribute("age", 28);
 %>    
@@ -17,7 +17,7 @@
 <body>
 
 	<%= request.getAttribute("userName") %>,
-	<%= application.getAttribute("userId") %>,
+	<%= application.getAttribute("userid") %>,
 	<%= session.getAttribute("nickName") %>,
 	<%= pageContext.getAttribute("age") %>
 	

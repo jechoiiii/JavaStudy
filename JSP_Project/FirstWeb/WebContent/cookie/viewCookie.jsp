@@ -13,9 +13,9 @@
 </head>
 <body>
 
-userId=<%= cookieBox.getValue("userId") %> <br>
+userid=<%= cookieBox.getValue("userid") %> <br>
 age=<%= cookieBox.getCookie("age").getValue() %> <br>
-nicName 이 존재하는지 여부 : <%= cookieBox.exists("nickName") %>
+nickName 이 존재하는지 여부 : <%= cookieBox.exists("nickName") %>
 
 
 <%-- <%

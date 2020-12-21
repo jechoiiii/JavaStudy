@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 	// 쿠키의 삭제 : 유지 시간을 0으로 설정
-	Cookie cookie = new Cookie("userId", "");
+	Cookie cookie = new Cookie("userid", "");
 	cookie.setMaxAge(0); // 유지 시간 = 0 
 	response.addCookie(cookie);
 %>
