@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
     
 <%
-    	Member member = (Member) request.getAttribute("login");
+    	//Member member = (Member) request.getAttribute("login");
 %>
  
 <!DOCTYPE html>
@@ -15,7 +15,8 @@
 <body>
 
 	<h1>로그인 되었습니다.</h1>
- 	<h3><%= member.getUserid() %> ( <%= member.getPw() %> ) </h3>
+ 	<%-- <h3><%= member.getUserid() %> ( <%= member.getPw() %> ) </h3> --%>
+ 	<h3> ${login.userid} ( ${login.pw} ) </h3>
  	<h3><a href="loginSessionCheck.jsp">로그인 여부 체크 페이지 </a></h3>
 
 </body>
