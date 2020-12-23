@@ -19,7 +19,7 @@
 	if(conn != null) {
 		
 		// 폼에 입력한 사용자 데이터의 한글 처리
-		request.setCharacterEncoding("utf-8");
+		// request.setCharacterEncoding("utf-8");
 	
 		String userId = request.getParameter("userid"); 
 		String password = request.getParameter("pw");
