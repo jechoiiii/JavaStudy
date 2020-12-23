@@ -13,5 +13,18 @@
   	<load-on-startup>1</load-on-startup> <!-- 횟수 -->
   </servlet>
 
+
+	<!-- 필터 틍록 -->
+ 	<filter>
+ 		<filter-name>LoginCheck</filter-name>
+ 		<filter-class>filter.LoginCheckFilter</filter-class>
+ 	</filter>
+
+ 	<filter-mapping>
+ 		<filter-name>LoginCheck</filter-name>
+ 		<url-pattern>/member/mypage/*</url-pattern>
+ 	</filter-mapping>
+
+
   
 </web-app>

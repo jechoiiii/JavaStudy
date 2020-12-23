@@ -17,7 +17,7 @@ package filter;
  	@Override
  	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
  			throws IOException, ServletException {
-
+ 		
  		System.out.println("LoginCheckFilter 실행");
 
  		// 로그인이 여부 확인하는 Filter
@@ -26,12 +26,15 @@ package filter;
 
  		// boolean loginCheck = false;
 
- 		if (session != null && session.getAttribute("loginInfo") != null) {
+ 		if(session != null && session.getAttribute("loginInfo") != null) {
  			chain.doFilter(request, response);
  		} else {
  			RequestDispatcher dispatcher = request.getRequestDispatcher("/member/loginForm.jsp");
  			dispatcher.forward(request, response);
  		}
+
+
+
 
  	}
 
