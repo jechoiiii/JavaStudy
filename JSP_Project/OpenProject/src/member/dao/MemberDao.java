@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import member.Member;
 
@@ -54,7 +56,7 @@ public class MemberDao {
 	}
 	
 	// 로그인을 위한 select 
-	public Member selectMemberLogin(Connection conn, String uid, String pw) {
+	public Member selectMemberLogin(Connection conn, String uid, String pw) throws SQLException {
 		
 		Member member = null;
 		
@@ -68,11 +70,14 @@ public class MemberDao {
 			ResultSet rs = pstmt.executeQuery(); 
 			
 			if(rs.next()) {
-				member = new Member(
-						rs.getString("memberid"), 
-						rs.getString("password"), 
-						rs.getString("membername"),
-						rs.getString("memberphoto"));
+//				member = new Member(
+//						rs.getString("memberid"), 
+//						rs.getString("password"), 
+//						rs.getString("membername"),
+//						rs.getString("memberphoto"), 
+//						rs.getTimestamp("regdate"));
+				
+				member = makeMember(rs);
 			}
 			
 		} catch (SQLException e) {
@@ -80,6 +85,53 @@ public class MemberDao {
 		}
 		
 		return member;
+	}
+	
+	
+	// 전체 리스트를 반환하는 select
+	public List<Member> selectMember(Connection conn){
+		
+		List<Member> list = new ArrayList<Member>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from member";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+//				list.add(new Member(
+//						rs.getString("memberid"),
+//						rs.getString("password"),
+//						rs.getString("membername"),
+//						rs.getString("memberphoto"),
+//						rs.getTimestamp("regdate")
+//						));
+				list.add(makeMember(rs));
+			}
+			
+			rs.close();
+			pstmt.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
+	
+	// 중복 코드 메서드로 변경 
+	private Member makeMember(ResultSet rs) throws SQLException {
+		return new Member(
+				rs.getString("memberid"),
+				rs.getString("password"),
+				rs.getString("membername"),
+				rs.getString("memberphoto"),
+				rs.getTimestamp("regdate")
+				);
 	}
 	
 }

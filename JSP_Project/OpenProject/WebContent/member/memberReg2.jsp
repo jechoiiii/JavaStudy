@@ -15,7 +15,6 @@
 	int result = 0;
 
 	// DAO 객체의 insert 메서드로 member 참조변수 전달, Coonection 객체의 참조변수 전달 
-	
 	Connection conn = ConnectionProvider.getConnection();
 
 
@@ -32,14 +31,19 @@
 		String userName = null;
 		String userPhoto = null;
 		
+		// 경로 :  /upload/member 
+		String dir = request.getSession().getServletContext().getRealPath("/upload/member");
+		
+		
 		// FileUpload 라이브러리를 이용해서 DB에 입력할 데이터를 받아오기 
 		if(ServletFileUpload.isMultipartContent(request)) {
 			
 			DiskFileItemFactory factory = new DiskFileItemFactory();			
-			ServletFileUpload upload = new ServletFileUpload();
+			ServletFileUpload upload = new ServletFileUpload(factory);
 			List<FileItem> items = upload.parseRequest(request);
 			
 			Iterator<FileItem> itr = items.iterator();
+			
 			while(itr.hasNext()){
 				FileItem item = itr.next();
 				
@@ -62,9 +66,6 @@
 					
 					if(item.getFieldName().equals("photo") && !item.getName().isEmpty() && item.getSize()>0) {
 						
-						// 경로 :  /upload/member 
-						String dir = request.getSession().getServletContext().getRealPath("/upload/member");
-						
 						// 경로를 저장하는 File 객체를 생성 
 						File saveFilePath = new File(dir);
 						
@@ -75,12 +76,14 @@
 						
 						// a 사용자가 photo.jpg(미니) 업로드 하고, b 사용자가 photo.jpg(펭수) 업로드 -> photo.jpg는 펭수로 바뀜 (새로운 파일 생성되는 write 와 다름)
 						// mini.jpg --> {"mini", "jpg"}
-						// 새로운 파일 이름 : 중복하는 파일의 이름이 있으면 덮어쓴다 
-						String newFileName = System.nanoTime()+ "."+item.getName().split(".")[1]; 
+						// 새로운 파일 이름 : 중복하는 파일의 이름이 있으면 덮어쓴다
+						System.out.println(item.getName());
+						String newFileName = System.nanoTime()+ "."+item.getName().split("\\.")[1]; 
 							// System.nanoTime() : 코드 실행에 걸린 시간을 측정 => 중복하지 않는 이름 부여 목적 
 						
 						// 파일 저장 
 						item.write(new File(saveFilePath, newFileName));
+						// DB에 저장할 파일 이름
 						userPhoto = newFileName;	
 					}	
 				}
@@ -96,8 +99,19 @@
 			
 			System.out.println(member);
 			
-			// DB 에 데이터 저장
-			result = dao.insertMember(conn, member);
+			try {
+				// DB 에 데이터 저장
+				result = dao.insertMember(conn, member); 
+				// SQLException -> DB 저장되지 않지만, 파일은 이미 저장이 되어있다 => 예외 처리 필요!
+			} catch(Exception e){
+				System.out.println("예외~!!!!");
+				File delFile = new File(dir, userPhoto);
+				if(delFile.exists()){
+					// 파일을 삭제 
+					delFile.delete();
+				}
+				
+			}
 			
 		}
 		

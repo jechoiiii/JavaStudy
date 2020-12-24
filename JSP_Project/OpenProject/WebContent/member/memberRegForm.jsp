@@ -24,33 +24,23 @@
 		         <table>
 		             <tr>
 		                 <th><label for="userid">아이디(email)</label></th>
-		                 <td>
-		                     <input type="email" id="userid" name="userid">
-		                 </td>
+		                 <td><input type="email" id="userid" name="userid"> </td>
 		             </tr>
 		             <tr>
 		                 <th><label for="pw">비밀번호</label></th>
-		                 <td>
-		                     <input type="password" id="pw" name="pw"> 
-		                 </td>
+		                 <td><input type="password" id="pw" name="pw"> </td>
 		             </tr>
 		             <tr>
 		                 <th><label for="name">이름</label></th>
-		                 <td>
-		                     <input type="text" id="name" name="name">
-		                 </td>
+		                 <td><input type="text" id="name" name="name"> </td>
 		             </tr>
 		             <tr>
 		                 <th><label for="photo">사진</label></th>
-		                 <td>
-		                     <input type="file" id="photo" name="photo">
-		                 </td>
+		                 <td><input type="file" id="photo" name="photo"> </td>
 		             </tr>
 		             <tr>
 		                 <th></th>
-		                 <td>
-		                     <input type="submit" value="회원가입">
-		                 </td>
+		                 <td><input type="submit" value="회원가입"> </td>
 		             </tr>
 		         </table>
 		     </form>
