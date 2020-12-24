@@ -34,13 +34,14 @@ public class MemberDao {
 		
 		PreparedStatement pstmt = null;
 		
-		String sqlInsert = "INSERT INTO member (memberid, password, membername) values (?, ?, ?)";
+		String sqlInsert = "INSERT INTO member (memberid, password, membername, memberphoto) values (?, ?, ?, ?)";
 		
 		try {
 			pstmt = conn.prepareStatement(sqlInsert);
 			pstmt.setString(1, member.getUserId());
 			pstmt.setString(2, member.getPassword());
 			pstmt.setString(3, member.getUserName());
+			pstmt.setString(4, member.getUserPhoto());
 			
 			resultCnt = pstmt.executeUpdate();
 			

@@ -1,0 +1,110 @@
+<%@page import="java.io.File"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="org.apache.commons.fileupload.FileItem"%>
+<%@page import="java.util.List"%>
+<%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
+<%@page import="org.apache.commons.fileupload.servlet.ServletFileUpload"%>
+<%@page import="member.dao.MemberDao"%>
+<%@page import="jdbc.ConnectionProvider"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="member.Member"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	
+	int result = 0;
+
+	// DAO 객체의 insert 메서드로 member 참조변수 전달, Coonection 객체의 참조변수 전달 
+	
+	Connection conn = ConnectionProvider.getConnection();
+
+
+	//MemberDao dao = new MemberDao(); -> 외부에서 사용 불가 
+	MemberDao dao = MemberDao.getInstance();
+	
+	if(conn != null) {
+		
+		// 폼에 입력한 사용자 데이터의 한글 처리
+		// request.setCharacterEncoding("utf-8");
+	
+		String userId = null; 
+		String password = null;
+		String userName = null;
+		String userPhoto = null;
+		
+		// FileUpload 라이브러리를 이용해서 DB에 입력할 데이터를 받아오기 
+		if(ServletFileUpload.isMultipartContent(request)) {
+			
+			DiskFileItemFactory factory = new DiskFileItemFactory();			
+			ServletFileUpload upload = new ServletFileUpload();
+			List<FileItem> items = upload.parseRequest(request);
+			
+			Iterator<FileItem> itr = items.iterator();
+			while(itr.hasNext()){
+				FileItem item = itr.next();
+				
+				// type=file 여부 확인 -> 각각 필드의 값을 추출
+				if(item.isFormField()){ // 일반 필드
+					
+					String fName = item.getFieldName();
+				
+					if(fName.equals("userid")){
+						userId = item.getString("utf-8");
+					}
+					if(fName.equals("pw")){
+						password = item.getString("utf-8");
+					}
+					if(fName.equals("name")){
+						userName = item.getString("utf-8");
+					}
+					
+				} else { // file 필드 
+					
+					if(item.getFieldName().equals("photo") && !item.getName().isEmpty() && item.getSize()>0) {
+						
+						// 경로 :  /upload/member 
+						String dir = request.getSession().getServletContext().getRealPath("/upload/member");
+						
+						// 경로를 저장하는 File 객체를 생성 
+						File saveFilePath = new File(dir);
+						
+						// 폴더가 존재하는지 여부 확인 -> 없으면 폴더 생성
+						if(!saveFilePath.exists() || !saveFilePath.isDirectory()) {
+							saveFilePath.mkdir(); 
+						}
+						
+						// a 사용자가 photo.jpg(미니) 업로드 하고, b 사용자가 photo.jpg(펭수) 업로드 -> photo.jpg는 펭수로 바뀜 (새로운 파일 생성되는 write 와 다름)
+						// mini.jpg --> {"mini", "jpg"}
+						// 새로운 파일 이름 : 중복하는 파일의 이름이 있으면 덮어쓴다 
+						String newFileName = System.nanoTime()+ "."+item.getName().split(".")[1]; 
+							// System.nanoTime() : 코드 실행에 걸린 시간을 측정 => 중복하지 않는 이름 부여 목적 
+						
+						// 파일 저장 
+						item.write(new File(saveFilePath, newFileName));
+						userPhoto = newFileName;	
+					}	
+				}
+			}
+			
+			
+			
+			Member member = new Member();
+			member.setUserId(userId);
+			member.setPassword(password);
+			member.setUserName(userName);
+			member.setUserPhoto(userPhoto);
+			
+			System.out.println(member);
+			
+			// DB 에 데이터 저장
+			result = dao.insertMember(conn, member);
+			
+		}
+		
+		
+	}
+	
+	request.setAttribute("result", result);
+	
+%>
+<jsp:forward page="memberReg_view.jsp"/>
