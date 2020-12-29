@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import member.Member;
+import member.model.Member;
 
 public class MemberDao {
 
