@@ -78,6 +78,7 @@ public class MessageDao {
 		ResultSet rs = null;
 		
 		String sql = "SELECT * FROM open.guestbook_message ORDER BY message_id desc limit ?, ?";
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, firstRow);
@@ -109,5 +110,59 @@ public class MessageDao {
 		
 		return message;
 	}
+
+
+	
+	public Message selectMessage(Connection conn, int mid) throws SQLException {
+		
+		Message message = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT * FROM open.guestbook_message where message_id=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mid);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				message = makeMessage(rs);
+			}
+			
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		
+		return message;
+	}
+
+
+	
+	public int deleteMessage(Connection conn, int mid) throws SQLException {
+		
+		int resultCnt = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = "DELETE FROM open.guestbook_message WHERE message_id=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mid);
+			
+			resultCnt = pstmt.executeUpdate();
+			
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+		
+		return resultCnt;
+	}
+	
+	
+	
 	
 }
