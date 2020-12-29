@@ -46,6 +46,7 @@ public class DeleteMessageService {
 			} else if(message.getPassword().equals(pw)) {
 				// 메시지가 존재하고 비밀번호도 같다. -> 게시물 삭제 
 				dao.deleteMessage(conn, mid);
+				conn.commit();
 				
 			} else {
 				// 메시지가 존재하지만 비밀번호가 다르다.
