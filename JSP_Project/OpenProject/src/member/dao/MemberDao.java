@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,13 +71,6 @@ public class MemberDao {
 			ResultSet rs = pstmt.executeQuery(); 
 			
 			if(rs.next()) {
-//				member = new Member(
-//						rs.getString("memberid"), 
-//						rs.getString("password"), 
-//						rs.getString("membername"),
-//						rs.getString("memberphoto"), 
-//						rs.getTimestamp("regdate"));
-				
 				member = makeMember(rs);
 			}
 			
@@ -102,13 +96,6 @@ public class MemberDao {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-//				list.add(new Member(
-//						rs.getString("memberid"),
-//						rs.getString("password"),
-//						rs.getString("membername"),
-//						rs.getString("memberphoto"),
-//						rs.getTimestamp("regdate")
-//						));
 				list.add(makeMember(rs));
 			}
 			
@@ -123,15 +110,72 @@ public class MemberDao {
 	}
 	
 	
-	// 중복 코드 메서드로 변경 
-	private Member makeMember(ResultSet rs) throws SQLException {
-		return new Member(
-				rs.getString("memberid"),
-				rs.getString("password"),
-				rs.getString("membername"),
-				rs.getString("memberphoto"),
-				rs.getTimestamp("regdate")
-				);
+	// 멤버 객체를 리스트에 저장 
+	public List<Member> selectMember(Connection conn, int firstRow, int count) throws SQLException {
+
+		List<Member> memberList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT * FROM member ORDER BY memberid limit ?,?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, firstRow);
+			pstmt.setInt(2, count);
+			
+			rs = pstmt.executeQuery();
+			
+			memberList = new ArrayList<Member>();
+			
+			while(rs.next()) {
+				memberList.add(makeMember(rs));
+			}	
+			
+		} finally {
+			rs.close();
+			pstmt.close();
+		}
+
+		
+		return memberList;
 	}
+	
+	
+	// 중복 코드 메서드로 변경 
+		private Member makeMember(ResultSet rs) throws SQLException {
+			return new Member(
+					rs.getString("memberid"),
+					rs.getString("password"),
+					rs.getString("membername"),
+					rs.getString("memberphoto"),
+					rs.getTimestamp("regdate"));
+		}
+	
+	
+	// 전체 회원의 수
+		public int selectMemberTotalCount(Connection conn) throws SQLException {
+			
+			int resultCnt = 0;
+			Statement stmt = null;
+			ResultSet rs = null;
+			
+			String sql = "SELECT count(*) FROM member";
+			
+			try {
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(sql);
+				
+				if(rs.next()) {
+					resultCnt = rs.getInt(1);
+				}
+				
+			} finally {
+				rs.close();
+				stmt.close();
+			}
+			
+			return resultCnt;
+		}
 	
 }
