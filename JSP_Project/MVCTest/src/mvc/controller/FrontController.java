@@ -1,11 +1,16 @@
 package mvc.controller;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,16 +29,68 @@ public class FrontController extends HttpServlet {
 	
 	
 	@Override
-	public void init() throws ServletException {
+	public void init(ServletConfig config) throws ServletException {
 		
 		commands = new HashMap<String, Command>();
 		
-		commands.put("/", new GreetingCommand());
-		commands.put("/greeting", new GreetingCommand());
-		commands.put("/date", new DateCommand());
-		commands.put("/member/login", new MemberLoginCommand());
+		String configPath = config.getInitParameter("configPath");
+
+ 		Properties prop = new Properties();
+
+ 		FileInputStream fis = null;
+ 		// 설정 파일의 시스템의 실제 경로
+ 		String configFilepath = config.getServletContext().getRealPath(configPath);
+
+
+ 		try {
+ 			fis = new FileInputStream(configFilepath);
+ 			prop.load(fis);
+ 		} catch (FileNotFoundException e) {
+ 			// TODO Auto-generated catch block
+ 			e.printStackTrace();
+ 		} catch (IOException e) {
+ 			// TODO Auto-generated catch block
+ 			e.printStackTrace();
+ 		}
+
+ 		Iterator itr = prop.keySet().iterator();
+
+ 		while(itr.hasNext()) {
+ 			String command = (String) itr.next();
+ 			String className = prop.getProperty(command);
+
+ 			// commands Map -> command, className의 인스턴스를 저장
+ 			try {
+ 				Class commandClass = Class.forName(className);
+ 				// Command 인스턴스 생성
+ 				Command commandInstance = (Command) commandClass.newInstance();
+
+ 				// command.put(경로, Command 인스턴스)
+ 				commands.put(command, commandInstance);
+
+ 				System.out.println(command+"="+className);
+
+ 			} catch (ClassNotFoundException e) {
+ 				e.printStackTrace();
+ 			} catch (InstantiationException e) {
+ 				e.printStackTrace();
+ 			} catch (IllegalAccessException e) {
+ 				e.printStackTrace();
+ 			}
+
+ 		}
+		
+		/*
+		 * commands = new HashMap<String, Command>();
+		 * 
+		 * commands.put("/", new GreetingCommand()); commands.put("/greeting", new
+		 * GreetingCommand()); commands.put("/date", new DateCommand());
+		 * commands.put("/member/login", new MemberLoginCommand());
+		 */
 	}
 
+	
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
