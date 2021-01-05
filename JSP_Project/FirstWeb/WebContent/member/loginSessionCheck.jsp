@@ -1,4 +1,4 @@
-<%@page import="member.model.Member"%>
+<%@page import="member.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
