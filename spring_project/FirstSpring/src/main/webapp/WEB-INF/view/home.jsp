@@ -12,9 +12,16 @@
 	
 	<ul> 
 		<li>
-			<!-- 코어 태그는 value 속성을 사용했기 때문에 출력되지 X -->
-			<c:url value="/hello" var="hello"/> 
+			<c:url value="/hello" var="hello"/> <!-- 코어 태그는 value 속성을 사용했기 때문에 출력되지 X -->
 			<a href="${hello}">${hello}</a>
+		</li>
+		<li>
+			<c:url value="/member/login" var="login"/> 
+			<a href="${login}">${login}</a>
+		</li>
+		<li>
+			<c:url value="/member/search" var="search"/> 
+			<a href="${search}">${search}</a>
 		</li>
 	</ul>
 
