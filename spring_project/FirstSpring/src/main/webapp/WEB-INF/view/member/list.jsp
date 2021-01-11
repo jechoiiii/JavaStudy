@@ -10,6 +10,7 @@
 <body>
 
 	<h1>회원 리스트 </h1>
+	<h3>전체 회원 : ${memberCnt} 명 </h3>
 	<hr>
 
 	<table>

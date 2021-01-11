@@ -20,7 +20,10 @@ public class MemberListService {
 	
 	public List<Member> getMemberList() {
 		return dao.selectMemberList();
-		
+	}
+	
+	public int getmemberTotalCount() {
+		return dao.selectTotalCount();
 	}
 	
 }

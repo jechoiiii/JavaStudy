@@ -50,4 +50,16 @@ public class MemberDao {
 	}
 	
 	
+	public int selectTotalCount() {
+		return template.queryForObject("select count(*) from member", Integer.class);
+	}
+
+
+	public int insertMember(Member member) {
+		String sql = "insert into member (memberid, membername, password) values(?,?,?)";
+		return template.update(sql, member.getMemberid(), member.getMembername(), member.getPassword());
+		
+	}
+	
+	
 }
