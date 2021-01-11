@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.aia.firstspring.member.domain.Member;
 
-@Repository
+@Repository // Bean 자동 등록 -> root-context.xml에서 Bean 등록 주석 처리
 public class MemberDao {
 
 	@Autowired
@@ -30,7 +30,7 @@ public class MemberDao {
 	
 
 	public List<Member> selectMemberList() {
-		return template.query(
+		return template.query(	// 쿼리문 결과값 받아오기 
 				"select * from member order by membername", 
 				new RowMapper<Member>() {
 

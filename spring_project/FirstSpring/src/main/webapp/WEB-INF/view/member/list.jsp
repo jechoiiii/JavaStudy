@@ -13,7 +13,7 @@
 	<h3>전체 회원 : ${memberCnt} 명 </h3>
 	<hr>
 
-	<table>
+	<table border="1">
 		<tr>
 			<th>idx</th>
 			<th>아이디 </th>
@@ -33,8 +33,6 @@
 				<td>${member.regdate }</td>
 			</tr>
 		</c:forEach>
-		
-		
 	</table>
 	
 </body>

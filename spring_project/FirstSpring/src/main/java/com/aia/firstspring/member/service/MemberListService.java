@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.aia.firstspring.member.dao.MemberDao;
 import com.aia.firstspring.member.domain.Member;
 
-@Service
+@Service // Bean 자동 등록 -> root-context.xml에서 Bean 등록 주석 처리  
 public class MemberListService {
 
 	@Autowired
