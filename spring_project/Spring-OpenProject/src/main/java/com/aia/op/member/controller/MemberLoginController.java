@@ -30,7 +30,7 @@ public class MemberLoginController {
 			Model model
 			) {
 		
-		model.addAttribute("loginChk", loginService.login(request, response));
+		model.addAttribute("loginCheck", loginService.login(request, response));
 		
 		return "member/loginView";
 	}

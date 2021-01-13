@@ -52,7 +52,6 @@ public class MemberLoginService {
 				response.addCookie(c);
 			}
 		} 
-		
 		return loginCheck;
 	}
 	
