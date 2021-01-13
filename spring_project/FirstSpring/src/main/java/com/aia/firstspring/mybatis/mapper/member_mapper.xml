@@ -9,4 +9,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
 		select * from member order by membername	
 	</select>
 	
+	<insert id="insertMember"
+			parameterType="com.aia.firstspring.member.domain.Member"
+			useGeneratedKeys="true"
+			keyProperty="idx">
+		insert into member (memberid, membername, password) values(#{memberid},#{membername},#{password})
+	</insert>
+	
 </mapper>

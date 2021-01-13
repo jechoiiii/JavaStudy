@@ -17,7 +17,13 @@ public class MybatisMemberDao {
 	private SqlSessionTemplate template;
 	
 	public List<Member> selectMemberList() {
-		return template.selectList(nameSpace+".");
+		// com.aia.firstspring.mybatis.mapper.memberMapper.selectAll 
+		return template.selectList(nameSpace+".selectAll");
+	}
+	
+	public int insertMember(Member member) {
+		// com.aia.firstspring.mybatis.mapper.memberMapper.insertMember
+		return template.update(nameSpace+".insertMember", member);
 	}
 	
 }
