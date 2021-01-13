@@ -111,3 +111,5 @@ SQL/.DS_Store
 .DS_Store
 .DS_Store
 .DS_Store
+JSP_Project/TestSpringApp/target/m2e-wtp/web-resources/META-INF/maven/com.aia/testapp/pom.properties
+*.properties
