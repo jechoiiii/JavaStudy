@@ -48,8 +48,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="selectMemberList" 
 			parameterType="map"
-			resultMap="memberListResult">
-		select * from member limit #{param1}, #{param2}		
+			resultMap="memberResult">
+		select * from member 
+		
+		<where>
+			<if test="searchParam != null">
+				<if test="searchParam.searchType == 'id'">
+					<include refid="searchId"/>
+				</if>
+				<if test="searchParam.searchType == 'name'">
+					<include refid="searchName"/>
+				</if>
+				<if test="searchParam.searchType == 'both'">
+					<include refid="searchId"/>
+					<include refid="searchName"/>
+				</if>
+			</if>
+		</where>
+		
+		limit #{startRow}, #{cntPerPage}
+		
 	</select>
 	
 	
@@ -57,8 +75,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			parameterType="com.aia.op.member.domain.SearchParam"
 			resultType="int">
 		select count(*) from member
-	
-		<if test="searchType == 'id'">
+		
+		<!-- where idx>0 -->
+		
+		<where>
+			<if test="searchParam.searchType == 'id'">
+				<!-- memberid like concat('%', #{keyword},'%') -->
+				<include refid="searchId"/>
+			</if>
+			
+			<if test="searchParam.searchType == 'name'">
+				<!-- membername like concat('%', #{keyword},'%') -->
+				<include refid="searchName"/>
+			</if>
+			
+			<if test="searchParam.searchType == 'both'">
+				<!-- memberid like concat('%', #{keyword},'%') or membername like concat('%', #{keyword},'%') -->
+				<include refid="searchId"/>
+				<include refid="searchName"/>
+			</if>
+		</where>
+		
+		<!-- <if test="searchType == 'id'">
 			where memberid like concat('%', #{keyword},'%')
 		</if>
 		<if test="searchType == 'name'">
@@ -66,8 +104,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 		<if test="searchType == 'both'">
 			where memberid like concat('%', #{keyword},'%') or membername like concat('%', #{keyword},'%')
-		</if> 
+		</if> -->
 	</select>
+	
+	
+	<sql id="searchId">
+		or memberid like concat('%', #{searchParam.keyword},'%')
+	</sql>
+	
+	<sql id="searchName">
+		or membername like concat('%', #{searchParam.keyword},'%')
+	</sql>
+		
 	
 	
 </mapper> 

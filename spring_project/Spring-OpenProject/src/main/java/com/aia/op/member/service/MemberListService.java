@@ -32,16 +32,23 @@ public class MemberListService {
 			
 			System.out.println("pageNumber : " + param.getP());
 			
-			// int totalMemberCount = dao.selectTotalCount();
-			int totalMemberCount = dao.selectSearchMemberCount(param);
-			System.out.println("memberTotalCount : " + totalMemberCount);
 			
 			int cntPerPage = 5;
 			
 			int startRow = (param.getP()-1)*cntPerPage;
 			int endRow = startRow+cntPerPage-1;
 			
-			List<Member> memberList = dao.selectMemberList(startRow, cntPerPage);
+			Map<String, Object> listMap = new HashMap<String, Object>();
+			listMap.put("startRow", startRow);
+			listMap.put("cntPerPage", cntPerPage);
+			listMap.put("searchParam", param);
+			
+			// int totalMemberCount = dao.selectTotalCount();
+			int totalMemberCount = dao.selectSearchMemberCount(listMap);
+			System.out.println("memberTotalCount : " + totalMemberCount);
+			
+			// List<Member> memberList = dao.selectMemberList(startRow, cntPerPage);
+			List<Member> memberList = dao.selectMemberList(listMap);
 			System.out.println(memberList);
 		
 			listView = new MemberListView(param.getP(), totalMemberCount, cntPerPage, memberList, startRow, endRow);
