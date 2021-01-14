@@ -116,6 +116,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		or membername like concat('%', #{searchParam.keyword},'%')
 	</sql>
 		
+		
+	<!-- 회원 정보 삭제 -->
+	<delete id="deleteMemberByIdx">
+		delete from member where idx=#{idx}
+	</delete>
 	
 	
 </mapper> 
