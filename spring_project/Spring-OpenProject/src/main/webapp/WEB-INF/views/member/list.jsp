@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
  	pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
  <!DOCTYPE html>
  <html>
  <head>
  <meta charset="UTF-8">
  <title>회원 리스트 </title>
- <link rel="styleSheet" href="${url_defaultCss}">
+ <%@ include file="/WEB-INF/views/include/basicset.jsp" %>
  <style>
  
  	.table {
@@ -18,6 +19,15 @@
  		border-bottom: 1px solid #DDD;
  		text-align: center;
  		padding: 5px 0;
+ 	}
+ 
+ 	.nowpage {
+ 		font-size: 1.5em;
+ 		font-weight: bold;
+ 	}
+ 	
+ 	.paging {
+ 		text-align: center;
  	}
  
  </style>
@@ -40,14 +50,29 @@
  					<th>Member RegistDate</th>
  				</tr>
  				
- 				<tr>
- 					<td>1</td>
- 					<td>1</td>
- 					<td>1</td>
- 					<td>1</td>
- 					<td>1</td>
- 				</tr>
+ 				<c:forEach items="${listView.memberList}" var="member">
+				<tr>
+					<td>${member.idx}</td>
+					<td>${member.memberid}</td>
+					<td>${member.membername}</td>
+					<td> 
+						<img height="30" alt="프로필 사진" src="<c:url value="/fileupload/member/${member.memberphoto}"/>">
+					</td>
+					<td>
+						<fmt:formatDate value="${member.regdate}" pattern="yyyy.MM.dd"/>
+					</td>
+				</tr>
+ 				</c:forEach>
  			</table>
+ 			
+ 			<div class="paging">
+ 				<c:if test="${listView.totalMemberCount>0}">
+				<c:forEach begin="1" end="${listView.totalPageCount}" var="num">
+				[ <a href="<c:url value="/member/list"/>?p=${num}" 
+					 class="${listView.pageNumber eq num ? 'nowpage' : ''}"> ${num} </a> ] 
+				</c:forEach>
+ 				</c:if>
+ 			</div>
  			
  		</div>
  	</div>

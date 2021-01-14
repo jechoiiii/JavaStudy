@@ -4,7 +4,7 @@ import java.util.List;
 
 public class MemberListView {
 
-	private int pagenumber; 	// 현재 페이지 번호 
+	private int pageNumber; 	// 현재 페이지 번호 
 	private int totalMemberCount; // 전체 게시물의 개수 
 	private int cntPerPage; 	// 한 페이지에 노출할 게시물의 개수 
 	private List<Member> memberList; // 페이지에 노출할 회원의 정보를 담는 리스트 
@@ -14,7 +14,7 @@ public class MemberListView {
 	
 	public MemberListView(int pagenumber, int totalMemberCount, int cntPerPage, List<Member> memberList, int startRow,
 			int endRow) {
-		this.pagenumber = pagenumber;
+		this.pageNumber = pageNumber;
 		this.totalMemberCount = totalMemberCount;
 		this.cntPerPage = cntPerPage;
 		this.memberList = memberList;
@@ -31,8 +31,8 @@ public class MemberListView {
 		}
 	}
 
-	public int getPagenumber() {
-		return pagenumber;
+	public int getPageNumber() {
+		return pageNumber;
 	}
 	public int getTotalMemberCount() {
 		return totalMemberCount;
@@ -55,7 +55,7 @@ public class MemberListView {
 
 	@Override
 	public String toString() {
-		return "MemberListView [pagenumber=" + pagenumber + ", totalMemberCount=" + totalMemberCount + ", cntPerPage="
+		return "MemberListView [pageNumber=" + pageNumber + ", totalMemberCount=" + totalMemberCount + ", cntPerPage="
 				+ cntPerPage + ", memberList=" + memberList + ", startRow=" + startRow + ", endRow=" + endRow
 				+ ", totalPageCount=" + totalPageCount + "]";
 	}
