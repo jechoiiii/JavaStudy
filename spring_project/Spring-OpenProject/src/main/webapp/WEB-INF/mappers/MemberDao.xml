@@ -29,8 +29,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 회원가입 -->
 	<insert id="insertMember"
 			parameterType="com.aia.op.member.domain.Member">
-		INSERT INTO member (memberid, password, membername, memberphoto) 
-		values (#{memberid},#{password},#{membername},#{memberphoto})
+		INSERT INTO member 
+		
+		<if test="memberphoto == null">
+			(memberid, password, membername) 
+			values 
+			(#{memberid},#{password},#{membername})
+		</if>
+		<if test="memberphoto != null">
+			(memberid, password, membername, memberphoto) 
+			values 
+			(#{memberid},#{password},#{membername},#{memberphoto})
+		</if>
 	</insert>
 	
 	

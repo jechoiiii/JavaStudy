@@ -24,39 +24,46 @@ public class MemberRegService {
 	// 파일 업로드, 데이터베이스 저장 
 	public int memberReg(MemberRegRequest regRequest, HttpServletRequest request) {
 		
-		// 웹 경로 
-		String uploadPath = "/fileupload/member";
-		// 시스템의 실제 경로 
-		String saveDirPath = request.getSession().getServletContext().getRealPath(uploadPath);
-		// 새로운 파일 이름 
-		String newFileName = regRequest.getUserid() + System.currentTimeMillis();
-		
-		File newFile = new File(saveDirPath, newFileName);
-		
 		int result = 0;
 		
+		String newFileName = null;
+		File newFile = null;
+		
+		if(!regRequest.getUserphoto().isEmpty()) { 
+		
+			// 웹 경로 
+			String uploadPath = "/fileupload/member";
+			// 시스템의 실제 경로 
+			String saveDirPath = request.getSession().getServletContext().getRealPath(uploadPath);
+			// 새로운 파일 이름 
+			newFileName = regRequest.getUserid() + System.currentTimeMillis();
+			newFile = new File(saveDirPath, newFileName);
+			
+			// 파일 저장
+			try {
+				regRequest.getUserphoto().transferTo(newFile);
+			} catch (IllegalStateException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		
+		}
+		
+		Member member = regRequest.toMember(); // 사용자가 입력한 data
+		if(newFileName != null) {
+			member.setMemberphoto(newFileName);
+		}
 		 
 		try {
-			// 파일 저장
-			regRequest.getUserphoto().transferTo(newFile);
-			
-			Member member = regRequest.toMember(); // 사용자가 입력한 data
-			member.setMemberphoto(newFileName);
-			
 			// 데이터 베이스 입력 
 			dao = template.getMapper(MemberDao.class);
-			
 			result = dao.insertMember(member); 
-			
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			
 			// 현재 저장한 파일이 있다면 ?! -> 삭제 
-			if(newFile.exists()) {
+			if(newFile != null && newFile.exists()) {
 				newFile.delete();
 			}
 			
