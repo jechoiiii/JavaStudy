@@ -20,7 +20,17 @@ public class MemberMyPageController {
 	
 	@RequestMapping("/mypage3") // 	/op/mypage/mypage3
 	public String mypage3() {
+		
+		String str = "null";
+ 		str.charAt(1);
+		
 		return "member/mypage";
 	}
+	
+	@ExceptionHandler(NullPointerException.class)
+ 	public String handleNullPointerException(NullPointerException e) {
+ 		e.printStackTrace();
+ 		return "error/nullPointer";
+ 	}
 	
 }
