@@ -55,6 +55,10 @@
 			<c:url value="/member/reg" var="memberReg"/> 
 			<a href="${memberReg}">${memberReg}</a>
 		</li>
+		<li>
+			<c:url value="/members/10" var="members"/> 
+			<a href="${members}">${members}</a>
+		</li>
 	</ul>
 
 </body>
