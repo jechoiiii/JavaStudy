@@ -34,11 +34,18 @@
 		<h2 class="content_title">Login</h2>
 		<hr>
 		<div class="content">
-		로그인 되었습니다. <br>
-		<%-- <%= loginInfo %> --%>
-		${loginInfo} <br>
-		<img alt="회원사진" src="<c:url value="/fileupload/member/${loginInfo.memberphoto}"/>">
-		</div>
+		
+		<c:if test="${msg ne null}">
+			${msg}
+		</c:if>
+		
+		<c:if test="${msg eq null}">
+			로그인 되었습니다. <br>
+			<%-- <%= loginInfo %> --%>
+			${loginInfo} <br>
+			<img alt="회원사진" src="<c:url value="/fileupload/member/${loginInfo.memberphoto}"/>">
+		</c:if>
+				</div>
 	</div>
 	
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
