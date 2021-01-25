@@ -37,6 +37,11 @@ public interface MemberDao {
 	// id 존재 유무 확인 - Member 객체 만드는 것보다 Count함수로 int 가져오는게 더 나음 
 	int selectMemberByIdCount(String id);
 	
+	// idx, verify 조건으로 조회
+	int selectMemberByIdxVerify(int index);
+	
+	// 인증처리 verify='Y'
+	int updateMemberByVerify(int idx, String code);
 	
 	
 }

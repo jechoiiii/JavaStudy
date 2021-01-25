@@ -28,18 +28,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 회원가입 -->
 	<insert id="insertMember"
-			parameterType="com.aia.op.member.domain.Member">
+			parameterType="com.aia.op.member.domain.Member"
+			useGeneratedKeys="true"
+			keyProperty="idx">
 		INSERT INTO member 
 		
+		<!-- 인증을 위해 code 컬럼 추가 -->
 		<if test="memberphoto == null">
-			(memberid, password, membername) 
+			(memberid, password, membername, code) 
 			values 
-			(#{memberid},#{password},#{membername})
+			(#{memberid},#{password},#{membername}, #{code})
 		</if>
 		<if test="memberphoto != null">
-			(memberid, password, membername, memberphoto) 
+			(memberid, password, membername, memberphoto, code) 
 			values 
-			(#{memberid},#{password},#{membername},#{memberphoto})
+			(#{memberid},#{password},#{membername},#{memberphoto}, #{code})
 		</if>
 	</insert>
 	
@@ -159,8 +162,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- id 존재 유무 확인 -->
 	<select id="selectMemberByIdCount"
 			resultType="int">
-	select count(*) from member where memberid=#{id}	
+		select count(*) from member where memberid=#{id}	
 	</select>
+	
+	
+	<!-- idx, verify 조건으로 조회 -->
+	<select id="selectMemberByIdxVerify"
+			resultType="int">
+		select count(*) from member where idx=#{idx} and verify='Y'
+	</select>
+	
+	
+	<!-- 인증처리 verify='Y' -->
+	<update id="updateMemberByVerify">
+		update member set verify='Y' where idx=#{param1} and code=#{param2}
+	</update>
 	
 	
 </mapper> 
