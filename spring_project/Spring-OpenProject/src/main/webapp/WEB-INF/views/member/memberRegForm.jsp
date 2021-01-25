@@ -86,9 +86,10 @@
 			
 			var chk = ('#idcheck').is(':checked');
 			
-			alert(chk);
-			
-			return false;
+			if(!chk) {			
+				alert('아이디 중복여부가 체크되어야 합니다.');
+				return false;
+			}
 			
 		});
 		
