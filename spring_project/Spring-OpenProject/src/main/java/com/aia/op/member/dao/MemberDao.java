@@ -34,6 +34,9 @@ public interface MemberDao {
 	// 회원정보 update 
 	int updateMember(Member member);
 	
+	// id 존재 유무 확인 - Member 객체 만드는 것보다 Count함수로 int 가져오는게 더 나음 
+	int selectMemberByIdCount(String id);
+	
 	
 	
 }

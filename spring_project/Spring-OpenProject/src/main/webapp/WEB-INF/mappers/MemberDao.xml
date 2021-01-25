@@ -155,4 +155,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	</update>
 	
+	
+	<!-- id 존재 유무 확인 -->
+	<select id="selectMemberByIdCount"
+			resultType="int">
+	select count(*) from member where memberid=#{id}	
+	</select>
+	
+	
 </mapper> 
