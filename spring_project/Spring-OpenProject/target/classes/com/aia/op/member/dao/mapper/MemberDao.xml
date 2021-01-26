@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aia.op.member.dao.MemberDao">
+
+	<!-- Member 타입의 resultMap : 로그인시 사용  -->
+	<resultMap id="memberResult" 
+				type="com.aia.op.member.domain.Member">
+		<id column="idx" property="idx"/>
+		<result column="memberid" property="memberid"/>
+		<result column="membername" property="membername"/>
+		<result column="password" property="password"/>
+		<result column="memberphoto" property="memberphoto"/>
+		<result column="regdate" property="regdate"/>
+	</resultMap>
+
+	<resultMap id="memberListResult" 
+				type="com.aia.op.member.domain.Member">
+		<id column="idx" property="idx"/>
+		<result column="memberid" property="memberid"/>
+		<result column="membername" property="membername"/>
+		<result column="memberphoto" property="memberphoto"/>
+		<result column="regdate" property="regdate"/>
+	</resultMap>
+	
+
+	<!-- 회원가입 -->
+	<insert id="insertMember"
+			parameterType="com.aia.op.member.domain.Member"
+			useGeneratedKeys="true"
+			keyProperty="idx">
+		INSERT INTO member 
+		
+		<!-- 인증을 위해 code 컬럼 추가 -->
+		<if test="memberphoto == null">
+			(memberid, password, membername, code) 
+			values 
+			(#{memberid},#{password},#{membername}, #{code})
+		</if>
+		<if test="memberphoto != null">
+			(memberid, password, membername, memberphoto, code) 
+			values 
+			(#{memberid},#{password},#{membername},#{memberphoto}, #{code})
+		</if>
+	</insert>
+	
+	
+	<!-- 로그인 --> 
+	<select id="selectLogin"
+			resultMap="memberResult">
+		select * from member where memberid=#{param1} and password=#{param2}
+	</select>
+
+
+	<!-- 회원의 총 수 -->
+	<select id="selectTotalCount" resultType="int">
+		select count(*) from member
+	</select>
+	
+	
+	<!-- 회원 리스트 -->
+	<select id="selectMemberList" 
+			parameterType="map"
+			resultMap="memberResult">
+		select * from member 
+		
+		<where>
+			<if test="searchParam != null">
+				<if test="searchParam.searchType == 'id'">
+					<include refid="searchId"/>
+				</if>
+				<if test="searchParam.searchType == 'name'">
+					<include refid="searchName"/>
+				</if>
+				<if test="searchParam.searchType == 'both'">
+					<include refid="searchId"/>
+					<include refid="searchName"/>
+				</if>
+			</if>
+		</where>
+	
+		limit #{startRow}, #{cntPerPage}
+	</select>
+	
+	
+	<select id="selectSearchMemberCount"
+			parameterType="com.aia.op.member.domain.SearchParam"
+			resultType="int">
+		select count(*) from member
+		
+		<!-- where idx>0 -->
+		
+		<where>
+			<if test="searchParam.searchType == 'id'">
+				<!-- memberid like concat('%', #{keyword},'%') -->
+				<include refid="searchId"/>
+			</if>
+			
+			<if test="searchParam.searchType == 'name'">
+				<!-- membername like concat('%', #{keyword},'%') -->
+				<include refid="searchName"/>
+			</if>
+			
+			<if test="searchParam.searchType == 'both'">
+				<!-- memberid like concat('%', #{keyword},'%') or membername like concat('%', #{keyword},'%') -->
+				<include refid="searchId"/>
+				<include refid="searchName"/>
+			</if>
+		</where>
+		
+		<!-- <if test="searchType == 'id'">
+			where memberid like concat('%', #{keyword},'%')
+		</if>
+		<if test="searchType == 'name'">
+			where membername like concat('%', #{keyword},'%')
+		</if>
+		<if test="searchType == 'both'">
+			where memberid like concat('%', #{keyword},'%') or membername like concat('%', #{keyword},'%')
+		</if> -->
+	</select>
+	
+	
+	<sql id="searchId">
+		or memberid like concat('%', #{searchParam.keyword},'%')
+	</sql>
+	
+	<sql id="searchName">
+		or membername like concat('%', #{searchParam.keyword},'%')
+	</sql>
+		
+		
+		
+	<!-- 회원정보 삭제 -->
+	<delete id="deleteMemberByIdx">
+		delete from member where idx=#{idx}
+	</delete>
+	
+	
+	
+	<!-- 회원정보 조회 -->
+	<select id="selectMemberByIdx" 
+			resultMap="memberListResult">
+		select * from member where idx=#{no}
+	</select>
+	
+	
+	
+	<!-- 회원정보 update -->
+	<update id="updateMember"
+			parameterType="com.aia.op.member.domain.Member">
+		update member 
+		set membername=#{membername}, 
+			password=#{password}, 
+			memberphoto=#{memberphoto}
+		where idx=#{idx}
+		
+	</update>
+	
+	
+	<!-- id 존재 유무 확인 -->
+	<select id="selectMemberByIdCount"
+			resultType="int">
+		select count(*) from member where memberid=#{id}	
+	</select>
+	
+	
+	<!-- idx, verify 조건으로 조회 -->
+	<select id="selectMemberByIdxVerify"
+			resultType="int">
+		select count(*) from member where idx=#{idx} and verify='Y'
+	</select>
+	
+	
+	<!-- 인증처리 verify='Y' -->
+	<update id="updateMemberByVerify">
+		update member set verify='Y' where idx=#{param1} and code=#{param2}
+	</update>
+	
+	
+</mapper> 

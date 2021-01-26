@@ -32,9 +32,25 @@
 		<level value="info" />
 	</logger>
 	
-	<logger name="org.springframework.jdbc">
+	<!-- <logger name="org.springframework.jdbc">
 		<level value="DEBUG"/>
+	</logger> -->
+	
+	<logger name="jdbc.audit">
+		<level value="info"/>
 	</logger>
+	
+	<logger name="jdbc.resultSet">
+		<level value="info"/>
+	</logger>
+	
+	<!-- HikariCP 가 반환하는 로그 -->
+	<logger name="jdbc.connection"> 
+		<level value="info"/>
+	</logger>
+	
+	
+	
 
 	<logger name="org.mybatis.spring">
 		<level value="DEBUG"/>
