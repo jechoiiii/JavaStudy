@@ -38,6 +38,19 @@
 	
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 	
+	
+	
+<script>
+	<c:if test="${type eq 'delete'}">
+		<c:if test="${result eq 'ok'}">
+			alert('로그아웃되었습니다.');
+		</c:if>
+		<c:if test="${result ne 'ok'}">
+			alert('처리과정에서 오류가 생겼습니다. 다시 시도해주세요.')
+		</c:if>
+	</c:if>
+</script>
+	
 
 </body>
 </html>

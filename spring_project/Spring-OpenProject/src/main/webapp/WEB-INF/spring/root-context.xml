@@ -30,6 +30,7 @@
 			p:mapperLocations="classpath:com/aia/op/member/dao/mapper/*.xml"
 	/> 
 	<!-- junit이 경로 읽지 못해 mapper를 dao로 이동 "/WEB-INF/mappers/*.xml" -->
+	<!-- p:mapperLocations="classpath:com/aia/op/member/dao/mapper/*.xml" -->
 	
 	<!-- SqlSessionTemplate 등록 -->
 	<bean id="sqlSessionTemplate"
