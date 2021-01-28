@@ -48,7 +48,7 @@
 
 
 
-	<nav>
+<%-- 	<nav>
 		<ul><!--     /op -->
 			<li> <a href="<c:url value="/"/>">HOME</a> </li>
 			<li> <a href="<c:url value="/member/reg"/>">회원가입</a>  </li>
@@ -73,4 +73,4 @@
 			<li> <a href="<c:url value="/member/list"/>">회원 리스트 </a>  </li>
 			<li> <a href="#">방명록</a>  </li>
 		</ul>
-	</nav>
+	</nav> --%>

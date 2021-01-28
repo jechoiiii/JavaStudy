@@ -69,6 +69,7 @@
  	
 		<div class="my-3 p-3 bg-white rounded shadow-sm">
 			<h3 class="border-bottom pb-2 mb-0">회원 리스트</h3>
+			
 			<div class="d-flex text-muted pt-3">
 				<table class="table  table-striped table-hover">
 					<tr>
@@ -97,18 +98,30 @@
 					</c:forEach>
 
 				</table>
-
+		</div>
  						
- 			<div class="paging">
+ 			
+		<nav aria-label="Page navigation example">
+			<ul class="pagination">
+				<c:if test="${listView.totalMemberCount>0}">
+					<c:forEach begin="1" end="${listView.totalPageCount}" var="num">
+							<li class="page-item ${listView.pageNumber eq num ? 'active' : ''}"><a class="page-link " href="<c:url value="/member/list"/>?p=${num}&searchType=${param.searchType}&keyword=${param.keyword}">${num}</a></li>				
+				</c:forEach>
+				</c:if>					
+			</ul>
+		</nav>		
+ 						
+ 						
+ 			<%-- <div class="paging">
  				<c:if test="${listView.totalMemberCount>0}">
 				<c:forEach begin="1" end="${listView.totalPageCount}" var="num">
 				[ <a href="<c:url value="/member/list"/>?p=${num}&searchType=${param.searchType}&keyword=${param.keyword}" 
 					 class="${listView.pageNumber eq num ? 'nowpage' : ''}"> ${num} </a> ] 
 				</c:forEach>
  				</c:if>
- 			</div>
+ 			</div> --%>
  			
- 		</div>
+ 		
  	</div>
 </main>
 

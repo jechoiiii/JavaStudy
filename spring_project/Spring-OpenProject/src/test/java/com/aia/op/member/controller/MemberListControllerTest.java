@@ -26,6 +26,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class MemberListControllerTest {
 
+	//@Autowired
 	@Setter(onMethod_ = {@Autowired})
 	private WebApplicationContext ctx;
 	
@@ -40,8 +41,7 @@ public class MemberListControllerTest {
 	@Test
 	public void testMemberList() throws Exception {
 		
-		log.info( mockMvc.perform(MockMvcRequestBuilders.get("/member/list"))
-				.andReturn().getModelAndView().getModelMap());
+		log.info( mockMvc.perform(MockMvcRequestBuilders.get("/member/list")).andReturn().getModelAndView().getModelMap());
 	}
 	
 	@Test
