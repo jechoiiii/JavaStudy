@@ -1,6 +1,7 @@
 package com.aia.op.member.service;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.aia.op.member.dao.MemberDao;
 import com.aia.op.member.domain.Member;
 import com.aia.op.member.domain.MemberRegRequest;
+
+import net.coobird.thumbnailator.Thumbnailator;
 
 @Service
 public class MemberRegService {
@@ -35,7 +38,7 @@ public class MemberRegService {
 		String newFileName = null;
 		File newFile = null;
 		
-		if(!regRequest.getUserphoto().isEmpty()) { 
+		if(regRequest.getUserphoto() != null && !regRequest.getUserphoto().isEmpty()) { 
 		
 			// 웹 경로 
 			String uploadPath = "/fileupload/member";
@@ -47,7 +50,15 @@ public class MemberRegService {
 			
 			// 파일 저장
 			try {
-				regRequest.getUserphoto().transferTo(newFile);
+				//regRequest.getUserphoto().transferTo(newFile);
+				
+				FileOutputStream thumbnail = new FileOutputStream(new File(saveDirPath, "s_"+ newFileName));
+				
+				// 썸네일 저장 50x50 
+				Thumbnailator.createThumbnail(regRequest.getUserphoto().getInputStream(), thumbnail, 50, 50);
+				
+				thumbnail.close();
+				
 			} catch (IllegalStateException e1) {
 				e1.printStackTrace();
 			} catch (IOException e1) {

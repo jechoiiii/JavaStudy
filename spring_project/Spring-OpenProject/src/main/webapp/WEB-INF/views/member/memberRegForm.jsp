@@ -166,7 +166,7 @@
 							msg.html('사용 불가능한 아이디입니다.');
 							msg.removeClass('font_blue');
 							msg.addClass('font_red');
-						}r
+						}
 					},
 					error : function() {
 						// alert('사용 불가능한 아이디입니다.');
