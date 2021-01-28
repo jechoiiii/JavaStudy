@@ -6,25 +6,30 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.aia.firstspring.service.MailSenderService;
+
 @Controller
 @RequestMapping("/mail")
 public class MailSenderController {
 
 	@Autowired
-	private JavaMailSender mailSender;
+	MailSenderService mailSenderService;
 	
-	@RequestMapping("/simplemail")	//	/mail/simplemail -> 뷰를 해당 경로에서 찾음 
+//	@Autowired
+//	private JavaMailSender mailSender;
+	
+//	@Autowired
+//	private SimpleMailMessage templateMessage;
+
+	@RequestMapping("/simplemail")  //    /mail/simplemail
 	public void simpleMailSend() {
 		
-		SimpleMailMessage message = new SimpleMailMessage();
-		message.setTo("jechoiiii@gmail.com");
-		message.setSubject("테스트 이메일 발송합니다.");
-		message.setText("내용입니다. ");
+		//mailSenderService.simpleMailSend();
+		mailSenderService.mailSend("ryuyj76@naver.com");
 		
-		mailSender.send(message);
-		
-		// return "mail/simplemail";
-		
+		 // return "mail/simplemail";
 	}
+	
+	
 	
 }
