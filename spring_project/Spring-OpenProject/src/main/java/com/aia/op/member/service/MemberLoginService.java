@@ -19,6 +19,9 @@ public class MemberLoginService {
 	@Autowired
 	private SqlSessionTemplate template;
 	
+	@Autowired
+	private RedisService redisService;
+	
 	public boolean login(
 			HttpServletRequest request,
 			HttpServletResponse response) {
@@ -42,6 +45,10 @@ public class MemberLoginService {
 				
 				// 현재 세션의 속성에 LoginInfo 인스턴스를 저장 
 				request.getSession().setAttribute("loginInfo", member.toLoginInfo());
+				
+				// 현재 Session id를 Redis에 저장
+				redisService.setUserInformation(member.toLoginInfo(), request.getSession());
+				
 				loginCheck = true;
 				
 				//	2. uid 쿠키 처리 

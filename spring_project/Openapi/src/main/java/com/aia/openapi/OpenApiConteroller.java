@@ -25,12 +25,12 @@ public class OpenApiConteroller {
 		RestTemplate template = new RestTemplate();
 
 		String url = "http://apis.data.go.kr/1360000/VilageFcstInfoService/getVilageFcst"
-				+ "?serviceKey=7SfUZOq52SpD4qLwR2jTusLrmCPg3R4Io3gDfvTUjTkMyDrR6sD9O3sCmy%2BesjmLaG8fYt3vstEIpHB8c4iX0Q%3D%3D"
+				+ "?serviceKey=Ul4%2BcYS7f9Q31NjJP%2FIk1ly9GOGQ8G%2FYPCnJyBsV3hh6ZLptcQZZuR3WufjzBKZb1QEs8%2BqUwJJzc6rlACTkyA%3D%3D"
 				+ "&pageNo=1" 
 				+ "&numOfRows=10" 
 				+ "&dataType=json" 
-				+ "&base_date=20210201" 
-				+ "&base_time=0500" 
+				+ "&base_date=20210203"
+				+ "&base_time=1900" 
 				+ "&nx=1"
 				+ "&ny=1";
 
