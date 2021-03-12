@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+<style>
+    {
+        width: 30%;
+        height: 100px;
+        float: left;
+        padding: 5px;
+    }
+    
+    .owner {
+        text-align: center;
+        line-height: 100px;
+    }
+    
+    //.toGb button {
+        margin: 10px;
+        width: 80%;
+        height: 50%;  
+    }
+    
+    table tr, table td {
+        border: 1px solid;
+    }
+    
+    
+    input[name="num"] ~ tr:2nd child {
+        background-color: red;
+        
+    }
+    
+    .area1 {
+        width: 315px; 
+        height: 473px;
+        border: 1px solid;
+        padding: 20px;
+    }
+    
+    .areabtn {
+        width: 40%;
+        height: 8%;
+        margin: 10px;
+        text-align: left;
+    }
+    
+    .area1 img {
+        padding: 10px;
+        display: inline-block;
+    }
+    
+    
+    .label_wrapper {
+        width: 315px; 
+        height: 473px;
+        border: 1px solid;
+        padding: 20px;
+    }
+    
+    lable {
+        
+    }
+    
+    .labelforLoc {
+        width: 130px;
+        height: 20px;
+        margin: 10px;
+        text-align: center;
+        border: 1px solid red;
+        float: left;
+        font-size: 0.9em;
+    }
+    
+    .labelforLoc:checked {
+        border: 1px solid blue;
+    }
+    
+</style>
+
+</head>
+
+<body>
+    
+    <div class="label_wrapper">
+    
+    <lable for="possibleLocBtn" class="labelforLoc">1
+        <input type="radio" id="possibleLocBtn" name="possibleLocBtn" style="display:none;" value="1">
+    </lable> 
+
+    <lable for="possibleLocBtn" class="labelforLoc"> 222222222
+        <input type="radio" id="possibleLocBtn" name="possibleLocBtn" style="display:none;" value="1">
+        
+    </lable> 
+    
+    <lable for="possibleLocBtn" class="labelforLoc">   
+        <input type="radio" id="possibleLocBtn" name="possibleLocBtn" style="display:none;" value="1">
+        <span>1</span>
+    </lable> 
+        
+    <lable for="possibleLocBtn" class="labelforLoc">   
+        <input type="radio" id="possibleLocBtn" name="possibleLocBtn" style="display:none;" value="1">
+        <span>1</span>
+    </lable> 
+        
+        
+    
+    
+    </div>
+    
+    <div class="toGb">
+        
+        <div class="area1">
+            <button class="areabtn" onclick="setLoc()">서울특별시 성동구</button>
+            <button class="areabtn">서울특별시 광진구</button>
+            <button class="areabtn">서울특별시 송파구</button>
+            <img src="#" width="150">
+        </div>
+        
+        <table width="295" height="460" style="table-layout: fixed;">
+            <tr height="100">
+                <td colspan="2" width="180">1</td>
+                <td width="115">2</td>
+            </tr>
+            <tr height="100">
+                <td>3</td>
+                <td colspan="2" rowspan="2" >4</td>
+            </tr>
+            <tr height="200">
+                <td>5</td>
+            </tr>
+            <tr height="50">
+                <td colspan="3"><img src="#" width="130"></td>
+            </tr>
+            
+        </table>
+        
+        <table class="gblist_table">
+        
+            <input type="hidden" name="num" id="num" value="1">
+            <tr class="gblist_width">
+                <td rowspan="2" class="gblist_memImgR">
+                    <img width="30" class="gblist_memImg" src="#">
+                </td>
+                <td class="gblist_info">닉네임</td>
+                <td rowspan="3" class="gblist_uploadPhoto">
+                    <img height="60" src="#">
+                </td>
+            </tr>
+            <tr class="gblist_info">
+                <td class="font7">서울 종로구 · 2021.01.01</td>
+            </tr>
+            <tr class="gblist_con">
+                <td colspan="2" class="gblist_content">잘 보고 갑니다~</td>
+            </tr>
+        
+        
+        
+            <input type="hidden" name="num" id="num" value="2">
+            <tr class="gblist_width">
+                <td rowspan="2" class="gblist_memImgR">
+                    <img width="30" class="gblist_memImg" src="#">
+                </td>
+                <td class="gblist_info">닉네임</td>
+                <td rowspan="3" class="gblist_uploadPhoto">
+                    <img height="60" src="#">
+                </td>
+            </tr>
+            <tr class="gblist_info">
+                <td class="font7">서울 종로구 · 2021.01.01</td>
+            </tr>
+            <tr class="gblist_con">
+                <td colspan="2" class="gblist_content">잘 보고 갑니다~</td>
+            </tr>
+        
+            
+            
+            <input type="hidden" name="num" id="num" value="3">
+            <tr class="gblist_width">
+                <td rowspan="2" class="gblist_memImgR">
+                    <img width="30" class="gblist_memImg" src="#">
+                </td>
+                <td class="gblist_info">닉네임</td>
+                <td rowspan="3" class="gblist_uploadPhoto">
+                    <img height="60" src="#">
+                </td>
+            </tr>
+            <tr class="gblist_info">
+                <td class="font7">서울 종로구 · 2021.01.01</td>
+            </tr>
+            <tr class="gblist_con">
+                <td colspan="2" class="gblist_content">잘 보고 갑니다~</td>
+            </tr>
+            
+            
+            
+            <input type="hidden" name="num" id="num" value="4">
+            <tr class="gblist_width">
+                <td rowspan="2" class="gblist_memImgR">
+                    <img width="30" class="gblist_memImg" src="#">
+                </td>
+                <td class="gblist_info">닉네임</td>
+                <td rowspan="3" class="gblist_uploadPhoto">
+                    <img height="60" src="#">
+                </td>
+            </tr>
+            <tr class="gblist_info">
+                <td class="font7">서울 종로구 · 2021.01.01</td>
+            </tr>
+            <tr class="gblist_con">
+                <td colspan="2" class="gblist_content">잘 보고 갑니다~</td>
+            </tr>
+        
+            
+            
+            <input type="hidden" name="num" id="num" value="5">
+            <tr class="gblist_width">
+                <td rowspan="2" class="gblist_memImgR">
+                    <img width="30" class="gblist_memImg" src="#">
+                </td>
+                <td class="gblist_info">닉네임</td>
+                <td rowspan="3" class="gblist_uploadPhoto">
+                    <img height="60" src="#">
+                </td>
+            </tr>
+            <tr class="gblist_info">
+                <td class="font7">서울 종로구 · 2021.01.01</td>
+            </tr>
+            <tr class="gblist_con">
+                <td colspan="2" class="gblist_content">잘 보고 갑니다~</td>
+            </tr>
+            
+            
+            <input type="hidden" name="num" id="num" value="6">
+            <tr class="gblist_width">
+                <td rowspan="2" class="gblist_memImgR">
+                    <img width="30" class="gblist_memImg" src="#">
+                </td>
+                <td class="gblist_info">닉네임</td>
+                <td rowspan="3" class="gblist_uploadPhoto">
+                    <img height="60" src="#">
+                </td>
+            </tr>
+            <tr class="gblist_info">
+                <td class="font7">서울 종로구 · 2021.01.01</td>
+            </tr>
+            <tr class="gblist_con">
+                <td colspan="2" class="gblist_content">잘 보고 갑니다~</td>
+            </tr>
+        
+            
+            
+            <input type="hidden" name="num" id="num" value="7">
+            <tr class="gblist_width">
+                <td rowspan="2" class="gblist_memImgR">
+                    <img width="30" class="gblist_memImg" src="#">
+                </td>
+                <td class="gblist_info">닉네임</td>
+                <td rowspan="3" class="gblist_uploadPhoto">
+                    <img height="60" src="#">
+                </td>
+            </tr>
+            <tr class="gblist_info">
+                <td class="font7">서울 종로구 · 2021.01.01</td>
+            </tr>
+            <tr class="gblist_con">
+                <td colspan="2" class="gblist_content">잘 보고 갑니다~</td>
+            </tr>
+        </table>
+        
+        <lable for="possibleLocBtn">2번</lable>
+    <input type="radio" id="possibleLocBtn" name="possibleLocBtn" style="display:none;" value="2">
+    <lable for="possibleLocBtn">3번</lable>
+    <input type="radio" id="possibleLocBtn" name="possibleLocBtn" style="display:none;" value="3">
+    <lable for="possibleLocBtn">4번</lable>
+    <input type="radio" id="possibleLocBtn" name="possibleLocBtn" style="display:none;" value="4">
+        
+    </div>
+    
+</body>
+    
+    <script>
+    
+        function getGbookOwnerIdx() {
+		
+            $('button')
+            return 
+			// test
+			return 20;
+			
+			//return memNo;
+		}
+    
+    </script>
+    
+</html>

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+<style>
+    
+    /*
+
+기본 파란색 : #64c2eb
+진한 파란색 : #30b0e7
+기본 회색 : #757575
+진한 회색 : #424242
+바탕 아주 옅은 회색 : #f5f5f5
+강조 컬러 빨강 : #ee7f7b
+강조 컬러 노랑 : #ffd74e
+
+*/
+
+/*한글*/
+/*font-family: 'Nanum Gothic', sans-serif;*/
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+
+/*영문*/
+@font-face {
+    font-family: 'Bebas Neue Book';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Bebas Neue Book'), url('BebasNeue Book.woff') format('woff');
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    background-color: #f5f5f5;
+    color: #757575;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    background-color: #64c2eb;
+    height: 90px;
+    float: left;
+    width: 100%;
+    position: absolute;
+    top : 0px;
+
+}
+
+footer {
+    background-color: #ffffff;
+    height: 60px;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    
+}
+
+.logoimage {
+    margin-top: 10px;
+    margin-left: 20px;
+    background-color: #64c2eb;
+}
+
+.content{
+    margin-top: 100px;
+    height: max;
+}
+
+    .home_btn {
+		border: 0px;
+	}
+
+	.content_wrap {
+        max-width: 500px;
+        max-height: 650px;
+	}
+
+    .mainForm {
+        max-width: 500px;
+        height: 0px;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: center;
+    }
+
+    /* 위치 */
+    .location {
+        width: 100%;
+        height: 10%;
+        text-align: center;
+    }
+ 
+ 	/* ---------------------- GUESTBOOK 리스트 ---------------------- */
+
+	#gblist_btn {
+		border: 0px;
+	}
+
+	.gblistForm {
+		max-width: 500px;
+        height: 650px;
+        padding-left: 20px;
+        padding-right: 20px;
+        overflow: auto;
+	}
+	
+	.gblist_title {
+		width: 300px;
+		height: 10%;
+		padding: 10px 0;
+	}
+		
+	.gb_back_btn {
+		border: 0px;
+	}
+	
+	.reg_modal_open_btn {
+		border: 0px;
+	}
+	
+	.gblist {
+		width: 300px;
+		height: 90%;
+		padding: 10px;
+		background-color: white;
+		border-radius: 5px;
+		overflow: auto;
+	}
+	
+	.gblist tr, .gblist td {
+		background-color: white;	
+	}
+	
+	.gblist_table {
+		width: 100%;
+	}
+ 
+ 	.gblist_width {
+ 		width: 100%;
+ 	}
+ 	
+ 	.gblist_con {
+ 		width: 100%;
+ 		height: 60px;
+ 	}
+ 	
+ 	 .gblist_content {
+ 	 	padding-left: 20px;
+ 		border-bottom: 1px solid #eee;
+ 		font-weight: 0.7em;
+ 	}
+ 	
+ 	.gblist_memImgR {
+ 		width: 40px;
+ 		padding: 10px;
+ 		padding-top: 15px;
+ 	}
+ 	
+ 	.gblist_memImg {
+ 		border-radius: 50px;
+ 	}
+ 	
+ 	.gblist_uploadPhoto {
+ 		border-bottom: 1px solid #eee;
+ 	}
+ 	
+ 	.gblist_info {
+ 		width: 190px;
+ 		padding-top: 10px;
+ 	}
+ 	
+ 	/* ---------------------- GUESTBOOK 리스트 끝 ---------------------- */
+ 	
+ 	
+ 	/* ---------------------- GUESTBOOK 등록 MODAL ---------------------- */
+ 	
+/*  	.modalFade {
+ 	    display:none;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 90%;
+        background-color:rgba( 255, 255, 255, 0.5 );
+        padding-top: 150px;
+        padding-left: 30px;
+    } */
+    
+   .regModal_wrapper {
+    	position: fixed;
+    	top: 0px;
+    	left: 0px;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+    }
+        
+    .regModal_wrapper tr, .regModal_wrapper td {
+        /* border: 1px solid; */
+    }
+ 
+    .regModal {
+        position: relative;
+        width: 400px;
+        height: 570px;
+        background-color: white;
+        margin: 20px;
+        padding: 10px;
+        border-radius: 10px;
+    }
+    
+    .regModal_back {
+        float: left;
+    }
+    
+    /* 방명록 등록 모달창 헤더 */
+    .regModal_header {
+    }
+    
+    .reg_modal_close_btn {
+    	border: 0px;
+    	padding: 10px;
+    }
+    
+    .regModal_title {
+        text-align: center;
+        padding: 10px;
+    }
+    
+    /* 방명록 등록 모달창 내용 */
+    .regModal_body {
+    	width: 100%;
+    	height: 87%;
+    }
+    
+    .regModal_table {
+        width: 100%;
+        height: 480px;
+    }
+    
+    .regModal_table td {
+    	padding: 10px;
+    }
+    
+    .tableExp1 {
+        width: 75%;
+        height: 30px;
+        font-weight: 0.8em;
+    }
+    
+    .tableExp2 {
+        width: 75%;
+        height: 50px;
+        font-weight: 0.5em;
+    }
+    
+    .tableImg {
+        width: 25%;
+    }
+    
+    .insertArea {
+        vertical-align: top;
+    }
+    
+    .tableInsert {
+        vertical-align: top;
+    }
+    
+    .tableInsert input[type=text]{
+        width: 100%;
+        height: 100%;
+        border: 0px;
+        padding: 10px;
+    }
+    
+    .tableInsertPhoto {
+        width: 50px;
+        padding-top: 50px;
+    }
+    
+    #photo_submit_btn {
+        border: 0px;
+    }
+    
+    /* 방명록 등록 모달창 Footer */
+    #reg_submit_btn {
+        width: 100%;
+        height: 35px;
+        background-color: #ffd74e;
+        color: white;
+        border: 0px;
+        border-radius: 0 0 20px 20px;
+    }
+ 	    
+ </style>
+</head>
+
+<body>
+    
+    <header>
+      <img src="<c:url value="/image/logo/mwlogo.png"/>" width="119px" class="logoimage">
+    </header>
+
+    		<div class="content" id="content" name="content">
+	
+				<!-- 메인 wrap -->
+				<div class="content_wrap">
+					
+					<!-- 메인 -->
+					<div class="mainForm" id="mainForm"></div>
+					
+					<!-- 방명록 리스트 -->
+		    		<div class="gblistForm" id="gblistForm" style="display: none;" ></div>
+	
+					<!-- 방명록 등록 (모달 창) -->
+			    	<form id="gbregForm" method="post" enctype="multipart/form-data">
+			    		<div class="regModal_wrapper" style="display: none;">
+			    			<div class="regModal">
+			    			
+			    				<div class="regModal_header">
+		                             <div class="regModal_back">
+		                                 <button type="button" onclick="closeModal()" class="reg_modal_close_btn"><img width="20" src="<c:url value="/image/back.png"/>"></button>
+		                             </div>
+		                             <div class="regModal_title">방명록 남기기</div>
+		                         </div>
+			    					
+			    				<div class="regModal_body">
+                                    <table class="regModal_table">
+                                        <tr>
+                                            <td class="tableExp1">잘 보셨나요?</td>
+                                            <td table="tableImg" rowspan="2" colspan="2"><img width="30" src="#"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tableExp2">00님에게 인사를 남겨보세요:)</td>
+                                        </tr>
+                                        <tr class="placeTop">
+                                            <td class="tableInsert" colspan="2">
+                                                <input type="text" value="00님의 스타일은 어떤가요? 하고 싶은 말을 여기에 적어보세요.">
+                                                </td>
+                                            <td class="tableInsertPhoto"><button id="photo_submit_btn"><img src="30"></button></td>
+                                        </tr>
+                                    </table>
+                                
+                                </div>
+			    				
+			    				<div class="regModal_footer">
+		                           <button id="reg_submit_btn" type="button" class="regBtnSuccess" onclick="regGuestbook()">보내기</button>
+		                       </div>
+		                       
+			    			</div>
+			    		</div>
+			    	</form>	    
+					
+                    <!-- 방명록 삭제 (모달 창) -->
+			    	<form id="gbDeleteForm">	
+			    		<div class="updateModal_wrapper" style="display: none;">
+			    			<div class="regModal">
+			    			
+			    				<div class="regModal_header">
+		                             <div class="regModal_back">
+		                                 <button type="button" onclick="closeUpdateModal()" class="reg_modal_close_btn"><img width="20" src="<c:url value="/image/back.png"/>"></button>
+		                             </div>
+		                             <div class="regModal_title">방명록 수정하기</div>
+		                         </div>
+			    					
+			    				<div class="updateModal_body"></div>
+			    				
+			    				<div class="regModal_footer">
+		                           <button id="reg_submit_btn" type="button" onclick="updateGuestbook()">수정하기</button>
+		                       </div>
+		                       
+			    			</div>
+			    		</div>
+			    	</form> 
+                    
+                    
+				</div>
+			
+
+	    	 
+	    </div>
+
+ 	
+    <footer>
+
+
+
+   </footer>
+
+<script>
+
+        /* 방명록 등록 (모달 창) ----------------------------------------------- */
+		const open = document.querySelector('.reg_modal_open_btn');
+		const close = document.querySelector('.reg_modal_close_btn');
+		const modal = document.querySelector('.regModal_wrapper');
+		
+        function controlModal() {
+            
+            open.addEventListener('click', function() {
+                modal.style.display = 'flex';
+            })
+
+            close.addEventListener('click', function() {
+                modal.style.display = 'none';
+            })          
+        
+        }
+        
+        controlModal();
+    
+    
+        /* input 포커스시 value 사라지도록 처리 */
+
+    
+</script>
+    
+    
+</body>
+</html>
